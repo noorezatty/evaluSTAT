@@ -1606,6 +1606,40 @@
             box-shadow: 0 22px 60px rgba(9,20,27,.2);
         }
 
+        /* Compact corporate landing-page refinements */
+        .front-hero-panel { position: relative; }
+        .front-lecturer-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 38px;
+            padding: 8px 12px;
+            border: 1px solid rgba(255,255,255,.30);
+            border-radius: 8px;
+            background: rgba(255,255,255,.10);
+            color: #FFFFFF;
+            font-family: 'Inter', Arial, sans-serif;
+            font-size: .76rem;
+            font-weight: 650;
+            cursor: pointer;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            transition: background .2s ease, border-color .2s ease;
+        }
+        .front-lecturer-btn:hover {
+            background: rgba(255,255,255,.18);
+            border-color: rgba(255,255,255,.48);
+        }
+        .front-feature-grid { display: none !important; }
+        .front-access-copy,
+        .front-privacy-note,
+        .front-access-kicker { display: none !important; }
+        .front-hero-panel .front-subtitle { margin-bottom: 0; }
+        .front-access-panel h2 { margin-bottom: 22px; }
+
         /* Tablets */
         @media (max-width: 900px) {
             main.glass-card { width: calc(100% - 28px); padding: 22px; margin-top: 18px; }
@@ -1677,20 +1711,98 @@
                 background: #FFFFFF;
             }
 
-            .front-card-wrapper { border-radius: 14px; }
-            .front-hero-panel { padding: 30px 22px 28px; }
-            .front-access-panel { padding: 28px 22px 30px; }
-            .front-eyebrow { margin-bottom: 14px; font-size: .64rem; }
-            .front-logo-badge { margin-bottom: 22px; }
-            .front-title { font-size: clamp(1.9rem, 9vw, 2.45rem); }
-            .front-subtitle { margin-bottom: 24px; font-size: .9rem; }
-            .front-feature-grid { flex-direction: column; gap: 8px; }
-            .front-feature-item { padding: 10px 11px; flex: 1 1 auto; }
-            .front-feature-item strong { font-size: .8rem; }
-            .front-feature-item small { font-size: .69rem; }
-            .front-credit-footer { margin-top: 24px; font-size: .69rem; }
-            .front-access-panel h2 { font-size: 1.45rem; }
-            .front-access-copy { margin-bottom: 20px; }
+            #registration-screen { min-height: 100dvh; }
+            #registration-screen + * { scroll-margin-top: 0; }
+            body.registration-mode main.glass-card {
+                padding: 0;
+                min-height: 100dvh;
+            }
+            .front-card-wrapper {
+                min-height: 100dvh;
+                border: 0;
+                border-radius: 0;
+                display: grid;
+                grid-template-rows: minmax(215px, 34dvh) 1fr;
+            }
+            .front-hero-panel {
+                padding: max(20px, env(safe-area-inset-top)) 18px 18px;
+                min-height: 0;
+                justify-content: flex-start;
+            }
+            .front-lecturer-btn {
+                top: max(14px, env(safe-area-inset-top));
+                right: 14px;
+                min-height: 34px;
+                padding: 7px 9px;
+                font-size: .68rem;
+            }
+            .front-eyebrow {
+                margin: 2px 128px 18px 0;
+                font-size: .58rem;
+                line-height: 1.35;
+                letter-spacing: .11em;
+            }
+            .front-logo-badge {
+                margin: 0 0 15px;
+                padding: 7px 10px;
+            }
+            .front-logo-badge .uitm-text,
+            .front-logo-badge .evalustat-text { font-size: .86rem; }
+            .front-title {
+                margin-bottom: 10px;
+                max-width: 330px;
+                font-size: clamp(1.65rem, 7.5vw, 2.05rem);
+                line-height: 1.06;
+            }
+            .front-subtitle {
+                max-width: 340px;
+                font-size: .75rem;
+                line-height: 1.42;
+            }
+            .front-credit-footer {
+                margin-top: auto;
+                padding-top: 12px;
+                font-size: .62rem;
+            }
+            .front-access-panel {
+                padding: 18px 18px max(16px, env(safe-area-inset-bottom));
+                justify-content: flex-start;
+            }
+            .front-access-panel h2 {
+                margin: 0 0 12px;
+                font-size: 1.22rem;
+            }
+            .front-form .form-group { margin-bottom: 8px; }
+            .front-form .form-group label {
+                margin-bottom: 5px;
+                font-size: .72rem !important;
+            }
+            .front-form .form-control {
+                min-height: 42px;
+                padding: 8px 11px;
+            }
+            .front-btn-submit {
+                min-height: 42px;
+                margin-top: 2px;
+                padding: 10px 14px;
+                font-size: .86rem;
+            }
+
+            @media (max-height: 680px) {
+                .front-card-wrapper { grid-template-rows: 205px 1fr; }
+                .front-hero-panel { padding-bottom: 14px; }
+                .front-eyebrow { margin-bottom: 12px; }
+                .front-logo-badge { margin-bottom: 10px; }
+                .front-title { margin-bottom: 0; font-size: 1.48rem; }
+                .front-subtitle { display: none; }
+                .front-credit-footer { padding-top: 8px; font-size: .58rem; }
+                .front-access-panel { padding-top: 14px; }
+                .front-access-panel h2 { margin-bottom: 9px; font-size: 1.12rem; }
+                .front-form .form-group { margin-bottom: 6px; }
+                .front-form .form-group label { margin-bottom: 3px; }
+                .front-form .form-control { min-height: 39px; padding-top: 7px; padding-bottom: 7px; }
+                .front-btn-submit { min-height: 40px; padding-top: 8px; padding-bottom: 8px; }
+            }
 
             .form-control,
             .front-form .form-control,
@@ -1942,44 +2054,27 @@
 
     <!-- Main Container Card -->
     <main class="glass-card">
-        <!-- SCREEN 1: CORPORATE RESPONSIVE LANDING PAGE -->
+        <!-- SCREEN 1: COMPACT CORPORATE LANDING PAGE -->
         <section id="registration-screen" class="screen active">
             <div class="front-card-wrapper">
                 <div class="front-hero-panel">
+                    <button type="button" class="front-lecturer-btn" onclick="app.openLecturerAuthModal()" aria-label="Open Lecturer Portal">
+                        🔒 Lecturer Portal
+                    </button>
+
                     <div class="front-eyebrow">STA104 · INTRODUCTION TO STATISTICS</div>
                     <div class="front-logo-badge" aria-label="UiTM evaluSTAT">
                         <span class="uitm-text">UiTM</span>
                         <span class="evalustat-text">evaluSTAT</span>
                     </div>
 
-                    <h1 class="front-title">Interactive Statistics Assessment Platform</h1>
-                    <p class="front-subtitle">
-                        A structured digital assessment experience designed to help university students practise,
-                        assess and strengthen essential statistics knowledge through immediate feedback.
-                    </p>
-
-                    <div class="front-feature-grid" aria-label="Platform highlights">
-                        <div class="front-feature-item">
-                            <span class="front-feature-icon">06</span>
-                            <div><strong>Assessment Modules</strong><small>Topic-based learning checks</small></div>
-                        </div>
-                        <div class="front-feature-item">
-                            <span class="front-feature-icon">✓</span>
-                            <div><strong>Instant Evaluation</strong><small>Automatic scoring and review</small></div>
-                        </div>
-                        <div class="front-feature-item">
-                            <span class="front-feature-icon">★</span>
-                            <div><strong>Achievement Record</strong><small>Certificate and lecturer view</small></div>
-                        </div>
-                    </div>
-
+                    <h1 class="front-title">Interactive Statistics Assessment</h1>
+                    <p class="front-subtitle">Assess your statistics knowledge and receive immediate results. Complete six topic-based quizzes designed for STA104. Review your performance after each module and identify concepts that need more attention. Complete all modules to view your overall achievement and certificate.</p>
                     <div class="front-credit-footer">Developed by Noorezatty Mohd Yusop</div>
                 </div>
 
                 <div class="front-access-panel">
-                    <div class="front-access-kicker">STUDENT ACCESS</div>
-                    <h2>Start your assessment</h2>
-                    <p class="front-access-copy">Enter your details to continue to the STA104 Topic Hub.</p>
+                    <h2>Student Access</h2>
 
                     <form class="front-form" onsubmit="app.handleRegistration(event)">
                         <div class="form-group">
@@ -1994,10 +2089,8 @@
                             <label for="student-group">Group</label>
                             <input type="text" id="student-group" class="form-control" placeholder="e.g., CS1104A" autocomplete="off" required>
                         </div>
-                        <button type="submit" class="front-btn-submit">Continue to Topic Hub <span aria-hidden="true">→</span></button>
+                        <button type="submit" class="front-btn-submit">Continue <span aria-hidden="true">→</span></button>
                     </form>
-
-                    <div class="front-privacy-note">Your progress is stored locally in this browser for assessment use.</div>
                 </div>
             </div>
         </section>
@@ -2628,10 +2721,15 @@
                 const target = document.getElementById(screenId);
                 
                 const uitmBadge = document.getElementById('header-uitm-badge');
-                if (screenId === 'registration-screen') {
+                const siteHeader = document.querySelector('header');
+                const onRegistration = screenId === 'registration-screen';
+                document.body.classList.toggle('registration-mode', onRegistration);
+                if (onRegistration) {
                     uitmBadge.style.display = 'none';
+                    if (siteHeader) siteHeader.style.display = 'none';
                 } else {
-                    uitmBadge.style.display = 'inline-block';
+                    uitmBadge.style.display = 'inline-flex';
+                    if (siteHeader) siteHeader.style.display = 'flex';
                 }
 
                 if (target) {
