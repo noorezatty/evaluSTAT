@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>UiTM | STA104 - evaluSTAT Interactive Statistics Hub</title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1241,6 +1241,18 @@
             font-weight: 500;
         }
 
+        /* Developer credit now sits at the bottom of the Student Access panel. */
+        .front-access-panel .front-credit-footer {
+            width: 100%;
+            margin: auto 0 0;
+            padding-top: 18px;
+            color: #6B7D77;
+            font-size: .70rem;
+            line-height: 1.35;
+            text-align: center;
+            font-weight: 500;
+        }
+
         .front-access-panel {
             padding: clamp(34px, 4.5vw, 58px);
             display: flex;
@@ -2096,6 +2108,215 @@
             }
         }
 
+
+        /* ======================================================================
+           V8: iPHONE 375 × 812 FRONT PAGE FIT — ENLARGED DESCRIPTION + BOTTOM CREDIT
+           Design target: 16px left/right margins and a compact usable viewport.
+           Browser/status/tab bars are handled by 100dvh (dynamic viewport height).
+           ====================================================================== */
+        @media (max-width: 430px) {
+            body.registration-mode {
+                min-height: 100dvh;
+                overflow-x: hidden;
+                background: #EEF3F1;
+            }
+
+            body.registration-mode main.glass-card {
+                width: calc(100% - 32px);          /* 16px iPhone side margins */
+                max-width: 398px;
+                min-height: 0;
+                margin: 8px auto;
+                padding: 0;
+                background: transparent;
+                border: 0;
+                border-radius: 0;
+                box-shadow: none;
+            }
+
+            body.registration-mode #registration-screen {
+                width: 100%;
+                min-height: 0;
+                padding: 0;
+            }
+
+            body.registration-mode .front-card-wrapper {
+                width: 100%;
+                min-height: 0;
+                height: auto;
+                max-height: calc(100dvh - 16px);
+                margin: 0;
+                border: 1px solid #AFC5BE;
+                border-radius: 14px;
+                overflow: hidden;
+                background: #FFFFFF;
+                box-shadow: 0 5px 18px rgba(6, 46, 36, .08);
+            }
+
+            body.registration-mode .front-hero-panel {
+                position: relative;
+                flex: 0 0 auto;
+                padding: 12px 12px 10px;
+                background: linear-gradient(145deg, #0B493B 0%, #0A3C31 100%);
+            }
+
+            body.registration-mode .front-lecturer-btn {
+                top: 10px;
+                right: 10px;
+                min-height: 29px;
+                padding: 5px 8px;
+                border: 1px solid rgba(255,255,255,.26);
+                border-radius: 7px;
+                font-size: .59rem;
+                line-height: 1;
+                white-space: nowrap;
+            }
+
+            body.registration-mode .front-eyebrow {
+                max-width: calc(100% - 118px);
+                margin: 1px 0 9px;
+                font-size: .49rem;
+                line-height: 1.2;
+                letter-spacing: .095em;
+            }
+
+            body.registration-mode .front-logo-badge {
+                margin: 0 0 8px;
+                padding: 5px 8px;
+                gap: 7px;
+                border-radius: 7px;
+            }
+
+            body.registration-mode .front-logo-badge .uitm-text,
+            body.registration-mode .front-logo-badge .evalustat-text {
+                font-size: .73rem;
+                line-height: 1;
+            }
+
+            body.registration-mode .front-logo-badge .evalustat-text {
+                padding-left: 7px;
+            }
+
+            body.registration-mode .front-title {
+                max-width: 285px;
+                margin: 0 0 6px;
+                font-size: 1.34rem;
+                line-height: 1.02;
+                letter-spacing: -.035em;
+            }
+
+            body.registration-mode .front-subtitle {
+                display: block !important;
+                max-width: none;
+                margin: 0;
+                font-size: .72rem;
+                line-height: 1.38;
+                color: #E7F2EE;
+            }
+
+            body.registration-mode .front-access-panel .front-credit-footer {
+                margin: auto 0 0;
+                padding: 8px 0 0;
+                font-size: .56rem;
+                line-height: 1.2;
+                color: #73817C;
+                text-align: center;
+            }
+
+            body.registration-mode .front-access-panel {
+                flex: 0 0 auto;
+                min-height: 0;
+                padding: 10px 12px 12px;
+                border-top: 1px solid #D7E3DF;
+                background: #FFFFFF;
+            }
+
+            body.registration-mode .front-access-panel h2 {
+                margin: 0 0 7px;
+                font-size: .98rem;
+                line-height: 1.1;
+                letter-spacing: -.02em;
+            }
+
+            body.registration-mode .front-form {
+                width: 100%;
+                max-width: none;
+                gap: 0;
+            }
+
+            body.registration-mode .front-form .form-group {
+                width: 100%;
+                margin: 0 0 5px;
+                text-align: left;
+            }
+
+            body.registration-mode .front-form .form-group label {
+                display: block;
+                margin: 0 0 3px;
+                font-size: .61rem !important;
+                line-height: 1.1;
+                font-weight: 600;
+            }
+
+            body.registration-mode .front-form .form-control {
+                width: 100%;
+                min-height: 35px;
+                height: 35px;
+                padding: 5px 9px;
+                border: 1px solid #C7D2CF;
+                border-radius: 8px;
+                font-size: 16px; /* prevents iOS auto zoom */
+                line-height: 1.2;
+                text-align: left;
+                box-shadow: none;
+            }
+
+            body.registration-mode .front-form .form-control::placeholder {
+                font-size: .82rem;
+                color: #9AA5A1;
+            }
+
+            body.registration-mode .front-btn-submit {
+                width: 100%;
+                min-height: 36px;
+                height: 36px;
+                margin: 1px 0 0;
+                padding: 6px 12px;
+                border: 0;
+                border-radius: 8px;
+                font-size: .76rem;
+                line-height: 1;
+                box-shadow: none;
+            }
+        }
+
+        /* The practical middle area on a 375 × 812 iPhone can be ~579px tall
+           when browser chrome is visible. Keep the complete landing screen inside it. */
+        @media (max-width: 430px) and (max-height: 620px) {
+            body.registration-mode main.glass-card { margin-top: 4px; margin-bottom: 4px; }
+            body.registration-mode .front-card-wrapper { max-height: calc(100dvh - 8px); border-radius: 12px; }
+            body.registration-mode .front-hero-panel { padding: 9px 10px 8px; }
+            body.registration-mode .front-lecturer-btn { top: 8px; right: 8px; min-height: 27px; padding: 4px 7px; font-size: .55rem; }
+            body.registration-mode .front-eyebrow { margin-bottom: 7px; font-size: .46rem; }
+            body.registration-mode .front-logo-badge { margin-bottom: 6px; padding: 4px 7px; }
+            body.registration-mode .front-logo-badge .uitm-text,
+            body.registration-mode .front-logo-badge .evalustat-text { font-size: .69rem; }
+            body.registration-mode .front-title { margin-bottom: 5px; font-size: 1.23rem; max-width: 270px; }
+            body.registration-mode .front-subtitle { font-size: .66rem; line-height: 1.30; }
+            body.registration-mode .front-access-panel .front-credit-footer { padding-top: 5px; font-size: .50rem; }
+            body.registration-mode .front-access-panel { padding: 8px 10px 10px; }
+            body.registration-mode .front-access-panel h2 { margin-bottom: 6px; font-size: .91rem; }
+            body.registration-mode .front-form .form-group { margin-bottom: 4px; }
+            body.registration-mode .front-form .form-group label { margin-bottom: 2px; font-size: .58rem !important; }
+            body.registration-mode .front-form .form-control { min-height: 32px; height: 32px; padding-top: 4px; padding-bottom: 4px; }
+            body.registration-mode .front-btn-submit { min-height: 33px; height: 33px; padding-top: 5px; padding-bottom: 5px; }
+        }
+
+        @media (max-width: 360px) {
+            body.registration-mode main.glass-card { width: calc(100% - 24px); }
+            body.registration-mode .front-title { max-width: 255px; font-size: 1.20rem; }
+            body.registration-mode .front-subtitle { font-size: .68rem; line-height: 1.32; }
+        }
+
         /* ==========================================================================
            12. PRINT STYLESHEET (@media print)
            ========================================================================== */
@@ -2246,7 +2467,6 @@
 
                     <h1 class="front-title">Interactive Statistics Assessment</h1>
                     <p class="front-subtitle">Assess your statistics knowledge and receive immediate results. Complete six topic-based quizzes designed for STA104. Review your performance after each module and identify concepts that need more attention. Complete all modules to view your overall achievement and certificate.</p>
-                    <div class="front-credit-footer">Developed by Noorezatty Mohd Yusop</div>
                 </div>
 
                 <div class="front-access-panel">
@@ -2267,6 +2487,8 @@
                         </div>
                         <button type="submit" class="front-btn-submit">Continue <span aria-hidden="true">→</span></button>
                     </form>
+
+                    <div class="front-credit-footer">Developed by Noorezatty Mohd Yusop</div>
                 </div>
             </div>
         </section>
