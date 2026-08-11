@@ -1911,6 +1911,182 @@
             .header-actions { grid-template-columns: 1fr; }
         }
 
+
+        /* ======================================================================
+           V6: SMARTPHONE LANDING PAGE — FIT, BORDER & NO OVERLAP
+           ====================================================================== */
+        @media (max-width: 600px) {
+            body.registration-mode {
+                background: #EEF3F1;
+            }
+
+            body.registration-mode main.glass-card {
+                width: 100%;
+                min-height: 100dvh;
+                margin: 0;
+                padding: 8px;
+                background: #EEF3F1;
+            }
+
+            #registration-screen {
+                min-height: 0;
+            }
+
+            .front-card-wrapper {
+                width: 100%;
+                min-height: calc(100dvh - 16px);
+                height: auto;
+                margin: 0 auto;
+                display: flex;
+                flex-direction: column;
+                grid-template-rows: none;
+                border: 1px solid #B9CBC5;
+                border-radius: 16px;
+                overflow: hidden;
+                background: #FFFFFF;
+                box-shadow: 0 8px 24px rgba(9, 45, 37, .08);
+            }
+
+            .front-hero-panel {
+                flex: 0 0 auto;
+                min-height: 0;
+                padding: 16px 16px 14px;
+                overflow: visible;
+            }
+
+            .front-lecturer-btn {
+                top: 14px;
+                right: 14px;
+                min-height: 32px;
+                padding: 6px 9px;
+                border-radius: 7px;
+                font-size: .66rem;
+            }
+
+            .front-eyebrow {
+                margin: 2px 122px 14px 0;
+                font-size: .56rem;
+                line-height: 1.25;
+                letter-spacing: .10em;
+            }
+
+            .front-logo-badge {
+                margin: 0 0 12px;
+                padding: 6px 9px;
+                border-radius: 8px;
+            }
+
+            .front-logo-badge .uitm-text,
+            .front-logo-badge .evalustat-text {
+                font-size: .82rem;
+            }
+
+            .front-title {
+                max-width: 310px;
+                margin: 0 0 8px;
+                font-size: clamp(1.48rem, 7vw, 1.82rem);
+                line-height: 1.04;
+                letter-spacing: -.035em;
+            }
+
+            .front-subtitle {
+                display: block !important;
+                max-width: none;
+                margin: 0;
+                font-size: .70rem;
+                line-height: 1.38;
+                color: #D5E8E2;
+            }
+
+            .front-credit-footer {
+                margin: 8px 0 0;
+                padding: 0;
+                font-size: .56rem;
+                line-height: 1.2;
+                color: #A8CBC1;
+            }
+
+            .front-access-panel {
+                flex: 1 1 auto;
+                min-height: 0;
+                padding: 14px 16px 16px;
+                border-top: 1px solid #D7E2DE;
+                justify-content: flex-start;
+                background: #FFFFFF;
+            }
+
+            .front-access-panel h2 {
+                margin: 0 0 10px;
+                font-size: 1.12rem;
+                line-height: 1.15;
+                letter-spacing: -.02em;
+            }
+
+            .front-form {
+                gap: 0;
+            }
+
+            .front-form .form-group {
+                margin-bottom: 7px;
+            }
+
+            .front-form .form-group label {
+                margin-bottom: 4px;
+                font-size: .68rem !important;
+                line-height: 1.2;
+            }
+
+            .front-form .form-control {
+                min-height: 39px;
+                height: 39px;
+                padding: 7px 11px;
+                border: 1px solid #C8D3D0;
+                border-radius: 9px;
+                box-shadow: none;
+            }
+
+            .front-btn-submit {
+                min-height: 40px;
+                height: 40px;
+                margin-top: 2px;
+                padding: 8px 14px;
+                border-radius: 9px;
+                font-size: .82rem;
+                box-shadow: none;
+            }
+        }
+
+        /* Shorter phones: preserve all information while reducing vertical space */
+        @media (max-width: 600px) and (max-height: 720px) {
+            body.registration-mode main.glass-card { padding: 5px; }
+            .front-card-wrapper {
+                min-height: calc(100dvh - 10px);
+                border-radius: 13px;
+            }
+            .front-hero-panel { padding: 12px 14px 10px; }
+            .front-lecturer-btn { top: 10px; right: 11px; min-height: 29px; padding: 5px 8px; font-size: .61rem; }
+            .front-eyebrow { margin: 1px 116px 9px 0; font-size: .51rem; }
+            .front-logo-badge { margin-bottom: 8px; padding: 5px 8px; }
+            .front-logo-badge .uitm-text,
+            .front-logo-badge .evalustat-text { font-size: .74rem; }
+            .front-title { margin-bottom: 6px; font-size: 1.34rem; line-height: 1.02; }
+            .front-subtitle { font-size: .63rem; line-height: 1.30; }
+            .front-credit-footer { margin-top: 5px; font-size: .51rem; }
+            .front-access-panel { padding: 10px 14px 12px; }
+            .front-access-panel h2 { margin-bottom: 7px; font-size: 1rem; }
+            .front-form .form-group { margin-bottom: 5px; }
+            .front-form .form-group label { margin-bottom: 3px; font-size: .63rem !important; }
+            .front-form .form-control { min-height: 35px; height: 35px; padding: 5px 9px; }
+            .front-btn-submit { min-height: 36px; height: 36px; padding: 6px 12px; font-size: .76rem; }
+        }
+
+        /* Very narrow phones */
+        @media (max-width: 360px) {
+            .front-title { max-width: 270px; font-size: 1.36rem; }
+            .front-subtitle { font-size: .66rem; }
+            .front-eyebrow { margin-right: 112px; }
+        }
+
         @media (prefers-reduced-motion: reduce) {
             *, *::before, *::after {
                 scroll-behavior: auto !important;
