@@ -1,0 +1,1927 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UiTM | STA104 - Interactive Statistics Hub</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ==========================================================================
+           1. CONSTANTS & THEME SETUP
+           ========================================================================== */
+        :root {
+            --matcha-dark: #1B3B22;
+            --matcha-mid: #4A6B35;
+            --matcha-light: #A3C182;
+            --matcha-soft: #EBF2E6;
+            
+            --pink-accent: #DE7288;
+            --pink-light: #F4ACB7;
+            --pink-soft: #FFE5EC;
+            
+            --bg-cream: #F8FAF6;
+            --text-dark: #1B2B1E;
+            --text-muted: #5A6E5D;
+            --white: #FFFFFF;
+            
+            --shadow-soft: 0 10px 25px rgba(27, 59, 34, 0.08);
+            --shadow-hover: 0 15px 30px rgba(27, 59, 34, 0.15);
+            --radius-card: 20px;
+            --radius-btn: 14px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-cream);
+            color: var(--text-dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, .brand-logo, .badge, .btn-3d {
+            font-family: 'Fredoka', cursive;
+        }
+
+        /* ==========================================================================
+           2. SVG BACKGROUND DOODLES
+           ========================================================================== */
+        .bg-doodles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.12;
+        }
+
+        /* ==========================================================================
+           3. HEADER & BRANDING
+           ========================================================================== */
+        header {
+            position: relative;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 2px solid rgba(163, 193, 130, 0.3);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+        }
+
+        .brand-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .uitm-badge {
+            background: var(--matcha-dark);
+            color: var(--pink-soft);
+            padding: 6px 14px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 8px rgba(27, 59, 34, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .course-title {
+            font-size: 1.2rem;
+            color: var(--matcha-dark);
+            font-weight: 600;
+        }
+
+        .student-info-tag {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* ==========================================================================
+           4. TACTILE 3D BUTTONS & UI ELEMENTS
+           ========================================================================== */
+        .btn-3d {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 24px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--white);
+            background-color: var(--matcha-mid);
+            border: none;
+            border-bottom: 4px solid var(--matcha-dark);
+            border-radius: var(--radius-btn);
+            cursor: pointer;
+            transition: all 0.15s ease;
+            text-decoration: none;
+            user-select: none;
+        }
+
+        .btn-3d:hover:not(:disabled) {
+            background-color: #557A3E;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(74, 107, 53, 0.25);
+        }
+
+        .btn-3d:active:not(:disabled) {
+            transform: translateY(2px);
+            border-bottom-width: 2px;
+            box-shadow: none;
+        }
+
+        .btn-3d:disabled {
+            background-color: #C0C8BC;
+            border-bottom-color: #9AA396;
+            color: #6C7569;
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        .btn-pink {
+            background-color: var(--pink-accent);
+            border-bottom-color: #B85064;
+        }
+
+        .btn-pink:hover:not(:disabled) {
+            background-color: #E88095;
+            box-shadow: 0 6px 15px rgba(222, 114, 136, 0.3);
+        }
+
+        .btn-secondary {
+            background-color: var(--matcha-soft);
+            color: var(--matcha-dark);
+            border-bottom: 4px solid #C2D6B8;
+        }
+
+        .btn-secondary:hover:not(:disabled) {
+            background-color: #DDECD7;
+        }
+
+        /* ==========================================================================
+           5. MAIN SPA CONTAINER & GLASS CARD LAYOUT
+           ========================================================================== */
+        main {
+            position: relative;
+            z-index: 5;
+            flex: 1;
+            max-width: 1000px;
+            width: 92%;
+            margin: 30px auto;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(16px);
+            border: 2px solid rgba(163, 193, 130, 0.3);
+            border-radius: var(--radius-card);
+            padding: 35px;
+            box-shadow: var(--shadow-soft);
+            transition: all 0.3s ease;
+        }
+
+        .screen {
+            display: none;
+            animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .screen.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ==========================================================================
+           6. SCREEN 1: REGISTRATION
+           ========================================================================== */
+        .reg-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .reg-header h2 {
+            font-size: 2.2rem;
+            color: var(--matcha-dark);
+            margin-bottom: 8px;
+        }
+
+        .form-group {
+            margin-bottom: 22px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--matcha-dark);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid var(--matcha-light);
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: 'Poppins', sans-serif;
+            background: var(--white);
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--matcha-mid);
+            box-shadow: 0 0 0 4px rgba(163, 193, 130, 0.25);
+        }
+
+        /* ==========================================================================
+           7. SCREEN 2: TOPIC HUB
+           ========================================================================== */
+        .hub-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            background: var(--matcha-soft);
+            height: 16px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 25px;
+            border: 1px solid var(--matcha-light);
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--matcha-light), var(--matcha-mid));
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        .topic-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .topic-card {
+            background: var(--white);
+            border: 2px solid var(--matcha-soft);
+            border-radius: 16px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.25s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .topic-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--matcha-light);
+        }
+
+        .topic-card.completed {
+            border-color: var(--matcha-light);
+            background: linear-gradient(180deg, #FFFFFF 0%, #F4F9F2 100%);
+        }
+
+        .topic-number {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--pink-accent);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .topic-title {
+            font-size: 1.2rem;
+            color: var(--matcha-dark);
+            margin-bottom: 12px;
+        }
+
+        .topic-status {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .status-pending { background: #FFF3D6; color: #B27B00; }
+        .status-done { background: var(--matcha-soft); color: var(--matcha-dark); }
+
+        /* ==========================================================================
+           8. SCREEN 3: MODULE QUIZ & INTERACTIVE QUESTION TYPES
+           ========================================================================== */
+        .quiz-topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px dashed var(--matcha-light);
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+
+        .question-block {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 22px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(163, 193, 130, 0.4);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+        }
+
+        .q-badge {
+            display: inline-block;
+            background: var(--pink-soft);
+            color: var(--pink-accent);
+            padding: 4px 12px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            margin-bottom: 10px;
+        }
+
+        .q-prompt {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--matcha-dark);
+            margin-bottom: 15px;
+        }
+
+        /* Q1: MCQ Radio Options */
+        .mcq-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .mcq-label {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            border: 2px solid var(--matcha-soft);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .mcq-label:hover {
+            background: var(--matcha-soft);
+            border-color: var(--matcha-light);
+        }
+
+        .mcq-label input[type="radio"] {
+            accent-color: var(--matcha-mid);
+            width: 18px;
+            height: 18px;
+        }
+
+        /* Q3: SVG Diagram Styling */
+        .svg-diagram-container {
+            text-align: center;
+            background: var(--bg-cream);
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            border: 1px dashed var(--matcha-light);
+        }
+
+        /* Q4: Sequence Ordering */
+        .sequence-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .sequence-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 16px;
+            background: var(--matcha-soft);
+            border-radius: 10px;
+            border: 1px solid var(--matcha-light);
+            font-weight: 500;
+        }
+
+        .seq-btn-group {
+            display: flex;
+            gap: 6px;
+        }
+
+        .btn-arrow {
+            background: var(--white);
+            border: 1px solid var(--matcha-mid);
+            color: var(--matcha-dark);
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-arrow:hover { background: var(--matcha-light); }
+
+        /* Q5: Concept Matching Pair */
+        .matching-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        @media (max-width: 600px) {
+            .matching-grid { grid-template-columns: 1fr; }
+        }
+
+        /* Q6: True / False Toggle */
+        .tf-group {
+            display: flex;
+            gap: 15px;
+        }
+
+        .tf-btn {
+            flex: 1;
+            padding: 14px;
+            text-align: center;
+            border: 2px solid var(--matcha-light);
+            border-radius: 12px;
+            font-family: 'Fredoka', cursive;
+            font-size: 1.1rem;
+            cursor: pointer;
+            background: var(--white);
+            transition: all 0.2s ease;
+        }
+
+        .tf-btn.selected-true {
+            background: var(--matcha-mid);
+            color: white;
+            border-color: var(--matcha-dark);
+        }
+
+        .tf-btn.selected-false {
+            background: var(--pink-accent);
+            color: white;
+            border-color: #B85064;
+        }
+
+        /* Q7: HTML5 Multi-Chip Drag & Drop */
+        .drag-section {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .chip-pool {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 15px;
+            background: #F4F8F3;
+            border: 2px dashed var(--matcha-light);
+            border-radius: 14px;
+            min-height: 60px;
+            align-items: center;
+        }
+
+        .drag-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 10px 18px;
+            background: var(--pink-soft);
+            color: var(--pink-accent);
+            border: 2px solid var(--pink-light);
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: grab;
+            user-select: none;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .drag-chip:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(222, 114, 136, 0.2);
+        }
+
+        .drag-chip:active {
+            cursor: grabbing;
+        }
+
+        .drop-zone {
+            min-height: 70px;
+            border: 2px dashed var(--matcha-mid);
+            border-radius: 14px;
+            background: var(--matcha-soft);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px;
+            color: var(--text-muted);
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .drop-zone.drag-over {
+            background: #D8E8D2;
+            border-style: solid;
+        }
+
+        /* ==========================================================================
+           9. SCREEN 4: CERTIFICATE & FEEDBACK
+           ========================================================================== */
+        .cert-container {
+            border: 8px double var(--matcha-dark);
+            background: #FFFEFA;
+            padding: 40px;
+            border-radius: 12px;
+            text-align: center;
+            position: relative;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .cert-header {
+            font-size: 2.2rem;
+            color: var(--matcha-dark);
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+
+        .cert-subheader {
+            font-size: 1.1rem;
+            color: var(--matcha-mid);
+            margin-bottom: 25px;
+        }
+
+        .cert-name {
+            font-size: 2rem;
+            color: var(--pink-accent);
+            border-bottom: 2px solid var(--pink-light);
+            display: inline-block;
+            padding: 0 20px 5px;
+            margin: 15px 0;
+            font-family: 'Fredoka', cursive;
+        }
+
+        .cert-score-badge {
+            font-size: 1.5rem;
+            background: var(--matcha-soft);
+            color: var(--matcha-dark);
+            padding: 8px 24px;
+            border-radius: 30px;
+            display: inline-block;
+            margin: 20px 0;
+            font-weight: 700;
+            border: 2px solid var(--matcha-light);
+        }
+
+        .breakdown-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 25px;
+            text-align: left;
+            font-size: 0.9rem;
+        }
+
+        .breakdown-table th, .breakdown-table td {
+            padding: 10px 14px;
+            border: 1px solid #E0E8DC;
+        }
+
+        .breakdown-table th {
+            background: var(--matcha-soft);
+            color: var(--matcha-dark);
+            font-family: 'Fredoka', cursive;
+        }
+
+        /* ==========================================================================
+           10. SCREEN 5: LECTURER PORTAL & LOGIN MODAL
+           ========================================================================== */
+        .portal-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .portal-table th, .portal-table td {
+            padding: 12px;
+            border: 1px solid var(--matcha-soft);
+            text-align: left;
+        }
+
+        .portal-table th {
+            background: var(--matcha-dark);
+            color: var(--white);
+            font-family: 'Fredoka', cursive;
+        }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(5px);
+            z-index: 100;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: var(--radius-card);
+            width: 90%;
+            max-width: 400px;
+            box-shadow: var(--shadow-hover);
+            border: 2px solid var(--matcha-light);
+        }
+
+        /* ==========================================================================
+           11. PRINT STYLESHEET (@media print)
+           ========================================================================== */
+        @media print {
+            body {
+                background: white;
+                color: black;
+            }
+
+            header, .bg-doodles, .btn-3d, .no-print, #registration-screen, #topic-hub-screen, #quiz-screen, #lecturer-portal-screen, .feedback-section, .modal-overlay {
+                display: none !important;
+            }
+
+            main {
+                max-width: 100%;
+                width: 100%;
+                margin: 0;
+                padding: 0;
+            }
+
+            .glass-card {
+                border: none;
+                box-shadow: none;
+                padding: 0;
+                background: transparent;
+            }
+
+            #certificate-screen {
+                display: block !important;
+            }
+
+            .cert-container {
+                border: 6px double #1B3B22 !important;
+                padding: 30px !important;
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Fixed Background SVG Doodles -->
+    <svg class="bg-doodles" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+        <g stroke="#4A6B35" stroke-width="2" fill="none" stroke-linecap="round">
+            <path d="M 50,100 L 80,130 L 70,140 L 40,110 Z M 75,135 L 85,145" />
+            <rect x="200" y="80" width="40" height="60" rx="5" />
+            <circle cx="210" cy="100" r="3" fill="#4A6B35" />
+            <circle cx="220" cy="100" r="3" fill="#4A6B35" />
+            <circle cx="230" cy="100" r="3" fill="#4A6B35" />
+            <path d="M 400,120 Q 450,120 475,60 Q 500,120 550,120" />
+            <path d="M 700,140 L 700,70 L 780,70" />
+            <path d="M 700,130 L 720,110 L 740,120 L 770,80" stroke-dasharray="4" />
+            <text x="100" y="300" font-family="Fredoka" font-size="28" fill="#4A6B35">∑</text>
+            <text x="850" y="200" font-family="Fredoka" font-size="28" fill="#4A6B35">μ</text>
+            <text x="300" y="500" font-family="Fredoka" font-size="28" fill="#4A6B35">σ²</text>
+            <rect x="600" y="450" width="120" height="30" rx="3" />
+            <line x1="620" y1="450" x2="620" y2="462" />
+            <line x1="640" y1="450" x2="640" y2="467" />
+            <line x1="660" y1="450" x2="660" y2="462" />
+            <line x1="680" y1="450" x2="680" y2="467" />
+            <line x1="700" y1="450" x2="700" y2="462" />
+        </g>
+    </svg>
+
+    <!-- Branding Header -->
+    <header>
+        <div class="brand-container">
+            <span id="header-uitm-badge" class="uitm-badge">UiTM</span>
+            <div>
+                <div class="course-title">STA104: Introduction to Statistics</div>
+                <div id="header-student-tag" class="student-info-tag">Not Registered</div>
+            </div>
+        </div>
+        <div style="display: flex; gap: 10px; align-items: center;">
+            <button id="btn-switch-student" class="btn-3d btn-secondary" onclick="app.switchStudent()" style="display: none;">
+                🔄 Switch Student
+            </button>
+            <button id="btn-toggle-portal" class="btn-3d btn-secondary" onclick="app.openLecturerAuthModal()">
+                🔒 Lecturer Portal
+            </button>
+        </div>
+    </header>
+
+    <!-- Lecturer Authentication Modal -->
+    <div id="lecturer-auth-modal" class="modal-overlay">
+        <div class="modal-card">
+            <h3 style="color: var(--matcha-dark); margin-bottom: 10px;">🔒 Lecturer Login</h3>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px;">Please enter lecturer credentials to access student scores.</p>
+            <form onsubmit="app.handleLecturerLogin(event)">
+                <div class="form-group">
+                    <label style="font-size:0.9rem;">Username</label>
+                    <input type="text" id="lecturer-username" class="form-control" placeholder="Enter username" required>
+                </div>
+                <div class="form-group">
+                    <label style="font-size:0.9rem;">Password</label>
+                    <input type="password" id="lecturer-password" class="form-control" placeholder="Enter password" required>
+                </div>
+                <div style="display: flex; gap: 10px; justify-content: flex-end;">
+                    <button type="button" class="btn-3d btn-secondary" onclick="app.closeLecturerAuthModal()">Cancel</button>
+                    <button type="submit" class="btn-3d btn-pink">Login</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Main Container Card -->
+    <main class="glass-card">
+
+        <!-- SCREEN 1: REGISTRATION -->
+        <section id="registration-screen" class="screen active">
+            <div class="reg-header">
+                <h2>Welcome Students! 👋</h2>
+                <p style="color: var(--text-muted);">Enter your details to start your interactive STA104 Statistics module quizzes.</p>
+            </div>
+            <form onsubmit="app.handleRegistration(event)">
+                <div class="form-group">
+                    <label for="student-name">Full Student Name</label>
+                    <input type="text" id="student-name" class="form-control" placeholder="e.g., Nurul Aishah Binti Ahmad" required>
+                </div>
+                <div class="form-group">
+                    <label for="student-id">UiTM Student ID</label>
+                    <input type="text" id="student-id" class="form-control" placeholder="e.g., 2023456789" required pattern="[0-9]{10}" title="Please enter a valid 10-digit UiTM Student ID">
+                </div>
+                <button type="submit" class="btn-3d btn-pink" style="width: 100%; margin-top: 10px;">
+                    🚀 Enter Topic Hub
+                </button>
+            </form>
+        </section>
+
+        <!-- SCREEN 2: TOPIC HUB -->
+        <section id="topic-hub-screen" class="screen">
+            <div class="hub-header">
+                <div>
+                    <h2>Course Topic Hub</h2>
+                    <p style="color: var(--text-muted);">Complete all 6 statistics topics to earn your official certificate. Note: Each Student ID has only <strong>1 attempt</strong> per topic.</p>
+                </div>
+                <button id="btn-view-cert" class="btn-3d btn-pink" onclick="app.showScreen('certificate-screen')" style="display:none;">
+                    🎓 View Certificate
+                </button>
+            </div>
+
+            <div class="progress-bar-container">
+                <div id="hub-progress-bar" class="progress-bar-fill"></div>
+            </div>
+
+            <div id="topic-grid" class="topic-grid">
+                <!-- Dynamically Rendered Topic Cards -->
+            </div>
+        </section>
+
+        <!-- SCREEN 3: MODULE QUIZ SCREEN -->
+        <section id="quiz-screen" class="screen">
+            <div class="quiz-topbar">
+                <div>
+                    <span id="quiz-topic-num" class="q-badge">TOPIC 1</span>
+                    <h2 id="quiz-topic-title">Module Quiz Title</h2>
+                </div>
+                <button class="btn-3d btn-secondary" onclick="app.showScreen('topic-hub-screen')">
+                    ← Back to Hub
+                </button>
+            </div>
+
+            <form id="quiz-form" onsubmit="app.submitQuiz(event)">
+                <div id="quiz-questions-container">
+                    <!-- Dynamic Questions 1 - 7 populated here -->
+                </div>
+
+                <div style="text-align: right; margin-top: 30px;">
+                    <button type="submit" class="btn-3d btn-pink" style="padding: 14px 36px; font-size: 1.1rem;">
+                        Submit & Grade Quiz ✔️
+                    </button>
+                </div>
+            </form>
+        </section>
+
+        <!-- SCREEN 4: CERTIFICATE & FEEDBACK -->
+        <section id="certificate-screen" class="screen">
+            <div class="cert-container" id="printable-certificate">
+                <div style="font-size: 0.9rem; letter-spacing: 2px; color: var(--matcha-mid); font-weight: 700; margin-bottom: 5px;">UNIVERSITI TEKNOLOGI MARA (UiTM)</div>
+                <h1 class="cert-header">CERTIFICATE OF ACHIEVEMENT</h1>
+                <p class="cert-subheader">This is to proudly certify that</p>
+                
+                <div class="cert-name" id="cert-student-name">Student Name</div>
+                <br>
+                <p style="color: var(--text-muted); margin: 5px 0;">Student ID: <strong id="cert-student-id">2023XXXXXX</strong></p>
+                <p>has successfully completed all required interactive modules for course</p>
+                <h3 style="color: var(--matcha-dark); margin: 10px 0;">STA104: Introduction to Statistics</h3>
+                
+                <div class="cert-score-badge">
+                    Overall Aggregate Score: <span id="cert-aggregate-score">0%</span>
+                </div>
+
+                <!-- Comprehensive Breakdown Table -->
+                <h4 style="margin-top: 25px; color: var(--matcha-dark); text-align: left;">Detailed Module Performance & Answer Key Review:</h4>
+                <table class="breakdown-table">
+                    <thead>
+                        <tr>
+                            <th>Module Title</th>
+                            <th>Score</th>
+                            <th>Status</th>
+                            <th>Key Concepts Verified</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cert-breakdown-body">
+                        <!-- Populated dynamically -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="feedback-section no-print" style="margin-top: 30px; background: var(--matcha-soft); padding: 20px; border-radius: 16px;">
+                <h3 style="color: var(--matcha-dark); margin-bottom: 10px;">Lecturer Feedback & Submission</h3>
+                <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 15px;">Leave comments for your lecturer regarding your module learning experience. You must submit your score to unlock the Return button.</p>
+                <textarea id="feedback-text" class="form-control" rows="3" placeholder="Write your thoughts or feedback here..."></textarea>
+                
+                <div style="display: flex; gap: 15px; margin-top: 15px; flex-wrap: wrap;">
+                    <button id="btn-save-submission" class="btn-3d" onclick="app.saveFinalSubmission()">
+                        💾 Save & Submit Score to Lecturer
+                    </button>
+                    <button class="btn-3d btn-pink" onclick="window.print()">
+                        🖨️ Print Official Certificate
+                    </button>
+                    <button id="btn-return-hub" class="btn-3d btn-secondary" onclick="app.finishAndNextStudent()" disabled>
+                        🔒 Return to Hub (Submit Score First)
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SCREEN 5: LECTURER PORTAL -->
+        <section id="lecturer-portal-screen" class="screen">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <div>
+                    <h2>Lecturer Portal</h2>
+                    <p style="color: var(--text-muted);">Authenticated Access: View all student assessment submissions and scores stored in browser memory.</p>
+                </div>
+                <button class="btn-3d btn-secondary" onclick="app.logoutLecturer()">
+                    🔒 Lock / Exit Portal
+                </button>
+            </div>
+
+            <div style="overflow-x: auto;">
+                <table class="portal-table">
+                    <thead>
+                        <tr>
+                            <th>Student Name</th>
+                            <th>Student ID</th>
+                            <th>Aggregate Score</th>
+                            <th>Feedback / Comments</th>
+                            <th>Date Completed</th>
+                        </tr>
+                    </thead>
+                    <tbody id="portal-submissions-body">
+                        <!-- Populated from LocalStorage -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div style="margin-top: 20px; text-align: right;">
+                <button class="btn-3d btn-pink" onclick="app.clearLecturerData()">
+                    🗑️ Clear All Student Submissions
+                </button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- JAVASCRIPT DATA & APPLICATION LOGIC -->
+    <script>
+        const sta104Topics = [
+            {
+                id: 0,
+                title: "Introduction to Statistics",
+                description: "Basic statistical concepts, populations, samples, and measurement scales.",
+                questions: [
+                    {
+                        type: "mcq",
+                        badge: "Question 1: MCQ",
+                        prompt: "Which branch of statistics focuses on summarizing and presenting data using tables, charts, and summary metrics?",
+                        options: ["Inferential Statistics", "Descriptive Statistics", "Predictive Analytics", "Probability Theory"],
+                        answer: 1
+                    },
+                    {
+                        type: "term",
+                        badge: "Question 2: Term Selection",
+                        prompt: "Select the correct statistical term matching the description below:",
+                        description: "A numerical measure that describes a characteristic of an entire POPULATION.",
+                        options: ["Statistic", "Parameter", "Variable", "Sample"],
+                        answer: "Parameter"
+                    },
+                    {
+                        type: "diagram",
+                        badge: "Question 3: Diagram Labeling",
+                        prompt: "Identify the element indicated by the dropdown in the Population vs. Sample diagram:",
+                        svg: `<svg width="100%" height="120" viewBox="0 0 300 120">
+                                <circle cx="100" cy="60" r="50" fill="#EBF2E6" stroke="#4A6B35" stroke-width="2"/>
+                                <text x="75" y="40" font-family="Fredoka" font-size="12" fill="#1B3B22">Population (N)</text>
+                                <circle cx="115" cy="75" r="20" fill="#FFE5EC" stroke="#DE7288" stroke-width="2"/>
+                                <text x="103" y="79" font-family="Fredoka" font-size="10" fill="#DE7288">n</text>
+                                <path d="M 135 75 L 200 75" stroke="#DE7288" stroke-width="2" stroke-dasharray="3,3"/>
+                              </svg>`,
+                        options: ["Population (N)", "Sample (n)", "Census"],
+                        answer: "Sample (n)"
+                    },
+                    {
+                        type: "sequence",
+                        badge: "Question 4: Procedure Ordering",
+                        prompt: "Arrange the 4 steps of a Statistical Investigation into the correct chronological order:",
+                        initial: ["Data Analysis", "Data Collection", "Data Presentation", "Data Interpretation"],
+                        answer: ["Data Collection", "Data Presentation", "Data Analysis", "Data Interpretation"]
+                    },
+                    {
+                        type: "matching",
+                        badge: "Question 5: Concept Matching",
+                        prompt: "Match the Measurement Scale to its correct example:",
+                        pairs: [
+                            { prompt: "Gender (Male/Female)", options: ["Nominal Scale", "Ratio Scale", "Ordinal Scale"], answer: "Nominal Scale" },
+                            { prompt: "Weight in Kilograms", options: ["Nominal Scale", "Ratio Scale", "Ordinal Scale"], answer: "Ratio Scale" }
+                        ]
+                    },
+                    {
+                        type: "truefalse",
+                        badge: "Question 6: True/False Challenge",
+                        prompt: "True or False: Quantitative continuous data can take any decimal value within a given range.",
+                        answer: "true"
+                    },
+                    {
+                        type: "dragdrop",
+                        badge: "Question 7: Multi-Chip Drag & Drop",
+                        prompt: "Drag the correct chip representing Discrete Quantitative Data into the target box:",
+                        chips: [
+                            { id: "c1", label: "Number of Students in Class", value: "discrete" },
+                            { id: "c2", label: "Height of Students in cm", value: "continuous" },
+                            { id: "c3", label: "Eye Color Category", value: "nominal" }
+                        ],
+                        targetAnswer: "discrete",
+                        dropBoxLabel: "Target Box: Discrete Quantitative Data"
+                    }
+                ]
+            },
+            {
+                id: 1,
+                title: "Describing Data",
+                description: "Measures of central tendency, dispersion, skewness, and graphical presentations.",
+                questions: [
+                    {
+                        type: "mcq",
+                        badge: "Question 1: MCQ",
+                        prompt: "Which measure of central tendency is most affected by extreme outlier values?",
+                        options: ["Median", "Mode", "Mean", "Interquartile Range"],
+                        answer: 2
+                    },
+                    {
+                        type: "term",
+                        badge: "Question 2: Term Selection",
+                        prompt: "Select the statistical measure described below:",
+                        description: "The square root of the sample variance, measuring the average spread from the mean.",
+                        options: ["Standard Deviation", "Variance", "Range", "Mean Absolute Deviation"],
+                        answer: "Standard Deviation"
+                    },
+                    {
+                        type: "diagram",
+                        badge: "Question 3: Diagram Labeling",
+                        prompt: "Identify the shape of the distribution shown in the curve:",
+                        svg: `<svg width="100%" height="120" viewBox="0 0 300 120">
+                                <path d="M 20 100 Q 60 20 120 70 T 280 100" fill="none" stroke="#DE7288" stroke-width="3"/>
+                                <line x1="10" y1="100" x2="290" y2="100" stroke="#1B3B22" stroke-width="2"/>
+                              </svg>`,
+                        options: ["Symmetric Normal", "Right-Skewed (Positive)", "Left-Skewed (Negative)"],
+                        answer: "Right-Skewed (Positive)"
+                    },
+                    {
+                        type: "sequence",
+                        badge: "Question 4: Procedure Ordering",
+                        prompt: "Arrange the steps to calculate Sample Variance ($s^2$):",
+                        initial: ["Square each deviation", "Calculate sample mean", "Divide sum by (n-1)", "Subtract mean from each data point"],
+                        answer: ["Calculate sample mean", "Subtract mean from each data point", "Square each deviation", "Divide sum by (n-1)"]
+                    },
+                    {
+                        type: "matching",
+                        badge: "Question 5: Concept Matching",
+                        prompt: "Match the formula concept to its metric:",
+                        pairs: [
+                            { prompt: "Q3 - Q1", options: ["Interquartile Range (IQR)", "Variance", "Mode"], answer: "Interquartile Range (IQR)" },
+                            { prompt: "Highest Value - Lowest Value", options: ["Interquartile Range (IQR)", "Total Range", "Mean"], answer: "Total Range" }
+                        ]
+                    },
+                    {
+                        type: "truefalse",
+                        badge: "Question 6: True/False Challenge",
+                        prompt: "True or False: In a perfectly symmetric distribution, Mean = Median = Mode.",
+                        answer: "true"
+                    },
+                    {
+                        type: "dragdrop",
+                        badge: "Question 7: Multi-Chip Drag & Drop",
+                        prompt: "Drag the correct measure of dispersion chip into the target box:",
+                        chips: [
+                            { id: "c1", label: "Standard Deviation", value: "dispersion" },
+                            { id: "c2", label: "Sample Median", value: "central_tendency" },
+                            { id: "c3", label: "Sample Mode", value: "central_tendency" }
+                        ],
+                        targetAnswer: "dispersion",
+                        dropBoxLabel: "Target Box: Measure of Dispersion"
+                    }
+                ]
+            },
+            {
+                id: 2,
+                title: "Time Series Data Analysis",
+                description: "Components of time series, moving averages, trend equations, and forecasting.",
+                questions: [
+                    {
+                        type: "mcq",
+                        badge: "Question 1: MCQ",
+                        prompt: "Which component of a time series represents long-term smooth upward or downward movement over many years?",
+                        options: ["Seasonal Component (S)", "Secular Trend (T)", "Cyclical Component (C)", "Irregular Component (I)"],
+                        answer: 1
+                    },
+                    {
+                        type: "term",
+                        badge: "Question 2: Term Selection",
+                        prompt: "Select the time series variation matching this description:",
+                        description: "Periodic fluctuations that repeat regularly within a single year (e.g., quarterly or monthly).",
+                        options: ["Seasonal Variation", "Cyclical Variation", "Secular Trend", "Random Noise"],
+                        answer: "Seasonal Variation"
+                    },
+                    {
+                        type: "diagram",
+                        badge: "Question 3: Diagram Labeling",
+                        prompt: "Identify the component shown by the repeating quarterly peaks in the line graph:",
+                        svg: `<svg width="100%" height="120" viewBox="0 0 300 120">
+                                <path d="M 20 90 L 50 30 L 70 80 L 100 20 L 120 75 L 150 15 L 170 70" fill="none" stroke="#4A6B35" stroke-width="2"/>
+                                <line x1="15" y1="100" x2="280" y2="100" stroke="#1B3B22" stroke-width="2"/>
+                              </svg>`,
+                        options: ["Seasonal Pattern", "Cyclical Wave", "Random Outlier"],
+                        answer: "Seasonal Pattern"
+                    },
+                    {
+                        type: "sequence",
+                        badge: "Question 4: Procedure Ordering",
+                        prompt: "Order the steps for calculating 4-Quarter Centered Moving Averages (CMA):",
+                        initial: ["Compute 2-period centered averages", "Compute 4-quarter moving totals", "Divide by 4 to get 4-quarter moving averages"],
+                        answer: ["Compute 4-quarter moving totals", "Divide by 4 to get 4-quarter moving averages", "Compute 2-period centered averages"]
+                    },
+                    {
+                        type: "matching",
+                        badge: "Question 5: Concept Matching",
+                        prompt: "Match the time series model formula:",
+                        pairs: [
+                            { prompt: "Y = T + S + C + I", options: ["Additive Model", "Multiplicative Model"], answer: "Additive Model" },
+                            { prompt: "Y = T × S × C × I", options: ["Additive Model", "Multiplicative Model"], answer: "Multiplicative Model" }
+                        ]
+                    },
+                    {
+                        type: "truefalse",
+                        badge: "Question 6: True/False Challenge",
+                        prompt: "True or False: Irregular variations are predictable patterns caused by economic business cycles.",
+                        answer: "false"
+                    },
+                    {
+                        type: "dragdrop",
+                        badge: "Question 7: Multi-Chip Drag & Drop",
+                        prompt: "Drag the correct seasonal event chip into the target box:",
+                        chips: [
+                            { id: "c1", label: "Sudden sales surge during Hari Raya", value: "seasonal" },
+                            { id: "c2", label: "10-year macroeconomic recession", value: "cyclical" },
+                            { id: "c3", label: "Gradual 20-year population growth", value: "trend" }
+                        ],
+                        targetAnswer: "seasonal",
+                        dropBoxLabel: "Target Box: Seasonal Component Event"
+                    }
+                ]
+            },
+            {
+                id: 3,
+                title: "Correlation and Regression",
+                description: "Pearson's correlation coefficient, simple linear regression lines, and scatter diagrams.",
+                questions: [
+                    {
+                        type: "mcq",
+                        badge: "Question 1: MCQ",
+                        prompt: "What is the possible numerical range of Pearson's correlation coefficient (r)?",
+                        options: ["0 to +1", "-1 to +1", "-infinity to +infinity", "0 to 100"],
+                        answer: 1
+                    },
+                    {
+                        type: "term",
+                        badge: "Question 2: Term Selection",
+                        prompt: "Select the term represented by 'b' in the simple linear regression equation Y = a + bX:",
+                        description: "The rate of change in Y for every one unit increase in X.",
+                        options: ["Slope Coefficient", "Y-Intercept", "Correlation Coefficient", "Coefficient of Determination"],
+                        answer: "Slope Coefficient"
+                    },
+                    {
+                        type: "diagram",
+                        badge: "Question 3: Diagram Labeling",
+                        prompt: "Identify the scatter plot trend indicated by the dots and line:",
+                        svg: `<svg width="100%" height="120" viewBox="0 0 300 120">
+                                <circle cx="30" cy="90" r="4" fill="#DE7288"/><circle cx="60" cy="75" r="4" fill="#DE7288"/>
+                                <circle cx="90" cy="60" r="4" fill="#DE7288"/><circle cx="120" cy="35" r="4" fill="#DE7288"/>
+                                <line x1="20" y1="100" x2="140" y2="20" stroke="#4A6B35" stroke-width="2"/>
+                              </svg>`,
+                        options: ["Positive Linear Correlation", "Negative Linear Correlation", "No Correlation"],
+                        answer: "Positive Linear Correlation"
+                    },
+                    {
+                        type: "sequence",
+                        badge: "Question 4: Procedure Ordering",
+                        prompt: "Order the steps to fit a Simple Linear Regression Line Y = a + bX:",
+                        initial: ["Calculate Y-intercept (a)", "Form final prediction equation", "Calculate slope (b)", "Calculate means of X and Y"],
+                        answer: ["Calculate means of X and Y", "Calculate slope (b)", "Calculate Y-intercept (a)", "Form final prediction equation"]
+                    },
+                    {
+                        type: "matching",
+                        badge: "Question 5: Concept Matching",
+                        prompt: "Match the correlation coefficient r value to its interpretation:",
+                        pairs: [
+                            { prompt: "r = -0.92", options: ["Strong Negative Linear", "Strong Positive Linear", "No Relationship"], answer: "Strong Negative Linear" },
+                            { prompt: "r = 0.00", options: ["Strong Negative Linear", "Strong Positive Linear", "No Relationship"], answer: "No Relationship" }
+                        ]
+                    },
+                    {
+                        type: "truefalse",
+                        badge: "Question 6: True/False Challenge",
+                        prompt: "True or False: A strong correlation between X and Y proves that X causes Y.",
+                        answer: "false"
+                    },
+                    {
+                        type: "dragdrop",
+                        badge: "Question 7: Multi-Chip Drag & Drop",
+                        prompt: "Drag the correct variable chip into the Dependent Variable target box:",
+                        chips: [
+                            { id: "c1", label: "Exam Score Result (Y)", value: "dependent" },
+                            { id: "c2", label: "Hours Spent Studying (X)", value: "independent" },
+                            { id: "c3", label: "Room Temperature (°C)", value: "extraneous" }
+                        ],
+                        targetAnswer: "dependent",
+                        dropBoxLabel: "Target Box: Dependent / Response Variable"
+                    }
+                ]
+            },
+            {
+                id: 4,
+                title: "Index Number",
+                description: "Simple aggregate, weighted index numbers (Laspeyres & Paasche), and CPI.",
+                questions: [
+                    {
+                        type: "mcq",
+                        badge: "Question 1: MCQ",
+                        prompt: "Which weighted index number uses BASE YEAR quantities (Q₀) as weights?",
+                        options: ["Paasche Index", "Laspeyres Index", "Fisher Index", "Simple Aggregate Index"],
+                        answer: 1
+                    },
+                    {
+                        type: "term",
+                        badge: "Question 2: Term Selection",
+                        prompt: "Select the term defined below:",
+                        description: "A statistical measure designed to show percentage change in price or quantity over time relative to a base year.",
+                        options: ["Index Number", "Variance", "Relative Frequency", "Slope"],
+                        answer: "Index Number"
+                    },
+                    {
+                        type: "diagram",
+                        badge: "Question 3: Diagram Labeling",
+                        prompt: "In the Price Relative formula I = (P₁ / P₀) × 100, identify P₀:",
+                        svg: `<svg width="100%" height="100" viewBox="0 0 300 100">
+                                <text x="50" y="55" font-family="Fredoka" font-size="20" fill="#1B3B22">I = ( P₁ / P₀ ) × 100</text>
+                                <path d="M 120 65 L 120 85 L 180 85" stroke="#DE7288" stroke-width="2" fill="none"/>
+                              </svg>`,
+                        options: ["Base Year Price (P₀)", "Current Year Price (P₁)", "Base Quantity (Q₀)"],
+                        answer: "Base Year Price (P₀)"
+                    },
+                    {
+                        type: "sequence",
+                        badge: "Question 4: Procedure Ordering",
+                        prompt: "Order the steps to compute a Weighted Composite Price Index:",
+                        initial: ["Multiply price relatives by weights", "Identify base and current prices", "Divide sum of weighted relatives by sum of weights"],
+                        answer: ["Identify base and current prices", "Multiply price relatives by weights", "Divide sum of weighted relatives by sum of weights"]
+                    },
+                    {
+                        type: "matching",
+                        badge: "Question 5: Concept Matching",
+                        prompt: "Match the index formula to its category:",
+                        pairs: [
+                            { prompt: "Uses Current Year Quantity (Qₙ) Weights", options: ["Paasche Index", "Laspeyres Index"], answer: "Paasche Index" },
+                            { prompt: "Base Year Index Value", options: ["Always 100", "Always 0"], answer: "Always 100" }
+                        ]
+                    },
+                    {
+                        type: "truefalse",
+                        badge: "Question 6: True/False Challenge",
+                        prompt: "True or False: An index number of 125 for 2023 (Base 2020=100) implies a 25% price increase.",
+                        answer: "true"
+                    },
+                    {
+                        type: "dragdrop",
+                        badge: "Question 7: Multi-Chip Drag & Drop",
+                        prompt: "Drag the chip representing the Base Year Index Reference value into the target box:",
+                        chips: [
+                            { id: "c1", label: "Index Value = 100", value: "val_100" },
+                            { id: "c2", label: "Index Value = 0", value: "val_0" },
+                            { id: "c3", label: "Index Value = 50", value: "val_50" }
+                        ],
+                        targetAnswer: "val_100",
+                        dropBoxLabel: "Target Box: Base Year Reference Value"
+                    }
+                ]
+            },
+            {
+                id: 5,
+                title: "Introduction to Probability",
+                description: "Basic probability rules, Venn diagrams, conditional probability, and tree diagrams.",
+                questions: [
+                    {
+                        type: "mcq",
+                        badge: "Question 1: MCQ",
+                        prompt: "If two events A and B CANNOT occur simultaneously, they are called:",
+                        options: ["Independent Events", "Mutually Exclusive Events", "Complementary Events", "Exhaustive Events"],
+                        answer: 1
+                    },
+                    {
+                        type: "term",
+                        badge: "Question 2: Term Selection",
+                        prompt: "Select the probability concept described:",
+                        description: "The probability of event A occurring given that event B has ALREADY occurred, denoted P(A|B).",
+                        options: ["Conditional Probability", "Joint Probability", "Marginal Probability", "Empirical Probability"],
+                        answer: "Conditional Probability"
+                    },
+                    {
+                        type: "diagram",
+                        badge: "Question 3: Diagram Labeling",
+                        prompt: "Identify the shaded overlapping region in this Venn diagram:",
+                        svg: `<svg width="100%" height="120" viewBox="0 0 300 120">
+                                <circle cx="110" cy="60" r="40" fill="#EBF2E6" stroke="#4A6B35" stroke-width="2"/>
+                                <circle cx="160" cy="60" r="40" fill="#FFE5EC" stroke="#DE7288" stroke-width="2" style="mix-blend-mode: multiply;"/>
+                                <text x="85" y="65" font-family="Fredoka" font-size="14" fill="#1B3B22">A</text>
+                                <text x="180" y="65" font-family="Fredoka" font-size="14" fill="#DE7288">B</text>
+                              </svg>`,
+                        options: ["Intersection (A ∩ B)", "Union (A ∪ B)", "Complement (A')"],
+                        answer: "Intersection (A ∩ B)"
+                    },
+                    {
+                        type: "sequence",
+                        badge: "Question 4: Procedure Ordering",
+                        prompt: "Order the steps to verify if two events A and B are Independent:",
+                        initial: ["Calculate product P(A) × P(B)", "Find individual probabilities P(A) and P(B)", "Check if P(A ∩ B) equals P(A) × P(B)"],
+                        answer: ["Find individual probabilities P(A) and P(B)", "Calculate product P(A) × P(B)", "Check if P(A ∩ B) equals P(A) × P(B)"]
+                    },
+                    {
+                        type: "matching",
+                        badge: "Question 5: Concept Matching",
+                        prompt: "Match the probability rule equation:",
+                        pairs: [
+                            { prompt: "P(A')", options: ["1 - P(A)", "P(A) + P(B)"], answer: "1 - P(A)" },
+                            { prompt: "P(A ∩ B) for Independent Events", options: ["P(A) × P(B)", "P(A) + P(B)"], answer: "P(A) × P(B)" }
+                        ]
+                    },
+                    {
+                        type: "truefalse",
+                        badge: "Question 6: True/False Challenge",
+                        prompt: "True or False: The probability of any event can sometimes be greater than 1.0 if sample size is large.",
+                        answer: "false"
+                    },
+                    {
+                        type: "dragdrop",
+                        badge: "Question 7: Multi-Chip Drag & Drop",
+                        prompt: "Drag the chip representing an Impossible Event into the target box:",
+                        chips: [
+                            { id: "c1", label: "Probability = 0.0", value: "impossible" },
+                            { id: "c2", label: "Probability = 0.5", value: "equally_likely" },
+                            { id: "c3", label: "Probability = 1.0", value: "certain" }
+                        ],
+                        targetAnswer: "impossible",
+                        dropBoxLabel: "Target Box: Impossible Event"
+                    }
+                ]
+            }
+        ];
+
+        class AppState {
+            constructor() {
+                this.student = JSON.parse(localStorage.getItem('sta104_current_student')) || { name: '', id: '' };
+                this.allProgress = JSON.parse(localStorage.getItem('sta104_all_progress')) || {};
+                this.isLecturerAuthenticated = false;
+                this.currentTopicIndex = 0;
+                this.sequenceState = {};
+                this.tfState = {};
+                this.dragState = {};
+            }
+
+            getStudentProgress(id) {
+                const targetId = id || this.student.id;
+                if (!targetId) return {};
+                return this.allProgress[targetId] || {};
+            }
+
+            saveStudent(name, id) {
+                this.student = { name, id };
+                localStorage.setItem('sta104_current_student', JSON.stringify(this.student));
+                if (!this.allProgress[id]) {
+                    this.allProgress[id] = {};
+                    localStorage.setItem('sta104_all_progress', JSON.stringify(this.allProgress));
+                }
+            }
+
+            saveTopicScore(topicId, score, answers) {
+                if (!this.student.id) return;
+                if (!this.allProgress[this.student.id]) {
+                    this.allProgress[this.student.id] = {};
+                }
+                this.allProgress[this.student.id][topicId] = { completed: true, score: score, answers: answers };
+                localStorage.setItem('sta104_all_progress', JSON.stringify(this.allProgress));
+            }
+
+            getAggregateScore(id) {
+                const prog = this.getStudentProgress(id);
+                const completedKeys = Object.keys(prog);
+                if (completedKeys.length === 0) return 0;
+                let sum = 0;
+                completedKeys.forEach(k => sum += prog[k].score);
+                return Math.round(sum / sta104Topics.length);
+            }
+
+            clearCurrentStudent() {
+                this.student = { name: '', id: '' };
+                localStorage.removeItem('sta104_current_student');
+            }
+        }
+
+        const state = new AppState();
+
+        const app = {
+            init: () => {
+                if (state.student.name && state.student.id) {
+                    app.updateHeaderTag();
+                    app.showScreen('topic-hub-screen');
+                } else {
+                    app.showScreen('registration-screen');
+                }
+            },
+
+            showScreen: (screenId) => {
+                document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+                const target = document.getElementById(screenId);
+                
+                const uitmBadge = document.getElementById('header-uitm-badge');
+                if (screenId === 'registration-screen') {
+                    uitmBadge.style.display = 'none';
+                } else {
+                    uitmBadge.style.display = 'inline-block';
+                }
+
+                if (target) {
+                    target.classList.add('active');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+
+                if (screenId === 'topic-hub-screen') app.renderTopicHub();
+                if (screenId === 'certificate-screen') app.renderCertificate();
+                if (screenId === 'lecturer-portal-screen') app.renderLecturerPortal();
+            },
+
+            updateHeaderTag: () => {
+                const tag = document.getElementById('header-student-tag');
+                const btnSwitch = document.getElementById('btn-switch-student');
+                if (state.student.name) {
+                    tag.innerHTML = `👤 <strong>${state.student.name}</strong> (${state.student.id})`;
+                    btnSwitch.style.display = 'inline-flex';
+                } else {
+                    tag.innerHTML = `Not Registered`;
+                    btnSwitch.style.display = 'none';
+                }
+            },
+
+            switchStudent: () => {
+                state.clearCurrentStudent();
+                app.updateHeaderTag();
+                app.showScreen('registration-screen');
+            },
+
+            handleRegistration: (e) => {
+                e.preventDefault();
+                const name = document.getElementById('student-name').value.trim();
+                const id = document.getElementById('student-id').value.trim();
+                if (name && id) {
+                    state.saveStudent(name, id);
+                    app.updateHeaderTag();
+                    app.showScreen('topic-hub-screen');
+                }
+            },
+
+            renderTopicHub: () => {
+                const grid = document.getElementById('topic-grid');
+                grid.innerHTML = '';
+                
+                let completedCount = 0;
+                const studentProg = state.getStudentProgress();
+
+                sta104Topics.forEach((topic, idx) => {
+                    const topicData = studentProg[topic.id];
+                    const isDone = topicData && topicData.completed;
+                    if (isDone) completedCount++;
+
+                    const card = document.createElement('div');
+                    card.className = `topic-card ${isDone ? 'completed' : ''}`;
+                    card.innerHTML = `
+                        <div>
+                            <div class="topic-number">MODULE 0${idx + 1}</div>
+                            <h3 class="topic-title">${topic.title}</h3>
+                            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">${topic.description}</p>
+                            <span class="topic-status ${isDone ? 'status-done' : 'status-pending'}">
+                                ${isDone ? `✔️ Completed (${topicData.score}%)` : '⏳ Not Started'}
+                            </span>
+                        </div>
+                        <button class="btn-3d ${isDone ? 'btn-secondary' : 'btn-pink'}" 
+                                onclick="app.startQuiz(${topic.id})" 
+                                style="width: 100%;" 
+                                ${isDone ? 'disabled' : ''}>
+                            ${isDone ? '🔒 Submitted (1 Attempt Max)' : 'Start Module Quiz'}
+                        </button>
+                    `;
+                    grid.appendChild(card);
+                });
+
+                const pct = Math.round((completedCount / sta104Topics.length) * 100);
+                document.getElementById('hub-progress-bar').style.width = `${pct}%`;
+
+                const certBtn = document.getElementById('btn-view-cert');
+                certBtn.style.display = completedCount > 0 ? 'inline-flex' : 'none';
+            },
+
+            startQuiz: (topicId) => {
+                const studentProg = state.getStudentProgress();
+                if (studentProg[topicId] && studentProg[topicId].completed) {
+                    alert("⚠️ Student ID " + state.student.id + " has already completed this quiz module. Only 1 attempt per Student ID is allowed.");
+                    return;
+                }
+
+                state.currentTopicIndex = topicId;
+                const topic = sta104Topics[topicId];
+
+                document.getElementById('quiz-topic-num').innerText = `MODULE 0${topicId + 1}`;
+                document.getElementById('quiz-topic-title').innerText = topic.title;
+
+                const container = document.getElementById('quiz-questions-container');
+                container.innerHTML = '';
+
+                state.sequenceState[topicId] = {};
+                state.tfState[topicId] = {};
+                state.dragState[topicId] = {};
+
+                topic.questions.forEach((q, qIdx) => {
+                    const block = document.createElement('div');
+                    block.className = 'question-block';
+                    
+                    let html = `<span class="q-badge">${q.badge}</span>`;
+                    html += `<div class="q-prompt">${q.prompt}</div>`;
+
+                    if (q.type === 'mcq') {
+                        html += `<div class="mcq-options">`;
+                        q.options.forEach((opt, oIdx) => {
+                            html += `
+                                <label class="mcq-label">
+                                    <input type="radio" name="q_${qIdx}" value="${oIdx}" required>
+                                    <span>${opt}</span>
+                                </label>
+                            `;
+                        });
+                        html += `</div>`;
+                    } else if (q.type === 'term') {
+                        html += `<p style="background: var(--matcha-soft); padding: 12px; border-radius: 8px; margin-bottom: 12px; font-style: italic;">"${q.description}"</p>`;
+                        html += `<select class="form-control" name="q_${qIdx}" required>
+                                    <option value="">-- Select Matching Term --</option>`;
+                        q.options.forEach(opt => html += `<option value="${opt}">${opt}</option>`);
+                        html += `</select>`;
+                    } else if (q.type === 'diagram') {
+                        html += `<div class="svg-diagram-container">${q.svg}</div>`;
+                        html += `<select class="form-control" name="q_${qIdx}" required>
+                                    <option value="">-- Select Diagram Label --</option>`;
+                        q.options.forEach(opt => html += `<option value="${opt}">${opt}</option>`);
+                        html += `</select>`;
+                    } else if (q.type === 'sequence') {
+                        state.sequenceState[topicId][qIdx] = [...q.initial];
+                        html += `<div id="seq-container-${qIdx}" class="sequence-list"></div>`;
+                    } else if (q.type === 'matching') {
+                        html += `<div class="matching-grid">`;
+                        q.pairs.forEach((p, pIdx) => {
+                            html += `
+                                <div>
+                                    <p style="font-size: 0.9rem; font-weight: 600; margin-bottom: 6px;">${p.prompt}</p>
+                                    <select class="form-control" name="q_${qIdx}_p${pIdx}" required>
+                                        <option value="">-- Match --</option>
+                                        ${p.options.map(o => `<option value="${o}">${o}</option>`).join('')}
+                                    </select>
+                                </div>
+                            `;
+                        });
+                        html += `</div>`;
+                    } else if (q.type === 'truefalse') {
+                        html += `
+                            <div class="tf-group">
+                                <div class="tf-btn" id="tf_${qIdx}_true" onclick="app.selectTF(${topicId}, ${qIdx}, 'true')">TRUE</div>
+                                <div class="tf-btn" id="tf_${qIdx}_false" onclick="app.selectTF(${topicId}, ${qIdx}, 'false')">FALSE</div>
+                            </div>
+                            <input type="hidden" name="q_${qIdx}" id="tf_input_${qIdx}" required>
+                        `;
+                    } else if (q.type === 'dragdrop') {
+                        html += `
+                            <div class="drag-section">
+                                <p style="font-size: 0.85rem; color: var(--text-muted);">Available Concept Chips (Drag one into the target box below):</p>
+                                <div class="chip-pool" id="chip_pool_${qIdx}">
+                        `;
+                        q.chips.forEach(chip => {
+                            html += `
+                                <div class="drag-chip" id="chip_${qIdx}_${chip.id}" draggable="true" ondragstart="app.handleDragStart(event, ${qIdx}, '${chip.id}', '${chip.value}', '${chip.label}')">
+                                    ✋ ${chip.label}
+                                </div>
+                            `;
+                        });
+                        html += `
+                                </div>
+                                <div class="drop-zone" id="drop_${qIdx}" ondragover="app.handleDragOver(event)" ondragleave="app.handleDragLeave(event)" ondrop="app.handleDrop(event, ${qIdx})">
+                                    📥 ${q.dropBoxLabel}
+                                </div>
+                            </div>
+                            <input type="hidden" name="q_${qIdx}" id="drag_input_${qIdx}" required>
+                        `;
+                    }
+
+                    block.innerHTML = html;
+                    container.appendChild(block);
+
+                    if (q.type === 'sequence') {
+                        app.renderSequenceList(topicId, qIdx);
+                    }
+                });
+
+                app.showScreen('quiz-screen');
+            },
+
+            renderSequenceList: (tId, qIdx) => {
+                const list = state.sequenceState[tId][qIdx];
+                const cont = document.getElementById(`seq-container-${qIdx}`);
+                cont.innerHTML = '';
+                list.forEach((item, iIdx) => {
+                    const row = document.createElement('div');
+                    row.className = 'sequence-item';
+                    row.innerHTML = `
+                        <span><strong>${iIdx + 1}.</strong> ${item}</span>
+                        <div class="seq-btn-group">
+                            <button type="button" class="btn-arrow" onclick="app.moveSequence(${tId}, ${qIdx}, ${iIdx}, -1)">▲</button>
+                            <button type="button" class="btn-arrow" onclick="app.moveSequence(${tId}, ${qIdx}, ${iIdx}, 1)">▼</button>
+                        </div>
+                    `;
+                    cont.appendChild(row);
+                });
+            },
+
+            moveSequence: (tId, qIdx, iIdx, dir) => {
+                const arr = state.sequenceState[tId][qIdx];
+                const targetIdx = iIdx + dir;
+                if (targetIdx >= 0 && targetIdx < arr.length) {
+                    const temp = arr[iIdx];
+                    arr[iIdx] = arr[targetIdx];
+                    arr[targetIdx] = temp;
+                    app.renderSequenceList(tId, qIdx);
+                }
+            },
+
+            selectTF: (tId, qIdx, val) => {
+                const trueBtn = document.getElementById(`tf_${qIdx}_true`);
+                const falseBtn = document.getElementById(`tf_${qIdx}_false`);
+                const input = document.getElementById(`tf_input_${qIdx}`);
+
+                trueBtn.className = 'tf-btn';
+                falseBtn.className = 'tf-btn';
+
+                if (val === 'true') {
+                    trueBtn.classList.add('selected-true');
+                } else {
+                    falseBtn.classList.add('selected-false');
+                }
+                input.value = val;
+            },
+
+            handleDragStart: (e, qIdx, chipId, chipValue, chipLabel) => {
+                e.dataTransfer.setData('text/plain', JSON.stringify({ qIdx, chipId, chipValue, chipLabel }));
+            },
+
+            handleDragOver: (e) => {
+                e.preventDefault();
+                e.currentTarget.classList.add('drag-over');
+            },
+
+            handleDragLeave: (e) => {
+                e.currentTarget.classList.remove('drag-over');
+            },
+
+            handleDrop: (e, qIdx) => {
+                e.preventDefault();
+                const dropZone = e.currentTarget;
+                dropZone.classList.remove('drag-over');
+
+                const data = JSON.parse(e.dataTransfer.getData('text/plain'));
+                if (data.qIdx === qIdx) {
+                    const existingChip = dropZone.querySelector('.drag-chip');
+                    if (existingChip) {
+                        document.getElementById(`chip_pool_${qIdx}`).appendChild(existingChip);
+                    }
+
+                    const draggedElement = document.getElementById(`chip_${qIdx}_${data.chipId}`);
+                    if (draggedElement) {
+                        dropZone.innerHTML = '';
+                        dropZone.appendChild(draggedElement);
+                        document.getElementById(`drag_input_${qIdx}`).value = data.chipValue;
+                    }
+                }
+            },
+
+            submitQuiz: (e) => {
+                e.preventDefault();
+                const topicId = state.currentTopicIndex;
+                const topic = sta104Topics[topicId];
+                const form = document.getElementById('quiz-form');
+                const formData = new FormData(form);
+
+                let scoreCount = 0;
+                let answersRecord = [];
+
+                topic.questions.forEach((q, qIdx) => {
+                    let isCorrect = false;
+
+                    if (q.type === 'mcq') {
+                        const val = parseInt(formData.get(`q_${qIdx}`));
+                        if (val === q.answer) isCorrect = true;
+                    } else if (q.type === 'term' || q.type === 'diagram') {
+                        const val = formData.get(`q_${qIdx}`);
+                        if (val === q.answer) isCorrect = true;
+                    } else if (q.type === 'sequence') {
+                        const currentArr = state.sequenceState[topicId][qIdx];
+                        if (JSON.stringify(currentArr) === JSON.stringify(q.answer)) isCorrect = true;
+                    } else if (q.type === 'matching') {
+                        let pairsCorrect = true;
+                        q.pairs.forEach((p, pIdx) => {
+                            const val = formData.get(`q_${qIdx}_p${pIdx}`);
+                            if (val !== p.answer) pairsCorrect = false;
+                        });
+                        if (pairsCorrect) isCorrect = true;
+                    } else if (q.type === 'truefalse') {
+                        const val = formData.get(`q_${qIdx}`);
+                        if (val === q.answer) isCorrect = true;
+                    } else if (q.type === 'dragdrop') {
+                        const val = formData.get(`q_${qIdx}`);
+                        if (val === q.targetAnswer) isCorrect = true;
+                    }
+
+                    if (isCorrect) scoreCount++;
+                    answersRecord.push({ badge: q.badge, correct: isCorrect });
+                });
+
+                const percentage = Math.round((scoreCount / topic.questions.length) * 100);
+                
+                // Save and Lock Attempt for this specific Student ID
+                state.saveTopicScore(topicId, percentage, answersRecord);
+
+                alert(`🎉 Module Quiz Submitted!\nStudent ID: ${state.student.id}\nFinal Score: ${percentage}% (${scoreCount}/${topic.questions.length} correct)\nThis module attempt is now recorded and locked for your ID.`);
+                app.showScreen('topic-hub-screen');
+            },
+
+            renderCertificate: () => {
+                document.getElementById('cert-student-name').innerText = state.student.name || 'Student Name';
+                document.getElementById('cert-student-id').innerText = state.student.id || '2023XXXXXX';
+                
+                const agg = state.getAggregateScore();
+                document.getElementById('cert-aggregate-score').innerText = `${agg}%`;
+
+                const tbody = document.getElementById('cert-breakdown-body');
+                tbody.innerHTML = '';
+
+                const studentProg = state.getStudentProgress();
+
+                sta104Topics.forEach(topic => {
+                    const res = studentProg[topic.id];
+                    const tr = document.createElement('tr');
+                    
+                    tr.innerHTML = `
+                        <td><strong>${topic.title}</strong></td>
+                        <td>${res ? `${res.score}%` : 'N/A'}</td>
+                        <td>${res ? '✔️ Verified' : '❌ Pending'}</td>
+                        <td style="font-size: 0.8rem; color: var(--text-muted);">
+                            ${res ? res.answers.map(a => a.correct ? '✅' : '❌').join(' ') : 'Not Completed'}
+                        </td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+
+                // Check if already submitted to lecturer
+                const submissions = JSON.parse(localStorage.getItem('sta104_submissions')) || [];
+                const isSubmitted = submissions.some(s => s.id === state.student.id);
+                app.updateReturnButtonState(isSubmitted);
+            },
+
+            updateReturnButtonState: (isSubmitted) => {
+                const returnBtn = document.getElementById('btn-return-hub');
+                const submitBtn = document.getElementById('btn-save-submission');
+                if (returnBtn) {
+                    if (isSubmitted) {
+                        returnBtn.disabled = false;
+                        returnBtn.innerHTML = '🔄 Finish & Reset for Next Student';
+                        returnBtn.className = 'btn-3d btn-secondary';
+                        if (submitBtn) {
+                            submitBtn.innerHTML = '✔️ Score Submitted (Update Feedback)';
+                        }
+                    } else {
+                        returnBtn.disabled = true;
+                        returnBtn.innerHTML = '🔒 Return to Hub (Submit Score First)';
+                        if (submitBtn) {
+                            submitBtn.innerHTML = '💾 Save & Submit Score to Lecturer';
+                        }
+                    }
+                }
+            },
+
+            saveFinalSubmission: () => {
+                const feedback = document.getElementById('feedback-text').value.trim();
+                const submissions = JSON.parse(localStorage.getItem('sta104_submissions')) || [];
+
+                const existingIndex = submissions.findIndex(s => s.id === state.student.id);
+
+                const record = {
+                    name: state.student.name,
+                    id: state.student.id,
+                    score: state.getAggregateScore(),
+                    feedback: feedback || 'No comments provided.',
+                    date: new Date().toLocaleDateString('en-MY', { day: 'numeric', month: 'short', year: 'numeric' })
+                };
+
+                if (existingIndex >= 0) {
+                    submissions[existingIndex] = record;
+                } else {
+                    submissions.push(record);
+                }
+
+                localStorage.setItem('sta104_submissions', JSON.stringify(submissions));
+
+                alert('✅ Submission successfully saved to Lecturer Portal for Student ID: ' + state.student.id + '\n\nYou can now click "Finish & Reset for Next Student" to complete your session.');
+                app.updateReturnButtonState(true);
+            },
+
+            finishAndNextStudent: () => {
+                const submissions = JSON.parse(localStorage.getItem('sta104_submissions')) || [];
+                const isSubmitted = submissions.some(s => s.id === state.student.id);
+
+                if (!isSubmitted) {
+                    alert('⚠️ Please submit your score to the Lecturer Portal before returning!');
+                    return;
+                }
+
+                alert('🎉 Thank you ' + state.student.name + '! Your score has been submitted.\nResetting application for the next student...');
+                
+                // Clear active student session and feedback input
+                state.clearCurrentStudent();
+                document.getElementById('feedback-text').value = '';
+                const nameInput = document.getElementById('student-name');
+                const idInput = document.getElementById('student-id');
+                if (nameInput) nameInput.value = '';
+                if (idInput) idInput.value = '';
+                
+                app.updateHeaderTag();
+                app.showScreen('registration-screen');
+            },
+
+            /* Lecturer Login Modal Controls */
+            openLecturerAuthModal: () => {
+                if (state.isLecturerAuthenticated) {
+                    app.showScreen('lecturer-portal-screen');
+                } else {
+                    document.getElementById('lecturer-auth-modal').style.display = 'flex';
+                }
+            },
+
+            closeLecturerAuthModal: () => {
+                document.getElementById('lecturer-auth-modal').style.display = 'none';
+            },
+
+            handleLecturerLogin: (e) => {
+                e.preventDefault();
+                const u = document.getElementById('lecturer-username').value.trim();
+                const p = document.getElementById('lecturer-password').value.trim();
+
+                if (u === 'ezza' && p === '1234') {
+                    state.isLecturerAuthenticated = true;
+                    app.closeLecturerAuthModal();
+                    document.getElementById('lecturer-username').value = '';
+                    document.getElementById('lecturer-password').value = '';
+                    app.showScreen('lecturer-portal-screen');
+                } else {
+                    alert('❌ Invalid lecturer username or password!');
+                }
+            },
+
+            logoutLecturer: () => {
+                state.isLecturerAuthenticated = false;
+                alert('🔒 Lecturer Portal session closed.');
+                app.showScreen('topic-hub-screen');
+            },
+
+            renderLecturerPortal: () => {
+                if (!state.isLecturerAuthenticated) {
+                    app.showScreen('topic-hub-screen');
+                    return;
+                }
+
+                const tbody = document.getElementById('portal-submissions-body');
+                tbody.innerHTML = '';
+
+                const submissions = JSON.parse(localStorage.getItem('sta104_submissions')) || [];
+
+                if (submissions.length === 0) {
+                    tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; color: var(--text-muted);">No student submissions stored yet.</td></tr>`;
+                    return;
+                }
+
+                submissions.forEach(sub => {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td><strong>${sub.name}</strong></td>
+                        <td>${sub.id}</td>
+                        <td><span class="uitm-badge" style="font-size:0.9rem;">${sub.score}%</span></td>
+                        <td>${sub.feedback}</td>
+                        <td>${sub.date}</td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+            },
+
+            clearLecturerData: () => {
+                if (confirm('Are you sure you want to clear all student submission records and progress data?')) {
+                    localStorage.removeItem('sta104_submissions');
+                    localStorage.removeItem('sta104_all_progress');
+                    state.allProgress = {};
+                    app.renderLecturerPortal();
+                }
+            }
+        };
+
+        window.addEventListener('DOMContentLoaded', app.init);
+    </script>
+</body>
+</html>
