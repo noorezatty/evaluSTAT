@@ -2620,6 +2620,247 @@
             }
         }
 
+
+
+        /* ================================================================
+           LECTURER DASHBOARD — FILTERING, REPORTING & MOBILE CONTROLS
+           ================================================================ */
+        .lecturer-dashboard-head {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 18px;
+        }
+        .lecturer-welcome {
+            margin: 0 0 5px;
+            color: var(--text-dark);
+            font-size: clamp(1.45rem, 3vw, 2rem);
+            line-height: 1.15;
+            letter-spacing: -.025em;
+        }
+        .lecturer-subtitle {
+            margin: 0;
+            max-width: 720px;
+            color: var(--text-muted);
+            font-size: .9rem;
+            line-height: 1.55;
+        }
+        .lecturer-filter-panel {
+            margin-bottom: 16px;
+            padding: 16px;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            background: #F8FAF9;
+        }
+        .lecturer-filter-grid {
+            display: grid;
+            grid-template-columns: minmax(190px, 1fr) minmax(190px, 1fr) auto auto;
+            gap: 10px;
+            align-items: end;
+        }
+        .lecturer-filter-field label {
+            display: block;
+            margin-bottom: 6px;
+            color: #33414A;
+            font-size: .76rem;
+            font-weight: 700;
+            letter-spacing: .025em;
+            text-transform: uppercase;
+        }
+        .lecturer-filter-select {
+            width: 100%;
+            min-height: 42px;
+            padding: 9px 34px 9px 11px;
+            border: 1px solid #CAD4D1;
+            border-radius: 9px;
+            background: #FFFFFF;
+            color: var(--text-dark);
+            font-family: 'Inter', Arial, sans-serif;
+            font-size: .88rem;
+            font-weight: 550;
+            outline: none;
+        }
+        .lecturer-filter-select:focus {
+            border-color: var(--emerald-accent);
+            box-shadow: 0 0 0 3px rgba(26,139,102,.12);
+        }
+        .lecturer-filter-actions {
+            display: flex;
+            gap: 8px;
+        }
+        .lecturer-filter-actions .btn-3d,
+        .lecturer-print-actions .btn-3d {
+            min-height: 42px;
+            padding: 9px 14px;
+            font-size: .8rem;
+            white-space: nowrap;
+        }
+        .lecturer-results-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 16px;
+            margin: 0 0 12px;
+            color: var(--text-muted);
+            font-size: .8rem;
+            font-weight: 600;
+        }
+        .lecturer-results-meta strong { color: var(--emerald-deep); }
+        .lecturer-print-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-top: 16px;
+            padding-top: 14px;
+            border-top: 1px solid var(--border);
+        }
+        .lecturer-print-label {
+            color: #33414A;
+            font-size: .8rem;
+            font-weight: 700;
+        }
+        .lecturer-print-actions {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            gap: 8px;
+        }
+        .portal-table tbody td {
+            text-transform: uppercase;
+        }
+        .portal-empty-state {
+            padding: 30px 16px !important;
+            text-align: center !important;
+            color: var(--text-muted);
+            text-transform: none !important;
+        }
+
+        @media (max-width: 768px) {
+            .lecturer-dashboard-head {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 12px;
+            }
+            .lecturer-dashboard-head > .btn-3d { width: 100%; }
+            .lecturer-filter-panel { padding: 13px; }
+            .lecturer-filter-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 9px;
+            }
+            .lecturer-filter-actions {
+                grid-column: 1 / -1;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+            }
+            .lecturer-filter-actions .btn-3d { width: 100%; }
+            .lecturer-print-bar {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .lecturer-print-actions {
+                display: grid;
+                grid-template-columns: 1fr;
+            }
+            .lecturer-print-actions .btn-3d { width: 100%; }
+            .portal-table { min-width: 820px; }
+        }
+
+        @media (max-width: 430px) {
+            #lecturer-portal-screen { padding-top: 2px; }
+            .lecturer-welcome { font-size: 1.45rem; }
+            .lecturer-subtitle { font-size: .82rem; line-height: 1.45; }
+            .lecturer-filter-grid { grid-template-columns: 1fr; }
+            .lecturer-filter-actions { grid-column: auto; }
+            .lecturer-results-meta { font-size: .75rem; }
+        }
+
+    
+
+        /* ======================================================================
+           V14: FRONT PAGE GRADIENT + SMARTPHONE TYPOGRAPHY REFINEMENT
+           ====================================================================== */
+        .front-hero-panel {
+            background:
+                radial-gradient(circle at 88% 4%, rgba(83, 201, 166, .28) 0%, rgba(83, 201, 166, 0) 34%),
+                radial-gradient(circle at 5% 96%, rgba(4, 46, 38, .34) 0%, rgba(4, 46, 38, 0) 42%),
+                linear-gradient(135deg, #063E33 0%, #0A5D4B 42%, #0E755E 68%, #073D32 100%) !important;
+        }
+
+        @media (max-width: 430px) {
+            body.registration-mode .front-hero-panel {
+                min-height: clamp(325px, 42dvh, 365px) !important;
+                padding: 16px 16px 18px !important;
+            }
+
+            /* One-line product title on a 375px-wide iPhone. */
+            body.registration-mode .front-title {
+                display: block !important;
+                width: 100% !important;
+                max-width: none !important;
+                margin: 0 0 10px !important;
+                font-size: 1.05rem !important;
+                line-height: 1.12 !important;
+                letter-spacing: -.035em !important;
+                white-space: nowrap !important;
+            }
+
+            body.registration-mode .front-subtitle {
+                display: block !important;
+                max-width: none !important;
+                margin: 0 !important;
+                font-size: .82rem !important;
+                line-height: 1.46 !important;
+                color: #F0F8F5 !important;
+            }
+
+            body.registration-mode .front-form .form-group label {
+                margin-bottom: 5px !important;
+                font-size: .82rem !important;
+                line-height: 1.25 !important;
+                font-weight: 650 !important;
+                color: #25332F !important;
+            }
+
+            body.registration-mode .front-form .form-group {
+                margin-bottom: 10px !important;
+            }
+
+            body.registration-mode .front-access-panel h2 {
+                font-size: 1.15rem !important;
+                margin-bottom: 11px !important;
+            }
+        }
+
+        @media (max-width: 430px) and (max-height: 680px) {
+            body.registration-mode .front-hero-panel {
+                min-height: 295px !important;
+                padding-top: 13px !important;
+                padding-bottom: 14px !important;
+            }
+            body.registration-mode .front-title {
+                font-size: .98rem !important;
+                margin-bottom: 7px !important;
+            }
+            body.registration-mode .front-subtitle,
+            body.registration-mode .front-form .form-group label {
+                font-size: .76rem !important;
+            }
+            body.registration-mode .front-subtitle { line-height: 1.38 !important; }
+            body.registration-mode .front-form .form-group { margin-bottom: 7px !important; }
+        }
+
+        @media (max-width: 360px) {
+            body.registration-mode .front-title {
+                font-size: .94rem !important;
+                letter-spacing: -.045em !important;
+            }
+            body.registration-mode .front-subtitle,
+            body.registration-mode .front-form .form-group label {
+                font-size: .78rem !important;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -2706,7 +2947,7 @@
                     </div>
 
                     <h1 class="front-title">Interactive Statistics Assessment</h1>
-                    <p class="front-subtitle">Assess your statistics knowledge and receive immediate results. Complete six topic-based quizzes designed for STA104. Review your performance after each module and identify concepts that need more attention. Complete all modules to view your overall achievement and certificate.</p>
+                    <p class="front-subtitle">Assess your statistics knowledge and receive immediate results. Each STA104 topic contains 10 mixed-format questions. Complete any topic to generate a certificate for that topic immediately. Continue with other topics whenever you wish to collect additional certificates.</p>
                 </div>
 
                 <div class="front-access-panel">
@@ -2738,11 +2979,8 @@
             <div class="hub-header">
                 <div>
                     <h2>Course Topic Hub</h2>
-                    <p style="color: var(--text-muted);">Complete all 6 statistics topics to earn your official certificate. Note: Each Student ID has only <strong>1 attempt</strong> per topic.</p>
+                    <p style="color: var(--text-muted);">Choose any topic to begin. Each topic contains <strong>10 questions</strong> and generates its own certificate immediately after completion. Each Student ID has <strong>1 attempt per topic</strong>; continue with other topics if you wish to collect more certificates.</p>
                 </div>
-                <button id="btn-view-cert" class="btn-3d btn-pink" onclick="app.showScreen('certificate-screen')" style="display:none;">
-                    🎓 View Certificate & Performance
-                </button>
             </div>
 
             <div class="progress-bar-container">
@@ -2768,7 +3006,7 @@
 
             <form id="quiz-form" onsubmit="app.submitQuiz(event)">
                 <div id="quiz-questions-container">
-                    <!-- Dynamic Questions 1 - 7 populated here -->
+                    <!-- Dynamic Questions 1 - 10 populated here -->
                 </div>
 
                 <div style="text-align: right; margin-top: 25px;">
@@ -2792,11 +3030,13 @@
                 <div class="cert-name" id="cert-student-name">Student Name</div>
                 <br>
                 <p class="cert-id-tag">Student ID: <strong id="cert-student-id">2023XXXXXX</strong> | Group: <strong id="cert-student-group">N/A</strong></p>
-                <p style="margin-top: 5px; font-size: 0.95rem; color: var(--text-dark);">has successfully completed all required interactive assessment modules on <strong>evaluSTAT</strong> for course</p>
-                <h3 style="color: var(--emerald-deep); margin: 8px 0; font-size: 1.35rem; font-family: 'Fredoka', cursive;">STA104: Introduction to Statistics</h3>
+                <p style="margin-top: 5px; font-size: 0.95rem; color: var(--text-dark);">has successfully completed an interactive assessment on <strong>evaluSTAT</strong> for</p>
+                <h3 style="color: var(--emerald-deep); margin: 8px 0 4px; font-size: 1.18rem;">STA104: Introduction to Statistics</h3>
+                <div id="cert-module-number" style="font-size: 0.78rem; font-weight: 800; letter-spacing: 1.5px; color: var(--emerald-accent); margin-top: 10px;">MODULE 01</div>
+                <h2 id="cert-topic-title" style="color: var(--emerald-deep); margin: 4px auto 8px; font-size: 1.55rem; line-height: 1.2;">Introduction to Statistics</h2>
                 
                 <div class="cert-score-badge">
-                    Overall Aggregate Score: <span id="cert-aggregate-score">0%</span>
+                    Topic Score: <span id="cert-topic-score">0%</span>
                 </div>
 
                 <div class="cert-footer-layout">
@@ -2810,9 +3050,9 @@
 
             <!-- ON-SCREEN STUDENT QUESTION RESULT SUMMARY -->
             <div class="answer-key-section no-print">
-                <h3 style="color: var(--emerald-deep); margin-bottom: 10px;">🔍 Module Question Performance Summary</h3>
+                <h3 style="color: var(--emerald-deep); margin-bottom: 10px;">🔍 Topic Question Performance Summary</h3>
                 <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">
-                    Summary of your question results (✔️ Correct / ❌ Incorrect) by module. <em>(Note: Excluded from official certificate printing).</em>
+                    Review your 10 question results for this topic (✔️ Correct / ❌ Incorrect). <em>(This review is excluded from the printed certificate).</em>
                 </p>
                 
                 <div id="answer-key-content-container">
@@ -2822,19 +3062,19 @@
 
             <!-- FEEDBACK & ACTION BUTTONS -->
             <div class="feedback-section no-print" style="background: var(--emerald-soft); padding: 20px; border-radius: 16px;">
-                <h3 style="color: var(--emerald-deep); margin-bottom: 10px;">Lecturer Feedback & Submission</h3>
-                <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">Leave comments for your lecturer regarding your module learning experience. You must submit your score to unlock the Return button.</p>
-                <textarea id="feedback-text" class="form-control" rows="3" placeholder="Write your thoughts or feedback here..."></textarea>
+                <h3 style="color: var(--emerald-deep); margin-bottom: 10px;">Topic Result & Lecturer Feedback</h3>
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">Your certificate is already available for this completed topic. You may submit this topic score to your lecturer, print the certificate, or return to the Topic Hub to continue another module.</p>
+                <textarea id="feedback-text" class="form-control" rows="3" placeholder="Optional feedback for your lecturer..."></textarea>
                 
                 <div style="display: flex; gap: 12px; margin-top: 15px; flex-wrap: wrap;">
                     <button id="btn-save-submission" class="btn-3d" onclick="app.saveFinalSubmission()">
-                        💾 Save & Submit Score to Lecturer
+                        💾 Submit Topic Score to Lecturer
                     </button>
                     <button class="btn-3d btn-pink" onclick="window.print()">
-                        🖨️ Print Official Certificate
+                        🖨️ Print Topic Certificate
                     </button>
-                    <button id="btn-return-hub" class="btn-3d btn-secondary" onclick="app.finishAndNextStudent()" disabled>
-                        🔒 Return to Hub (Submit Score First)
+                    <button id="btn-return-hub" class="btn-3d btn-secondary" onclick="app.showScreen('topic-hub-screen')">
+                        Continue to Topic Hub →
                     </button>
                 </div>
             </div>
@@ -2842,14 +3082,40 @@
 
         <!-- SCREEN 5: LECTURER PORTAL -->
         <section id="lecturer-portal-screen" class="screen">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px;">
+            <div class="lecturer-dashboard-head">
                 <div>
-                    <h2>Lecturer Portal</h2>
-                    <p style="color: var(--text-muted);">Authenticated Access: View all student assessment submissions and scores stored in browser memory.</p>
+                    <h2 class="lecturer-welcome">Welcome, Noorezatty</h2>
+                    <p class="lecturer-subtitle">Lecturer dashboard for reviewing topic-level assessment records, filtering student performance, and producing printable reports.</p>
                 </div>
                 <button class="btn-3d btn-secondary" onclick="app.logoutLecturer()">
                     🔒 Lock / Exit Portal
                 </button>
+            </div>
+
+            <div class="lecturer-filter-panel">
+                <div class="lecturer-filter-grid">
+                    <div class="lecturer-filter-field">
+                        <label for="lecturer-module-filter">Filter by Module</label>
+                        <select id="lecturer-module-filter" class="lecturer-filter-select">
+                            <option value="all">All Modules</option>
+                        </select>
+                    </div>
+                    <div class="lecturer-filter-field">
+                        <label for="lecturer-class-filter">Filter by Class / Group</label>
+                        <select id="lecturer-class-filter" class="lecturer-filter-select">
+                            <option value="all">All Classes</option>
+                        </select>
+                    </div>
+                    <div class="lecturer-filter-actions">
+                        <button type="button" class="btn-3d" onclick="app.applyLecturerFilters()">🔎 Filter Results</button>
+                        <button type="button" class="btn-3d btn-secondary" onclick="app.resetLecturerFilters()">Reset</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="lecturer-results-meta" class="lecturer-results-meta">
+                <span>Records: <strong id="lecturer-record-count">0</strong></span>
+                <span>Average Topic Score: <strong id="lecturer-average-score">0%</strong></span>
             </div>
 
             <div class="portal-table-wrapper">
@@ -2858,8 +3124,9 @@
                         <tr>
                             <th>Student Name</th>
                             <th>Student ID</th>
-                            <th>Group</th>
-                            <th>Aggregate Score</th>
+                            <th>Class / Group</th>
+                            <th>Module / Topic</th>
+                            <th>Topic Score</th>
                             <th>Feedback / Comments</th>
                             <th>Date Completed</th>
                         </tr>
@@ -2870,10 +3137,12 @@
                 </table>
             </div>
 
-            <div style="margin-top: 20px; text-align: right;">
-                <button class="btn-3d btn-pink" onclick="app.clearLecturerData()">
-                    🗑️ Clear All Student Submissions
-                </button>
+            <div class="lecturer-print-bar">
+                <div class="lecturer-print-label">Report actions</div>
+                <div class="lecturer-print-actions">
+                    <button type="button" class="btn-3d" onclick="app.printLecturerReport()">🖨️ Print Current View</button>
+                    <button type="button" class="btn-3d btn-pink" onclick="app.clearLecturerData()">🗑️ Clear All</button>
+                </div>
             </div>
         </section>
 
@@ -2882,415 +3151,949 @@
     <!-- JAVASCRIPT DATA & APPLICATION LOGIC -->
     <script>
         const sta104Topics = [
+    {
+        "id": 0,
+        "title": "Introduction to Statistics",
+        "description": "Basic statistical concepts, populations, samples, and measurement scales.",
+        "questions": [
             {
-                id: 0,
-                title: "Introduction to Statistics",
-                description: "Basic statistical concepts, populations, samples, and measurement scales.",
-                questions: [
+                "type": "matching",
+                "badge": "Question 1: Concept Matching",
+                "prompt": "Match the Measurement Scale to its correct example:",
+                "pairs": [
                     {
-                        type: "mcq",
-                        badge: "Question 1: MCQ",
-                        prompt: "Which branch of statistics focuses on summarizing and presenting data using tables, charts, and summary metrics?",
-                        options: ["Inferential Statistics", "Descriptive Statistics", "Predictive Analytics", "Probability Theory"],
-                        answer: 1
-                    },
-                    {
-                        type: "term",
-                        badge: "Question 2: Term Selection",
-                        prompt: "Select the correct statistical term matching the description below:",
-                        description: "A numerical measure that describes a characteristic of an entire POPULATION.",
-                        options: ["Statistic", "Parameter", "Variable", "Sample"],
-                        answer: "Parameter"
-                    },
-                    {
-                        type: "diagram",
-                        badge: "Question 3: Diagram Labeling",
-                        prompt: "Identify the element indicated by the dropdown in the Population vs. Sample diagram:",
-                        svg: `<svg width="100%" height="120" viewBox="0 0 300 120">
-                                <circle cx="100" cy="60" r="50" fill="#E8F5F1" stroke="#125E46" stroke-width="2"/>
-                                <text x="75" y="40" font-family="Fredoka" font-size="12" fill="#052217">Population (N)</text>
-                                <circle cx="115" cy="75" r="20" fill="#FFF0F4" stroke="#D85B73" stroke-width="2"/>
-                                <text x="103" y="79" font-family="Fredoka" font-size="10" fill="#D85B73">n</text>
-                                <path d="M 135 75 L 200 75" stroke="#D85B73" stroke-width="2" stroke-dasharray="3,3"/>
-                              </svg>`,
-                        options: ["Population (N)", "Sample (n)", "Census"],
-                        answer: "Sample (n)"
-                    },
-                    {
-                        type: "sequence",
-                        badge: "Question 4: Procedure Ordering",
-                        prompt: "Arrange the 4 steps of a Statistical Investigation into the correct chronological order:",
-                        initial: ["Data Analysis", "Data Collection", "Data Presentation", "Data Interpretation"],
-                        answer: ["Data Collection", "Data Presentation", "Data Analysis", "Data Interpretation"]
-                    },
-                    {
-                        type: "matching",
-                        badge: "Question 5: Concept Matching",
-                        prompt: "Match the Measurement Scale to its correct example:",
-                        pairs: [
-                            { prompt: "Gender (Male/Female)", options: ["Nominal Scale", "Ratio Scale", "Ordinal Scale"], answer: "Nominal Scale" },
-                            { prompt: "Weight in Kilograms", options: ["Nominal Scale", "Ratio Scale", "Ordinal Scale"], answer: "Ratio Scale" }
-                        ]
-                    },
-                    {
-                        type: "truefalse",
-                        badge: "Question 6: True/False Challenge",
-                        prompt: "True or False: Quantitative continuous data can take any decimal value within a given range.",
-                        answer: "true"
-                    },
-                    {
-                        type: "dragdrop",
-                        badge: "Question 7: Multi-Chip Drag & Drop",
-                        prompt: "Drag the correct chip representing Discrete Quantitative Data into the target box:",
-                        chips: [
-                            { id: "c1", label: "Number of Students in Class", value: "discrete" },
-                            { id: "c2", label: "Height of Students in cm", value: "continuous" },
-                            { id: "c3", label: "Eye Color Category", value: "nominal" }
+                        "prompt": "Gender (Male/Female)",
+                        "options": [
+                            "Nominal Scale",
+                            "Ratio Scale",
+                            "Ordinal Scale"
                         ],
-                        targetAnswer: "discrete",
-                        dropBoxLabel: "Target Box: Discrete Quantitative Data"
+                        "answer": "Nominal Scale"
+                    },
+                    {
+                        "prompt": "Weight in Kilograms",
+                        "options": [
+                            "Nominal Scale",
+                            "Ratio Scale",
+                            "Ordinal Scale"
+                        ],
+                        "answer": "Ratio Scale"
                     }
                 ]
             },
             {
-                id: 1,
-                title: "Describing Data",
-                description: "Measures of central tendency, dispersion, skewness, and graphical presentations.",
-                questions: [
-                    {
-                        type: "mcq",
-                        badge: "Question 1: MCQ",
-                        prompt: "Which measure of central tendency is most affected by extreme outlier values?",
-                        options: ["Median", "Mode", "Mean", "Interquartile Range"],
-                        answer: 2
-                    },
-                    {
-                        type: "term",
-                        badge: "Question 2: Term Selection",
-                        prompt: "Select the statistical measure described below:",
-                        description: "The square root of the sample variance, measuring the average spread from the mean.",
-                        options: ["Standard Deviation", "Variance", "Range", "Mean Absolute Deviation"],
-                        answer: "Standard Deviation"
-                    },
-                    {
-                        type: "diagram",
-                        badge: "Question 3: Diagram Labeling",
-                        prompt: "Identify the shape of the distribution shown in the curve:",
-                        svg: `<svg width="100%" height="120" viewBox="0 0 300 120">
-                                <path d="M 20 100 Q 60 20 120 70 T 280 100" fill="none" stroke="#D85B73" stroke-width="3"/>
-                                <line x1="10" y1="100" x2="290" y2="100" stroke="#052217" stroke-width="2"/>
-                              </svg>`,
-                        options: ["Symmetric Normal", "Right-Skewed (Positive)", "Left-Skewed (Negative)"],
-                        answer: "Right-Skewed (Positive)"
-                    },
-                    {
-                        type: "sequence",
-                        badge: "Question 4: Procedure Ordering",
-                        prompt: "Arrange the steps to calculate Sample Variance ($s^2$):",
-                        initial: ["Square each deviation", "Calculate sample mean", "Divide sum by (n-1)", "Subtract mean from each data point"],
-                        answer: ["Calculate sample mean", "Subtract mean from each data point", "Square each deviation", "Divide sum by (n-1)"]
-                    },
-                    {
-                        type: "matching",
-                        badge: "Question 5: Concept Matching",
-                        prompt: "Match the formula concept to its metric:",
-                        pairs: [
-                            { prompt: "Q3 - Q1", options: ["Interquartile Range (IQR)", "Variance", "Mode"], answer: "Interquartile Range (IQR)" },
-                            { prompt: "Highest Value - Lowest Value", options: ["Interquartile Range (IQR)", "Total Range", "Mean"], answer: "Total Range" }
-                        ]
-                    },
-                    {
-                        type: "truefalse",
-                        badge: "Question 6: True/False Challenge",
-                        prompt: "True or False: In a perfectly symmetric distribution, Mean = Median = Mode.",
-                        answer: "true"
-                    },
-                    {
-                        type: "dragdrop",
-                        badge: "Question 7: Multi-Chip Drag & Drop",
-                        prompt: "Drag the correct measure of dispersion chip into the target box:",
-                        chips: [
-                            { id: "c1", label: "Standard Deviation", value: "dispersion" },
-                            { id: "c2", label: "Sample Median", value: "central_tendency" },
-                            { id: "c3", label: "Sample Mode", value: "central_tendency" }
-                        ],
-                        targetAnswer: "dispersion",
-                        dropBoxLabel: "Target Box: Measure of Dispersion"
-                    }
+                "type": "mcq",
+                "badge": "Question 2: Multiple Choice",
+                "prompt": "Which branch of statistics focuses on summarizing and presenting data using tables, charts, and summary metrics?",
+                "options": [
+                    "Inferential Statistics",
+                    "Descriptive Statistics",
+                    "Predictive Analytics",
+                    "Probability Theory"
+                ],
+                "answer": 1
+            },
+            {
+                "type": "truefalse",
+                "badge": "Question 3: True / False",
+                "prompt": "True or False: Quantitative continuous data can take any decimal value within a given range.",
+                "answer": "true"
+            },
+            {
+                "type": "term",
+                "badge": "Question 4: Term Selection",
+                "prompt": "Select the correct statistical term matching the description below:",
+                "description": "A numerical measure that describes a characteristic of an entire POPULATION.",
+                "options": [
+                    "Statistic",
+                    "Parameter",
+                    "Variable",
+                    "Sample"
+                ],
+                "answer": "Parameter"
+            },
+            {
+                "type": "sequence",
+                "badge": "Question 5: Procedure Ordering",
+                "prompt": "Arrange the 4 steps of a Statistical Investigation into the correct chronological order:",
+                "initial": [
+                    "Data Analysis",
+                    "Data Collection",
+                    "Data Presentation",
+                    "Data Interpretation"
+                ],
+                "answer": [
+                    "Data Collection",
+                    "Data Presentation",
+                    "Data Analysis",
+                    "Data Interpretation"
                 ]
             },
             {
-                id: 2,
-                title: "Time Series Data Analysis",
-                description: "Components of time series, moving averages, trend equations, and forecasting.",
-                questions: [
+                "type": "dragdrop",
+                "badge": "Question 6: Drag & Drop",
+                "prompt": "Drag the correct chip representing Discrete Quantitative Data into the target box:",
+                "chips": [
                     {
-                        type: "mcq",
-                        badge: "Question 1: MCQ",
-                        prompt: "Which component of a time series represents long-term smooth upward or downward movement over many years?",
-                        options: ["Seasonal Component (S)", "Secular Trend (T)", "Cyclical Component (C)", "Irregular Component (I)"],
-                        answer: 1
+                        "id": "c1",
+                        "label": "Number of Students in Class",
+                        "value": "discrete"
                     },
                     {
-                        type: "term",
-                        badge: "Question 2: Term Selection",
-                        prompt: "Select the time series variation matching this description:",
-                        description: "Periodic fluctuations that repeat regularly within a single year (e.g., quarterly or monthly).",
-                        options: ["Seasonal Variation", "Cyclical Variation", "Secular Trend", "Random Noise"],
-                        answer: "Seasonal Variation"
+                        "id": "c2",
+                        "label": "Height of Students in cm",
+                        "value": "continuous"
                     },
                     {
-                        type: "diagram",
-                        badge: "Question 3: Diagram Labeling",
-                        prompt: "Identify the component shown by the repeating quarterly peaks in the line graph:",
-                        svg: `<svg width="100%" height="120" viewBox="0 0 300 120">
-                                <path d="M 20 90 L 50 30 L 70 80 L 100 20 L 120 75 L 150 15 L 170 70" fill="none" stroke="#125E46" stroke-width="2"/>
-                                <line x1="15" y1="100" x2="280" y2="100" stroke="#052217" stroke-width="2"/>
-                              </svg>`,
-                        options: ["Seasonal Pattern", "Cyclical Wave", "Random Outlier"],
-                        answer: "Seasonal Pattern"
-                    },
-                    {
-                        type: "sequence",
-                        badge: "Question 4: Procedure Ordering",
-                        prompt: "Order the steps for calculating 4-Quarter Centered Moving Averages (CMA):",
-                        initial: ["Compute 2-period centered averages", "Compute 4-quarter moving totals", "Divide by 4 to get 4-quarter moving averages"],
-                        answer: ["Compute 4-quarter moving totals", "Divide by 4 to get 4-quarter moving averages", "Compute 2-period centered averages"]
-                    },
-                    {
-                        type: "matching",
-                        badge: "Question 5: Concept Matching",
-                        prompt: "Match the time series model formula:",
-                        pairs: [
-                            { prompt: "Y = T + S + C + I", options: ["Additive Model", "Multiplicative Model"], answer: "Additive Model" },
-                            { prompt: "Y = T × S × C × I", options: ["Additive Model", "Multiplicative Model"], answer: "Multiplicative Model" }
-                        ]
-                    },
-                    {
-                        type: "truefalse",
-                        badge: "Question 6: True/False Challenge",
-                        prompt: "True or False: Irregular variations are predictable patterns caused by economic business cycles.",
-                        answer: "false"
-                    },
-                    {
-                        type: "dragdrop",
-                        badge: "Question 7: Multi-Chip Drag & Drop",
-                        prompt: "Drag the correct seasonal event chip into the target box:",
-                        chips: [
-                            { id: "c1", label: "Sudden sales surge during Hari Raya", value: "seasonal" },
-                            { id: "c2", label: "10-year macroeconomic recession", value: "cyclical" },
-                            { id: "c3", label: "Gradual 20-year population growth", value: "trend" }
-                        ],
-                        targetAnswer: "seasonal",
-                        dropBoxLabel: "Target Box: Seasonal Component Event"
+                        "id": "c3",
+                        "label": "Eye Color Category",
+                        "value": "nominal"
                     }
-                ]
+                ],
+                "targetAnswer": "discrete",
+                "dropBoxLabel": "Target Box: Discrete Quantitative Data"
             },
             {
-                id: 3,
-                title: "Correlation and Regression",
-                description: "Pearson's correlation coefficient, simple linear regression lines, and scatter diagrams.",
-                questions: [
-                    {
-                        type: "mcq",
-                        badge: "Question 1: MCQ",
-                        prompt: "What is the possible numerical range of Pearson's correlation coefficient (r)?",
-                        options: ["0 to +1", "-1 to +1", "-infinity to +infinity", "0 to 100"],
-                        answer: 1
-                    },
-                    {
-                        type: "term",
-                        badge: "Question 2: Term Selection",
-                        prompt: "Select the term represented by 'b' in the simple linear regression equation Y = a + bX:",
-                        description: "The rate of change in Y for every one unit increase in X.",
-                        options: ["Slope Coefficient", "Y-Intercept", "Correlation Coefficient", "Coefficient of Determination"],
-                        answer: "Slope Coefficient"
-                    },
-                    {
-                        type: "diagram",
-                        badge: "Question 3: Diagram Labeling",
-                        prompt: "Identify the scatter plot trend indicated by the dots and line:",
-                        svg: `<svg width="100%" height="120" viewBox="0 0 300 120">
-                                <circle cx="30" cy="90" r="4" fill="#D85B73"/><circle cx="60" cy="75" r="4" fill="#D85B73"/>
-                                <circle cx="90" cy="60" r="4" fill="#D85B73"/><circle cx="120" cy="35" r="4" fill="#D85B73"/>
-                                <line x1="20" y1="100" x2="140" y2="20" stroke="#125E46" stroke-width="2"/>
-                              </svg>`,
-                        options: ["Positive Linear Correlation", "Negative Linear Correlation", "No Correlation"],
-                        answer: "Positive Linear Correlation"
-                    },
-                    {
-                        type: "sequence",
-                        badge: "Question 4: Procedure Ordering",
-                        prompt: "Order the steps to fit a Simple Linear Regression Line Y = a + bX:",
-                        initial: ["Calculate Y-intercept (a)", "Form final prediction equation", "Calculate slope (b)", "Calculate means of X and Y"],
-                        answer: ["Calculate means of X and Y", "Calculate slope (b)", "Calculate Y-intercept (a)", "Form final prediction equation"]
-                    },
-                    {
-                        type: "matching",
-                        badge: "Question 5: Concept Matching",
-                        prompt: "Match the correlation coefficient r value to its interpretation:",
-                        pairs: [
-                            { prompt: "r = -0.92", options: ["Strong Negative Linear", "Strong Positive Linear", "No Relationship"], answer: "Strong Negative Linear" },
-                            { prompt: "r = 0.00", options: ["Strong Negative Linear", "Strong Positive Linear", "No Relationship"], answer: "No Relationship" }
-                        ]
-                    },
-                    {
-                        type: "truefalse",
-                        badge: "Question 6: True/False Challenge",
-                        prompt: "True or False: A strong correlation between X and Y proves that X causes Y.",
-                        answer: "false"
-                    },
-                    {
-                        type: "dragdrop",
-                        badge: "Question 7: Multi-Chip Drag & Drop",
-                        prompt: "Drag the correct variable chip into the Dependent Variable target box:",
-                        chips: [
-                            { id: "c1", label: "Exam Score Result (Y)", value: "dependent" },
-                            { id: "c2", label: "Hours Spent Studying (X)", value: "independent" },
-                            { id: "c3", label: "Room Temperature (°C)", value: "extraneous" }
-                        ],
-                        targetAnswer: "dependent",
-                        dropBoxLabel: "Target Box: Dependent / Response Variable"
-                    }
-                ]
+                "type": "diagram",
+                "badge": "Question 7: Diagram Interpretation",
+                "prompt": "Identify the element indicated by the dropdown in the Population vs. Sample diagram:",
+                "svg": "<svg width=\"100%\" height=\"120\" viewBox=\"0 0 300 120\">\n                                <circle cx=\"100\" cy=\"60\" r=\"50\" fill=\"#E8F5F1\" stroke=\"#125E46\" stroke-width=\"2\"/>\n                                <text x=\"75\" y=\"40\" font-family=\"Fredoka\" font-size=\"12\" fill=\"#052217\">Population (N)</text>\n                                <circle cx=\"115\" cy=\"75\" r=\"20\" fill=\"#FFF0F4\" stroke=\"#D85B73\" stroke-width=\"2\"/>\n                                <text x=\"103\" y=\"79\" font-family=\"Fredoka\" font-size=\"10\" fill=\"#D85B73\">n</text>\n                                <path d=\"M 135 75 L 200 75\" stroke=\"#D85B73\" stroke-width=\"2\" stroke-dasharray=\"3,3\"/>\n                              </svg>",
+                "options": [
+                    "Population (N)",
+                    "Sample (n)",
+                    "Census"
+                ],
+                "answer": "Sample (n)"
             },
             {
-                id: 4,
-                title: "Index Number",
-                description: "Simple aggregate, weighted index numbers (Laspeyres & Paasche), and CPI.",
-                questions: [
-                    {
-                        type: "mcq",
-                        badge: "Question 1: MCQ",
-                        prompt: "Which weighted index number uses BASE YEAR quantities (Q₀) as weights?",
-                        options: ["Paasche Index", "Laspeyres Index", "Fisher Index", "Simple Aggregate Index"],
-                        answer: 1
-                    },
-                    {
-                        type: "term",
-                        badge: "Question 2: Term Selection",
-                        prompt: "Select the term defined below:",
-                        description: "A statistical measure designed to show percentage change in price or quantity over time relative to a base year.",
-                        options: ["Index Number", "Variance", "Relative Frequency", "Slope"],
-                        answer: "Index Number"
-                    },
-                    {
-                        type: "diagram",
-                        badge: "Question 3: Diagram Labeling",
-                        prompt: "In the Price Relative formula I = (P₁ / P₀) × 100, identify P₀:",
-                        svg: `<svg width="100%" height="100" viewBox="0 0 300 100">
-                                <text x="50" y="55" font-family="Fredoka" font-size="20" fill="#052217">I = ( P₁ / P₀ ) × 100</text>
-                                <path d="M 120 65 L 120 85 L 180 85" stroke="#D85B73" stroke-width="2" fill="none"/>
-                              </svg>`,
-                        options: ["Base Year Price (P₀)", "Current Year Price (P₁)", "Base Quantity (Q₀)"],
-                        answer: "Base Year Price (P₀)"
-                    },
-                    {
-                        type: "sequence",
-                        badge: "Question 4: Procedure Ordering",
-                        prompt: "Order the steps to compute a Weighted Composite Price Index:",
-                        initial: ["Multiply price relatives by weights", "Identify base and current prices", "Divide sum of weighted relatives by sum of weights"],
-                        answer: ["Identify base and current prices", "Multiply price relatives by weights", "Divide sum of weighted relatives by sum of weights"]
-                    },
-                    {
-                        type: "matching",
-                        badge: "Question 5: Concept Matching",
-                        prompt: "Match the index formula to its category:",
-                        pairs: [
-                            { prompt: "Uses Current Year Quantity (Qₙ) Weights", options: ["Paasche Index", "Laspeyres Index"], answer: "Paasche Index" },
-                            { prompt: "Base Year Index Value", options: ["Always 100", "Always 0"], answer: "Always 100" }
-                        ]
-                    },
-                    {
-                        type: "truefalse",
-                        badge: "Question 6: True/False Challenge",
-                        prompt: "True or False: An index number of 125 for 2023 (Base 2020=100) implies a 25% price increase.",
-                        answer: "true"
-                    },
-                    {
-                        type: "dragdrop",
-                        badge: "Question 7: Multi-Chip Drag & Drop",
-                        prompt: "Drag the chip representing the Base Year Index Reference value into the target box:",
-                        chips: [
-                            { id: "c1", label: "Index Value = 100", value: "val_100" },
-                            { id: "c2", label: "Index Value = 0", value: "val_0" },
-                            { id: "c3", label: "Index Value = 50", value: "val_50" }
-                        ],
-                        targetAnswer: "val_100",
-                        dropBoxLabel: "Target Box: Base Year Reference Value"
-                    }
-                ]
+                "type": "mcq",
+                "prompt": "A census collects information from:",
+                "options": [
+                    "Only selected sample members",
+                    "Every member of the population",
+                    "Only respondents with missing values",
+                    "A random half of the sample"
+                ],
+                "answer": 1,
+                "badge": "Question 8: Multiple Choice"
             },
             {
-                id: 5,
-                title: "Introduction to Probability",
-                description: "Basic probability rules, Venn diagrams, conditional probability, and tree diagrams.",
-                questions: [
+                "type": "truefalse",
+                "prompt": "True or False: A statistic is a numerical measure calculated from a sample.",
+                "answer": "true",
+                "badge": "Question 9: True / False"
+            },
+            {
+                "type": "matching",
+                "prompt": "Match each data type to the most suitable example:",
+                "pairs": [
                     {
-                        type: "mcq",
-                        badge: "Question 1: MCQ",
-                        prompt: "If two events A and B CANNOT occur simultaneously, they are called:",
-                        options: ["Independent Events", "Mutually Exclusive Events", "Complementary Events", "Exhaustive Events"],
-                        answer: 1
-                    },
-                    {
-                        type: "term",
-                        badge: "Question 2: Term Selection",
-                        prompt: "Select the probability concept described:",
-                        description: "The probability of event A occurring given that event B has ALREADY occurred, denoted P(A|B).",
-                        options: ["Conditional Probability", "Joint Probability", "Marginal Probability", "Empirical Probability"],
-                        answer: "Conditional Probability"
-                    },
-                    {
-                        type: "diagram",
-                        badge: "Question 3: Diagram Labeling",
-                        prompt: "Identify the shaded overlapping region in this Venn diagram:",
-                        svg: `<svg width="100%" height="120" viewBox="0 0 300 120">
-                                <circle cx="110" cy="60" r="40" fill="#E8F5F1" stroke="#125E46" stroke-width="2"/>
-                                <circle cx="160" cy="60" r="40" fill="#FFF0F4" stroke="#D85B73" stroke-width="2" style="mix-blend-mode: multiply;"/>
-                                <text x="85" y="65" font-family="Fredoka" font-size="14" fill="#052217">A</text>
-                                <text x="180" y="65" font-family="Fredoka" font-size="14" fill="#D85B73">B</text>
-                              </svg>`,
-                        options: ["Intersection (A ∩ B)", "Union (A ∪ B)", "Complement (A')"],
-                        answer: "Intersection (A ∩ B)"
-                    },
-                    {
-                        type: "sequence",
-                        badge: "Question 4: Procedure Ordering",
-                        prompt: "Order the steps to verify if two events A and B are Independent:",
-                        initial: ["Calculate product P(A) × P(B)", "Find individual probabilities P(A) and P(B)", "Check if P(A ∩ B) equals P(A) × P(B)"],
-                        answer: ["Find individual probabilities P(A) and P(B)", "Calculate product P(A) × P(B)", "Check if P(A ∩ B) equals P(A) × P(B)"]
-                    },
-                    {
-                        type: "matching",
-                        badge: "Question 5: Concept Matching",
-                        prompt: "Match the probability rule equation:",
-                        pairs: [
-                            { prompt: "P(A')", options: ["1 - P(A)", "P(A) + P(B)"], answer: "1 - P(A)" },
-                            { prompt: "P(A ∩ B) for Independent Events", options: ["P(A) × P(B)", "P(A) + P(B)"], answer: "P(A) × P(B)" }
-                        ]
-                    },
-                    {
-                        type: "truefalse",
-                        badge: "Question 6: True/False Challenge",
-                        prompt: "True or False: The probability of any event can sometimes be greater than 1.0 if sample size is large.",
-                        answer: "false"
-                    },
-                    {
-                        type: "dragdrop",
-                        badge: "Question 7: Multi-Chip Drag & Drop",
-                        prompt: "Drag the chip representing an Impossible Event into the target box:",
-                        chips: [
-                            { id: "c1", label: "Probability = 0.0", value: "impossible" },
-                            { id: "c2", label: "Probability = 0.5", value: "equally_likely" },
-                            { id: "c3", label: "Probability = 1.0", value: "certain" }
+                        "prompt": "Qualitative data",
+                        "options": [
+                            "Marital status",
+                            "Monthly income",
+                            "Number of siblings"
                         ],
-                        targetAnswer: "impossible",
-                        dropBoxLabel: "Target Box: Impossible Event"
+                        "answer": "Marital status"
+                    },
+                    {
+                        "prompt": "Quantitative data",
+                        "options": [
+                            "Marital status",
+                            "Monthly income",
+                            "Blood group"
+                        ],
+                        "answer": "Monthly income"
                     }
-                ]
+                ],
+                "badge": "Question 10: Concept Matching"
             }
-        ];
+        ]
+    },
+    {
+        "id": 1,
+        "title": "Describing Data",
+        "description": "Measures of central tendency, dispersion, skewness, and graphical presentations.",
+        "questions": [
+            {
+                "type": "diagram",
+                "badge": "Question 1: Diagram Interpretation",
+                "prompt": "Identify the shape of the distribution shown in the curve:",
+                "svg": "<svg width=\"100%\" height=\"120\" viewBox=\"0 0 300 120\">\n                                <path d=\"M 20 100 Q 60 20 120 70 T 280 100\" fill=\"none\" stroke=\"#D85B73\" stroke-width=\"3\"/>\n                                <line x1=\"10\" y1=\"100\" x2=\"290\" y2=\"100\" stroke=\"#052217\" stroke-width=\"2\"/>\n                              </svg>",
+                "options": [
+                    "Symmetric Normal",
+                    "Right-Skewed (Positive)",
+                    "Left-Skewed (Negative)"
+                ],
+                "answer": "Right-Skewed (Positive)"
+            },
+            {
+                "type": "mcq",
+                "badge": "Question 2: Multiple Choice",
+                "prompt": "Which measure of central tendency is most affected by extreme outlier values?",
+                "options": [
+                    "Median",
+                    "Mode",
+                    "Mean",
+                    "Interquartile Range"
+                ],
+                "answer": 2
+            },
+            {
+                "type": "matching",
+                "badge": "Question 3: Concept Matching",
+                "prompt": "Match the formula concept to its metric:",
+                "pairs": [
+                    {
+                        "prompt": "Q3 - Q1",
+                        "options": [
+                            "Interquartile Range (IQR)",
+                            "Variance",
+                            "Mode"
+                        ],
+                        "answer": "Interquartile Range (IQR)"
+                    },
+                    {
+                        "prompt": "Highest Value - Lowest Value",
+                        "options": [
+                            "Interquartile Range (IQR)",
+                            "Total Range",
+                            "Mean"
+                        ],
+                        "answer": "Total Range"
+                    }
+                ]
+            },
+            {
+                "type": "truefalse",
+                "badge": "Question 4: True / False",
+                "prompt": "True or False: In a perfectly symmetric distribution, Mean = Median = Mode.",
+                "answer": "true"
+            },
+            {
+                "type": "term",
+                "badge": "Question 5: Term Selection",
+                "prompt": "Select the statistical measure described below:",
+                "description": "The square root of the sample variance, measuring the average spread from the mean.",
+                "options": [
+                    "Standard Deviation",
+                    "Variance",
+                    "Range",
+                    "Mean Absolute Deviation"
+                ],
+                "answer": "Standard Deviation"
+            },
+            {
+                "type": "sequence",
+                "badge": "Question 6: Procedure Ordering",
+                "prompt": "Arrange the steps to calculate Sample Variance ($s^2$):",
+                "initial": [
+                    "Square each deviation",
+                    "Calculate sample mean",
+                    "Divide sum by (n-1)",
+                    "Subtract mean from each data point"
+                ],
+                "answer": [
+                    "Calculate sample mean",
+                    "Subtract mean from each data point",
+                    "Square each deviation",
+                    "Divide sum by (n-1)"
+                ]
+            },
+            {
+                "type": "mcq",
+                "prompt": "For the ordered data 2, 4, 6, 8, what is the median?",
+                "options": [
+                    "4",
+                    "5",
+                    "6",
+                    "20"
+                ],
+                "answer": 1,
+                "badge": "Question 7: Multiple Choice"
+            },
+            {
+                "type": "dragdrop",
+                "badge": "Question 8: Drag & Drop",
+                "prompt": "Drag the correct measure of dispersion chip into the target box:",
+                "chips": [
+                    {
+                        "id": "c1",
+                        "label": "Standard Deviation",
+                        "value": "dispersion"
+                    },
+                    {
+                        "id": "c2",
+                        "label": "Sample Median",
+                        "value": "central_tendency"
+                    },
+                    {
+                        "id": "c3",
+                        "label": "Sample Mode",
+                        "value": "central_tendency"
+                    }
+                ],
+                "targetAnswer": "dispersion",
+                "dropBoxLabel": "Target Box: Measure of Dispersion"
+            },
+            {
+                "type": "truefalse",
+                "prompt": "True or False: The range is calculated as the maximum value minus the minimum value.",
+                "answer": "true",
+                "badge": "Question 9: True / False"
+            },
+            {
+                "type": "matching",
+                "prompt": "Match each description to the correct descriptive measure:",
+                "pairs": [
+                    {
+                        "prompt": "Middle value after data are ordered",
+                        "options": [
+                            "Median",
+                            "Variance",
+                            "Coefficient of Variation"
+                        ],
+                        "answer": "Median"
+                    },
+                    {
+                        "prompt": "Standard deviation expressed relative to the mean, usually as a percentage",
+                        "options": [
+                            "Median",
+                            "Variance",
+                            "Coefficient of Variation"
+                        ],
+                        "answer": "Coefficient of Variation"
+                    }
+                ],
+                "badge": "Question 10: Concept Matching"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "title": "Time Series Data Analysis",
+        "description": "Components of time series, moving averages, trend equations, and forecasting.",
+        "questions": [
+            {
+                "type": "term",
+                "badge": "Question 1: Term Selection",
+                "prompt": "Select the time series variation matching this description:",
+                "description": "Periodic fluctuations that repeat regularly within a single year (e.g., quarterly or monthly).",
+                "options": [
+                    "Seasonal Variation",
+                    "Cyclical Variation",
+                    "Secular Trend",
+                    "Random Noise"
+                ],
+                "answer": "Seasonal Variation"
+            },
+            {
+                "type": "matching",
+                "badge": "Question 2: Concept Matching",
+                "prompt": "Match the time series model formula:",
+                "pairs": [
+                    {
+                        "prompt": "Y = T + S + C + I",
+                        "options": [
+                            "Additive Model",
+                            "Multiplicative Model"
+                        ],
+                        "answer": "Additive Model"
+                    },
+                    {
+                        "prompt": "Y = T × S × C × I",
+                        "options": [
+                            "Additive Model",
+                            "Multiplicative Model"
+                        ],
+                        "answer": "Multiplicative Model"
+                    }
+                ]
+            },
+            {
+                "type": "mcq",
+                "badge": "Question 3: Multiple Choice",
+                "prompt": "Which component of a time series represents long-term smooth upward or downward movement over many years?",
+                "options": [
+                    "Seasonal Component (S)",
+                    "Secular Trend (T)",
+                    "Cyclical Component (C)",
+                    "Irregular Component (I)"
+                ],
+                "answer": 1
+            },
+            {
+                "type": "sequence",
+                "badge": "Question 4: Procedure Ordering",
+                "prompt": "Order the steps for calculating 4-Quarter Centered Moving Averages (CMA):",
+                "initial": [
+                    "Compute 2-period centered averages",
+                    "Compute 4-quarter moving totals",
+                    "Divide by 4 to get 4-quarter moving averages"
+                ],
+                "answer": [
+                    "Compute 4-quarter moving totals",
+                    "Divide by 4 to get 4-quarter moving averages",
+                    "Compute 2-period centered averages"
+                ]
+            },
+            {
+                "type": "truefalse",
+                "badge": "Question 5: True / False",
+                "prompt": "True or False: Irregular variations are predictable patterns caused by economic business cycles.",
+                "answer": "false"
+            },
+            {
+                "type": "diagram",
+                "badge": "Question 6: Diagram Interpretation",
+                "prompt": "Identify the component shown by the repeating quarterly peaks in the line graph:",
+                "svg": "<svg width=\"100%\" height=\"120\" viewBox=\"0 0 300 120\">\n                                <path d=\"M 20 90 L 50 30 L 70 80 L 100 20 L 120 75 L 150 15 L 170 70\" fill=\"none\" stroke=\"#125E46\" stroke-width=\"2\"/>\n                                <line x1=\"15\" y1=\"100\" x2=\"280\" y2=\"100\" stroke=\"#052217\" stroke-width=\"2\"/>\n                              </svg>",
+                "options": [
+                    "Seasonal Pattern",
+                    "Cyclical Wave",
+                    "Random Outlier"
+                ],
+                "answer": "Seasonal Pattern"
+            },
+            {
+                "type": "dragdrop",
+                "badge": "Question 7: Drag & Drop",
+                "prompt": "Drag the correct seasonal event chip into the target box:",
+                "chips": [
+                    {
+                        "id": "c1",
+                        "label": "Sudden sales surge during Hari Raya",
+                        "value": "seasonal"
+                    },
+                    {
+                        "id": "c2",
+                        "label": "10-year macroeconomic recession",
+                        "value": "cyclical"
+                    },
+                    {
+                        "id": "c3",
+                        "label": "Gradual 20-year population growth",
+                        "value": "trend"
+                    }
+                ],
+                "targetAnswer": "seasonal",
+                "dropBoxLabel": "Target Box: Seasonal Component Event"
+            },
+            {
+                "type": "mcq",
+                "prompt": "Given the trend equation Ŷ = 10 + 2t, what is the forecast when t = 5?",
+                "options": [
+                    "12",
+                    "15",
+                    "20",
+                    "25"
+                ],
+                "answer": 2,
+                "badge": "Question 8: Multiple Choice"
+            },
+            {
+                "type": "matching",
+                "prompt": "Match the time series component to the example:",
+                "pairs": [
+                    {
+                        "prompt": "Long-term increase in online sales over several years",
+                        "options": [
+                            "Trend",
+                            "Seasonal",
+                            "Irregular"
+                        ],
+                        "answer": "Trend"
+                    },
+                    {
+                        "prompt": "Higher retail sales every festive season",
+                        "options": [
+                            "Trend",
+                            "Seasonal",
+                            "Irregular"
+                        ],
+                        "answer": "Seasonal"
+                    }
+                ],
+                "badge": "Question 9: Concept Matching"
+            },
+            {
+                "type": "truefalse",
+                "prompt": "True or False: Seasonal variation refers to a pattern that repeats at regular intervals within a year.",
+                "answer": "true",
+                "badge": "Question 10: True / False"
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "title": "Correlation and Regression",
+        "description": "Pearson's correlation coefficient, simple linear regression lines, and scatter diagrams.",
+        "questions": [
+            {
+                "type": "truefalse",
+                "badge": "Question 1: True / False",
+                "prompt": "True or False: A strong correlation between X and Y proves that X causes Y.",
+                "answer": "false"
+            },
+            {
+                "type": "diagram",
+                "badge": "Question 2: Diagram Interpretation",
+                "prompt": "Identify the scatter plot trend indicated by the dots and line:",
+                "svg": "<svg width=\"100%\" height=\"120\" viewBox=\"0 0 300 120\">\n                                <circle cx=\"30\" cy=\"90\" r=\"4\" fill=\"#D85B73\"/><circle cx=\"60\" cy=\"75\" r=\"4\" fill=\"#D85B73\"/>\n                                <circle cx=\"90\" cy=\"60\" r=\"4\" fill=\"#D85B73\"/><circle cx=\"120\" cy=\"35\" r=\"4\" fill=\"#D85B73\"/>\n                                <line x1=\"20\" y1=\"100\" x2=\"140\" y2=\"20\" stroke=\"#125E46\" stroke-width=\"2\"/>\n                              </svg>",
+                "options": [
+                    "Positive Linear Correlation",
+                    "Negative Linear Correlation",
+                    "No Correlation"
+                ],
+                "answer": "Positive Linear Correlation"
+            },
+            {
+                "type": "mcq",
+                "badge": "Question 3: Multiple Choice",
+                "prompt": "What is the possible numerical range of Pearson's correlation coefficient (r)?",
+                "options": [
+                    "0 to +1",
+                    "-1 to +1",
+                    "-infinity to +infinity",
+                    "0 to 100"
+                ],
+                "answer": 1
+            },
+            {
+                "type": "matching",
+                "badge": "Question 4: Concept Matching",
+                "prompt": "Match the correlation coefficient r value to its interpretation:",
+                "pairs": [
+                    {
+                        "prompt": "r = -0.92",
+                        "options": [
+                            "Strong Negative Linear",
+                            "Strong Positive Linear",
+                            "No Relationship"
+                        ],
+                        "answer": "Strong Negative Linear"
+                    },
+                    {
+                        "prompt": "r = 0.00",
+                        "options": [
+                            "Strong Negative Linear",
+                            "Strong Positive Linear",
+                            "No Relationship"
+                        ],
+                        "answer": "No Relationship"
+                    }
+                ]
+            },
+            {
+                "type": "sequence",
+                "badge": "Question 5: Procedure Ordering",
+                "prompt": "Order the steps to fit a Simple Linear Regression Line Y = a + bX:",
+                "initial": [
+                    "Calculate Y-intercept (a)",
+                    "Form final prediction equation",
+                    "Calculate slope (b)",
+                    "Calculate means of X and Y"
+                ],
+                "answer": [
+                    "Calculate means of X and Y",
+                    "Calculate slope (b)",
+                    "Calculate Y-intercept (a)",
+                    "Form final prediction equation"
+                ]
+            },
+            {
+                "type": "term",
+                "badge": "Question 6: Term Selection",
+                "prompt": "Select the term represented by 'b' in the simple linear regression equation Y = a + bX:",
+                "description": "The rate of change in Y for every one unit increase in X.",
+                "options": [
+                    "Slope Coefficient",
+                    "Y-Intercept",
+                    "Correlation Coefficient",
+                    "Coefficient of Determination"
+                ],
+                "answer": "Slope Coefficient"
+            },
+            {
+                "type": "dragdrop",
+                "badge": "Question 7: Drag & Drop",
+                "prompt": "Drag the correct variable chip into the Dependent Variable target box:",
+                "chips": [
+                    {
+                        "id": "c1",
+                        "label": "Exam Score Result (Y)",
+                        "value": "dependent"
+                    },
+                    {
+                        "id": "c2",
+                        "label": "Hours Spent Studying (X)",
+                        "value": "independent"
+                    },
+                    {
+                        "id": "c3",
+                        "label": "Room Temperature (°C)",
+                        "value": "extraneous"
+                    }
+                ],
+                "targetAnswer": "dependent",
+                "dropBoxLabel": "Target Box: Dependent / Response Variable"
+            },
+            {
+                "type": "mcq",
+                "prompt": "A correlation coefficient of r = -0.90 indicates:",
+                "options": [
+                    "Strong positive linear relationship",
+                    "Strong negative linear relationship",
+                    "No linear relationship",
+                    "Perfect positive relationship"
+                ],
+                "answer": 1,
+                "badge": "Question 8: Multiple Choice"
+            },
+            {
+                "type": "truefalse",
+                "prompt": "True or False: In Y = a + bX, a slope b = 0 indicates no linear change in predicted Y as X changes.",
+                "answer": "true",
+                "badge": "Question 9: True / False"
+            },
+            {
+                "type": "matching",
+                "prompt": "Match each regression role to the correct variable:",
+                "pairs": [
+                    {
+                        "prompt": "Predictor / explanatory variable",
+                        "options": [
+                            "X (independent variable)",
+                            "Y (dependent variable)",
+                            "Residual only"
+                        ],
+                        "answer": "X (independent variable)"
+                    },
+                    {
+                        "prompt": "Response / outcome variable",
+                        "options": [
+                            "X (independent variable)",
+                            "Y (dependent variable)",
+                            "Intercept only"
+                        ],
+                        "answer": "Y (dependent variable)"
+                    }
+                ],
+                "badge": "Question 10: Concept Matching"
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "title": "Index Number",
+        "description": "Simple aggregate, weighted index numbers (Laspeyres & Paasche), and CPI.",
+        "questions": [
+            {
+                "type": "mcq",
+                "badge": "Question 1: Multiple Choice",
+                "prompt": "Which weighted index number uses BASE YEAR quantities (Q₀) as weights?",
+                "options": [
+                    "Paasche Index",
+                    "Laspeyres Index",
+                    "Fisher Index",
+                    "Simple Aggregate Index"
+                ],
+                "answer": 1
+            },
+            {
+                "type": "sequence",
+                "badge": "Question 2: Procedure Ordering",
+                "prompt": "Order the steps to compute a Weighted Composite Price Index:",
+                "initial": [
+                    "Multiply price relatives by weights",
+                    "Identify base and current prices",
+                    "Divide sum of weighted relatives by sum of weights"
+                ],
+                "answer": [
+                    "Identify base and current prices",
+                    "Multiply price relatives by weights",
+                    "Divide sum of weighted relatives by sum of weights"
+                ]
+            },
+            {
+                "type": "term",
+                "badge": "Question 3: Term Selection",
+                "prompt": "Select the term defined below:",
+                "description": "A statistical measure designed to show percentage change in price or quantity over time relative to a base year.",
+                "options": [
+                    "Index Number",
+                    "Variance",
+                    "Relative Frequency",
+                    "Slope"
+                ],
+                "answer": "Index Number"
+            },
+            {
+                "type": "matching",
+                "badge": "Question 4: Concept Matching",
+                "prompt": "Match the index formula to its category:",
+                "pairs": [
+                    {
+                        "prompt": "Uses Current Year Quantity (Qₙ) Weights",
+                        "options": [
+                            "Paasche Index",
+                            "Laspeyres Index"
+                        ],
+                        "answer": "Paasche Index"
+                    },
+                    {
+                        "prompt": "Base Year Index Value",
+                        "options": [
+                            "Always 100",
+                            "Always 0"
+                        ],
+                        "answer": "Always 100"
+                    }
+                ]
+            },
+            {
+                "type": "diagram",
+                "badge": "Question 5: Diagram Interpretation",
+                "prompt": "In the Price Relative formula I = (P₁ / P₀) × 100, identify P₀:",
+                "svg": "<svg width=\"100%\" height=\"100\" viewBox=\"0 0 300 100\">\n                                <text x=\"50\" y=\"55\" font-family=\"Fredoka\" font-size=\"20\" fill=\"#052217\">I = ( P₁ / P₀ ) × 100</text>\n                                <path d=\"M 120 65 L 120 85 L 180 85\" stroke=\"#D85B73\" stroke-width=\"2\" fill=\"none\"/>\n                              </svg>",
+                "options": [
+                    "Base Year Price (P₀)",
+                    "Current Year Price (P₁)",
+                    "Base Quantity (Q₀)"
+                ],
+                "answer": "Base Year Price (P₀)"
+            },
+            {
+                "type": "truefalse",
+                "badge": "Question 6: True / False",
+                "prompt": "True or False: An index number of 125 for 2023 (Base 2020=100) implies a 25% price increase.",
+                "answer": "true"
+            },
+            {
+                "type": "dragdrop",
+                "badge": "Question 7: Drag & Drop",
+                "prompt": "Drag the chip representing the Base Year Index Reference value into the target box:",
+                "chips": [
+                    {
+                        "id": "c1",
+                        "label": "Index Value = 100",
+                        "value": "val_100"
+                    },
+                    {
+                        "id": "c2",
+                        "label": "Index Value = 0",
+                        "value": "val_0"
+                    },
+                    {
+                        "id": "c3",
+                        "label": "Index Value = 50",
+                        "value": "val_50"
+                    }
+                ],
+                "targetAnswer": "val_100",
+                "dropBoxLabel": "Target Box: Base Year Reference Value"
+            },
+            {
+                "type": "mcq",
+                "prompt": "If a product price rises from RM100 in the base year to RM120 in the current year, the simple price relative is:",
+                "options": [
+                    "20",
+                    "83.3",
+                    "100",
+                    "120"
+                ],
+                "answer": 3,
+                "badge": "Question 8: Multiple Choice"
+            },
+            {
+                "type": "matching",
+                "prompt": "Match the weighted price index to the quantity weights it uses:",
+                "pairs": [
+                    {
+                        "prompt": "Laspeyres Price Index",
+                        "options": [
+                            "Base-year quantities",
+                            "Current-year quantities",
+                            "No quantities"
+                        ],
+                        "answer": "Base-year quantities"
+                    },
+                    {
+                        "prompt": "Paasche Price Index",
+                        "options": [
+                            "Base-year quantities",
+                            "Current-year quantities",
+                            "No quantities"
+                        ],
+                        "answer": "Current-year quantities"
+                    }
+                ],
+                "badge": "Question 9: Concept Matching"
+            },
+            {
+                "type": "truefalse",
+                "prompt": "True or False: The base-year index is normally set equal to 100.",
+                "answer": "true",
+                "badge": "Question 10: True / False"
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "title": "Introduction to Probability",
+        "description": "Basic probability rules, Venn diagrams, conditional probability, and tree diagrams.",
+        "questions": [
+            {
+                "type": "matching",
+                "badge": "Question 1: Concept Matching",
+                "prompt": "Match the probability rule equation:",
+                "pairs": [
+                    {
+                        "prompt": "P(A')",
+                        "options": [
+                            "1 - P(A)",
+                            "P(A) + P(B)"
+                        ],
+                        "answer": "1 - P(A)"
+                    },
+                    {
+                        "prompt": "P(A ∩ B) for Independent Events",
+                        "options": [
+                            "P(A) × P(B)",
+                            "P(A) + P(B)"
+                        ],
+                        "answer": "P(A) × P(B)"
+                    }
+                ]
+            },
+            {
+                "type": "truefalse",
+                "badge": "Question 2: True / False",
+                "prompt": "True or False: The probability of any event can sometimes be greater than 1.0 if sample size is large.",
+                "answer": "false"
+            },
+            {
+                "type": "mcq",
+                "badge": "Question 3: Multiple Choice",
+                "prompt": "If two events A and B CANNOT occur simultaneously, they are called:",
+                "options": [
+                    "Independent Events",
+                    "Mutually Exclusive Events",
+                    "Complementary Events",
+                    "Exhaustive Events"
+                ],
+                "answer": 1
+            },
+            {
+                "type": "diagram",
+                "badge": "Question 4: Diagram Interpretation",
+                "prompt": "Identify the shaded overlapping region in this Venn diagram:",
+                "svg": "<svg width=\"100%\" height=\"120\" viewBox=\"0 0 300 120\">\n                                <circle cx=\"110\" cy=\"60\" r=\"40\" fill=\"#E8F5F1\" stroke=\"#125E46\" stroke-width=\"2\"/>\n                                <circle cx=\"160\" cy=\"60\" r=\"40\" fill=\"#FFF0F4\" stroke=\"#D85B73\" stroke-width=\"2\" style=\"mix-blend-mode: multiply;\"/>\n                                <text x=\"85\" y=\"65\" font-family=\"Fredoka\" font-size=\"14\" fill=\"#052217\">A</text>\n                                <text x=\"180\" y=\"65\" font-family=\"Fredoka\" font-size=\"14\" fill=\"#D85B73\">B</text>\n                              </svg>",
+                "options": [
+                    "Intersection (A ∩ B)",
+                    "Union (A ∪ B)",
+                    "Complement (A')"
+                ],
+                "answer": "Intersection (A ∩ B)"
+            },
+            {
+                "type": "term",
+                "badge": "Question 5: Term Selection",
+                "prompt": "Select the probability concept described:",
+                "description": "The probability of event A occurring given that event B has ALREADY occurred, denoted P(A|B).",
+                "options": [
+                    "Conditional Probability",
+                    "Joint Probability",
+                    "Marginal Probability",
+                    "Empirical Probability"
+                ],
+                "answer": "Conditional Probability"
+            },
+            {
+                "type": "dragdrop",
+                "badge": "Question 6: Drag & Drop",
+                "prompt": "Drag the chip representing an Impossible Event into the target box:",
+                "chips": [
+                    {
+                        "id": "c1",
+                        "label": "Probability = 0.0",
+                        "value": "impossible"
+                    },
+                    {
+                        "id": "c2",
+                        "label": "Probability = 0.5",
+                        "value": "equally_likely"
+                    },
+                    {
+                        "id": "c3",
+                        "label": "Probability = 1.0",
+                        "value": "certain"
+                    }
+                ],
+                "targetAnswer": "impossible",
+                "dropBoxLabel": "Target Box: Impossible Event"
+            },
+            {
+                "type": "sequence",
+                "badge": "Question 7: Procedure Ordering",
+                "prompt": "Order the steps to verify if two events A and B are Independent:",
+                "initial": [
+                    "Calculate product P(A) × P(B)",
+                    "Find individual probabilities P(A) and P(B)",
+                    "Check if P(A ∩ B) equals P(A) × P(B)"
+                ],
+                "answer": [
+                    "Find individual probabilities P(A) and P(B)",
+                    "Calculate product P(A) × P(B)",
+                    "Check if P(A ∩ B) equals P(A) × P(B)"
+                ]
+            },
+            {
+                "type": "mcq",
+                "prompt": "If P(A) = 0.30, what is P(Aᶜ), the probability of the complement of A?",
+                "options": [
+                    "0.30",
+                    "0.50",
+                    "0.70",
+                    "1.30"
+                ],
+                "answer": 2,
+                "badge": "Question 8: Multiple Choice"
+            },
+            {
+                "type": "truefalse",
+                "prompt": "True or False: If events A and B are mutually exclusive, then P(A ∩ B) = 0.",
+                "answer": "true",
+                "badge": "Question 9: True / False"
+            },
+            {
+                "type": "matching",
+                "prompt": "Match the probability rule to its expression:",
+                "pairs": [
+                    {
+                        "prompt": "Complement Rule",
+                        "options": [
+                            "P(Aᶜ) = 1 - P(A)",
+                            "P(A ∩ B) = P(A)P(B)",
+                            "P(A|B) = P(A)"
+                        ],
+                        "answer": "P(Aᶜ) = 1 - P(A)"
+                    },
+                    {
+                        "prompt": "Multiplication Rule for independent events",
+                        "options": [
+                            "P(Aᶜ) = 1 - P(A)",
+                            "P(A ∩ B) = P(A)P(B)",
+                            "P(A ∪ B) = 0"
+                        ],
+                        "answer": "P(A ∩ B) = P(A)P(B)"
+                    }
+                ],
+                "badge": "Question 10: Concept Matching"
+            }
+        ]
+    }
+];
 
         class AppState {
             constructor() {
@@ -3298,6 +4101,7 @@
                 this.allProgress = JSON.parse(localStorage.getItem('sta104_all_progress')) || {};
                 this.isLecturerAuthenticated = false;
                 this.currentTopicIndex = 0;
+                this.currentCertificateTopicId = null;
                 this.sequenceState = {};
                 this.tfState = {};
                 this.dragState = {};
@@ -3327,14 +4131,6 @@
                 localStorage.setItem('sta104_all_progress', JSON.stringify(this.allProgress));
             }
 
-            getAggregateScore(id) {
-                const prog = this.getStudentProgress(id);
-                const completedKeys = Object.keys(prog);
-                if (completedKeys.length === 0) return 0;
-                let sum = 0;
-                completedKeys.forEach(k => sum += prog[k].score);
-                return Math.round(sum / sta104Topics.length);
-            }
 
             clearCurrentStudent() {
                 this.student = { name: '', id: '', group: '' };
@@ -3345,6 +4141,8 @@
         const state = new AppState();
 
         const app = {
+            portalFilters: { module: 'all', group: 'all' },
+
             init: () => {
                 if (state.student.name && state.student.id) {
                     app.updateHeaderTag();
@@ -3413,7 +4211,7 @@
             renderTopicHub: () => {
                 const grid = document.getElementById('topic-grid');
                 grid.innerHTML = '';
-                
+
                 let completedCount = 0;
                 const studentProg = state.getStudentProgress();
 
@@ -3430,14 +4228,13 @@
                             <h3 class="topic-title">${topic.title}</h3>
                             <p class="topic-description">${topic.description}</p>
                             <span class="topic-status ${isDone ? 'status-done' : 'status-pending'}">
-                                ${isDone ? `✔️ Completed (${topicData.score}%)` : '⏳ Not Started'}
+                                ${isDone ? `✔️ Completed — Topic Score ${topicData.score}%` : '10 questions · 1 attempt'}
                             </span>
                         </div>
-                        <button class="btn-3d ${isDone ? 'btn-secondary' : 'btn-pink'}" 
-                                onclick="app.startQuiz(${topic.id})" 
-                                style="width: 100%;" 
-                                ${isDone ? 'disabled' : ''}>
-                            ${isDone ? '🔒 Submitted (1 Attempt Max)' : 'Start Module Quiz'}
+                        <button class="btn-3d ${isDone ? 'btn-secondary' : 'btn-pink'}"
+                                onclick="${isDone ? `app.showTopicCertificate(${topic.id})` : `app.startQuiz(${topic.id})`}"
+                                style="width: 100%;">
+                            ${isDone ? '🎓 View Topic Certificate' : 'Start Topic Assessment'}
                         </button>
                     `;
                     grid.appendChild(card);
@@ -3445,9 +4242,17 @@
 
                 const pct = Math.round((completedCount / sta104Topics.length) * 100);
                 document.getElementById('hub-progress-bar').style.width = `${pct}%`;
+            },
 
-                const certBtn = document.getElementById('btn-view-cert');
-                certBtn.style.display = completedCount > 0 ? 'inline-flex' : 'none';
+            showTopicCertificate: (topicId) => {
+                const studentProg = state.getStudentProgress();
+                if (!studentProg[topicId] || !studentProg[topicId].completed) {
+                    alert('Complete this topic first to generate its certificate.');
+                    return;
+                }
+                state.currentCertificateTopicId = topicId;
+                state.currentTopicIndex = topicId;
+                app.showScreen('certificate-screen');
             },
 
             startQuiz: (topicId) => {
@@ -3701,139 +4506,119 @@
                 const percentage = Math.round((scoreCount / topic.questions.length) * 100);
                 state.saveTopicScore(topicId, percentage, answersRecord);
 
-                alert(`🎉 Module Quiz Submitted!\nStudent ID: ${state.student.id}\nFinal Score: ${percentage}% (${scoreCount}/${topic.questions.length} correct)\nThis module attempt is now recorded and locked for your ID.`);
-                app.showScreen('topic-hub-screen');
+                state.currentCertificateTopicId = topicId;
+                alert(`🎉 Topic Assessment Submitted!\nStudent ID: ${state.student.id}\nTopic: ${topic.title}\nFinal Score: ${percentage}% (${scoreCount}/${topic.questions.length} correct)\nYour topic certificate is now ready.`);
+                app.showScreen('certificate-screen');
             },
 
             renderCertificate: () => {
+                const topicId = state.currentCertificateTopicId !== null ? state.currentCertificateTopicId : state.currentTopicIndex;
+                const topic = sta104Topics[topicId];
+                const studentProg = state.getStudentProgress();
+                const res = studentProg[topicId];
+
+                if (!topic || !res || !res.completed) {
+                    app.showScreen('topic-hub-screen');
+                    return;
+                }
+
                 document.getElementById('cert-student-name').innerText = state.student.name || 'Student Name';
                 document.getElementById('cert-student-id').innerText = state.student.id || '2023XXXXXX';
                 document.getElementById('cert-student-group').innerText = state.student.group || 'N/A';
-                
-                const agg = state.getAggregateScore();
-                document.getElementById('cert-aggregate-score').innerText = `${agg}%`;
+                document.getElementById('cert-module-number').innerText = `MODULE ${String(topicId + 1).padStart(2, '0')}`;
+                document.getElementById('cert-topic-title').innerText = topic.title;
+                document.getElementById('cert-topic-score').innerText = `${res.score}%`;
 
                 const reviewContainer = document.getElementById('answer-key-content-container');
                 reviewContainer.innerHTML = '';
 
-                const studentProg = state.getStudentProgress();
+                const topicCard = document.createElement('div');
+                topicCard.style.padding = '14px 16px';
+                topicCard.style.background = 'var(--bg-bright)';
+                topicCard.style.borderRadius = '12px';
+                topicCard.style.border = '1px solid var(--emerald-light)';
 
-                sta104Topics.forEach(topic => {
-                    const res = studentProg[topic.id];
-                    
-                    const topicCard = document.createElement('div');
-                    topicCard.style.marginBottom = '16px';
-                    topicCard.style.padding = '14px 16px';
-                    topicCard.style.background = 'var(--bg-bright)';
-                    topicCard.style.borderRadius = '12px';
-                    topicCard.style.border = '1px solid var(--emerald-light)';
-
-                    let html = `<div style="font-weight: 700; color: var(--emerald-deep); margin-bottom: 10px; font-size: 0.95rem;">
-                        📌 Module 0${topic.id + 1}: ${topic.title} ${res ? `— Score: ${res.score}%` : '(Not Attempted)'}
+                let html = `<div style="font-weight: 700; color: var(--emerald-deep); margin-bottom: 10px; font-size: 0.95rem;">
+                    📌 Module ${String(topicId + 1).padStart(2, '0')}: ${topic.title} — Score: ${res.score}%
+                </div>`;
+                html += `<div style="display: flex; flex-wrap: wrap; gap: 8px;">`;
+                (res.answers || []).forEach((a, i) => {
+                    const isOk = a.correct;
+                    const bg = isOk ? 'var(--emerald-soft)' : 'var(--pink-soft)';
+                    const border = isOk ? 'var(--emerald-mid)' : 'var(--pink-accent)';
+                    const color = isOk ? 'var(--emerald-deep)' : 'var(--pink-accent)';
+                    const symbol = isOk ? '✔️' : '❌';
+                    html += `<div style="background: ${bg}; border: 1px solid ${border}; color: ${color}; padding: 6px 12px; border-radius: 8px; font-weight: 600; font-size: 0.85rem; display: flex; align-items: center; gap: 6px;">
+                        <span>Question ${i + 1}:</span> <span>${symbol}</span>
                     </div>`;
-
-                    if (res && res.answers) {
-                        html += `<div style="display: flex; flex-wrap: wrap; gap: 8px;">`;
-                        res.answers.forEach((a, i) => {
-                            const isOk = a.correct;
-                            const bg = isOk ? 'var(--emerald-soft)' : 'var(--pink-soft)';
-                            const border = isOk ? 'var(--emerald-mid)' : 'var(--pink-accent)';
-                            const color = isOk ? 'var(--emerald-deep)' : 'var(--pink-accent)';
-                            const symbol = isOk ? '✔️' : '❌';
-                            
-                            html += `<div style="background: ${bg}; border: 1px solid ${border}; color: ${color}; padding: 6px 12px; border-radius: 8px; font-weight: 600; font-size: 0.85rem; display: flex; align-items: center; gap: 6px;">
-                                <span>Question ${i + 1}:</span> <span>${symbol}</span>
-                            </div>`;
-                        });
-                        html += `</div>`;
-                    } else {
-                        html += `<div style="color: var(--text-muted); font-size: 0.85rem; font-style: italic;">No attempt recorded for this module yet.</div>`;
-                    }
-
-                    topicCard.innerHTML = html;
-                    reviewContainer.appendChild(topicCard);
                 });
+                html += `</div>`;
+                topicCard.innerHTML = html;
+                reviewContainer.appendChild(topicCard);
 
                 const submissions = JSON.parse(localStorage.getItem('sta104_submissions')) || [];
-                const isSubmitted = submissions.some(s => s.id === state.student.id);
-                app.updateReturnButtonState(isSubmitted);
+                const existing = submissions.find(x => x.id === state.student.id && Number(x.topicId) === Number(topicId));
+                document.getElementById('feedback-text').value = existing && existing.feedback !== 'No comments provided.' ? existing.feedback : '';
+                app.updateReturnButtonState(Boolean(existing));
             },
 
             updateReturnButtonState: (isSubmitted) => {
-                const returnBtn = document.getElementById('btn-return-hub');
                 const submitBtn = document.getElementById('btn-save-submission');
+                const returnBtn = document.getElementById('btn-return-hub');
                 if (returnBtn) {
-                    if (isSubmitted) {
-                        returnBtn.disabled = false;
-                        returnBtn.innerHTML = '🔄 Finish & Reset for Next Student';
-                        returnBtn.className = 'btn-3d btn-secondary';
-                        if (submitBtn) {
-                            submitBtn.innerHTML = '✔️ Score Submitted (Update Feedback)';
-                        }
-                    } else {
-                        returnBtn.disabled = true;
-                        returnBtn.innerHTML = '🔒 Return to Hub (Submit Score First)';
-                        if (submitBtn) {
-                            submitBtn.innerHTML = '💾 Save & Submit Score to Lecturer';
-                        }
-                    }
+                    returnBtn.disabled = false;
+                    returnBtn.innerHTML = 'Continue to Topic Hub →';
+                }
+                if (submitBtn) {
+                    submitBtn.innerHTML = isSubmitted ? '✔️ Topic Score Submitted (Update)' : '💾 Submit Topic Score to Lecturer';
                 }
             },
 
             saveFinalSubmission: () => {
+                const topicId = state.currentCertificateTopicId !== null ? state.currentCertificateTopicId : state.currentTopicIndex;
+                const topic = sta104Topics[topicId];
+                const res = state.getStudentProgress()[topicId];
+                if (!topic || !res || !res.completed) {
+                    alert('No completed topic result is available to submit.');
+                    return;
+                }
+
                 const feedback = document.getElementById('feedback-text').value.trim();
                 const submissions = JSON.parse(localStorage.getItem('sta104_submissions')) || [];
-
-                const existingIndex = submissions.findIndex(s => s.id === state.student.id);
+                const existingIndex = submissions.findIndex(x => x.id === state.student.id && Number(x.topicId) === Number(topicId));
 
                 const record = {
                     name: state.student.name,
                     id: state.student.id,
                     group: state.student.group || 'N/A',
-                    score: state.getAggregateScore(),
+                    topicId: topicId,
+                    module: topicId + 1,
+                    topicTitle: topic.title,
+                    score: res.score,
                     feedback: feedback || 'No comments provided.',
                     date: new Date().toLocaleDateString('en-MY', { day: 'numeric', month: 'short', year: 'numeric' })
                 };
 
-                if (existingIndex >= 0) {
-                    submissions[existingIndex] = record;
-                } else {
-                    submissions.push(record);
-                }
+                if (existingIndex >= 0) submissions[existingIndex] = record;
+                else submissions.push(record);
 
                 localStorage.setItem('sta104_submissions', JSON.stringify(submissions));
-
-                alert('✅ Submission successfully saved to Lecturer Portal for Student ID: ' + state.student.id + '\n\nYou can now click "Finish & Reset for Next Student" to complete your session.');
+                alert(`✅ Module ${String(topicId + 1).padStart(2, '0')} topic score (${res.score}%) has been submitted to the Lecturer Portal.`);
                 app.updateReturnButtonState(true);
             },
 
-            finishAndNextStudent: () => {
-                const submissions = JSON.parse(localStorage.getItem('sta104_submissions')) || [];
-                const isSubmitted = submissions.some(s => s.id === state.student.id);
-
-                if (!isSubmitted) {
-                    alert('⚠️ Please submit your score to the Lecturer Portal before returning!');
-                    return;
-                }
-
-                alert('🎉 Thank you ' + state.student.name + '! Your score has been submitted.\nResetting application for the next student...');
-                
-                state.clearCurrentStudent();
-                document.getElementById('feedback-text').value = '';
-                const nameInput = document.getElementById('student-name');
-                const idInput = document.getElementById('student-id');
-                const groupInput = document.getElementById('student-group');
-                if (nameInput) nameInput.value = '';
-                if (idInput) idInput.value = '';
-                if (groupInput) groupInput.value = '';
-                
-                app.updateHeaderTag();
-                app.showScreen('registration-screen');
-            },
 
             /* Lecturer Login Modal Controls */
+            setLecturerHeader: () => {
+                const tag = document.getElementById('header-student-tag');
+                const btnSwitch = document.getElementById('btn-switch-student');
+                if (tag) tag.innerHTML = '👩‍🏫 <strong>LECTURER MODE</strong> — NOOREZATTY';
+                if (btnSwitch) btnSwitch.style.display = 'none';
+            },
+
             openLecturerAuthModal: () => {
                 if (state.isLecturerAuthenticated) {
+                    app.setLecturerHeader();
                     app.showScreen('lecturer-portal-screen');
                 } else {
                     document.getElementById('lecturer-auth-modal').style.display = 'flex';
@@ -3854,6 +4639,7 @@
                     app.closeLecturerAuthModal();
                     document.getElementById('lecturer-username').value = '';
                     document.getElementById('lecturer-password').value = '';
+                    app.setLecturerHeader();
                     app.showScreen('lecturer-portal-screen');
                 } else {
                     alert('❌ Invalid lecturer username or password!');
@@ -3863,17 +4649,130 @@
             logoutLecturer: () => {
                 state.isLecturerAuthenticated = false;
                 state.clearCurrentStudent();
-                
+
                 const nameInput = document.getElementById('student-name');
                 const idInput = document.getElementById('student-id');
                 const groupInput = document.getElementById('student-group');
                 if (nameInput) nameInput.value = '';
                 if (idInput) idInput.value = '';
                 if (groupInput) groupInput.value = '';
-                
+
+                app.portalFilters = { module: 'all', group: 'all' };
                 app.updateHeaderTag();
                 alert('🔒 Lecturer Portal session closed. Returning to main registration page...');
                 app.showScreen('registration-screen');
+            },
+
+            escapeHtml: (value) => {
+                return String(value ?? '')
+                    .replace(/&/g, '&amp;')
+                    .replace(/</g, '&lt;')
+                    .replace(/>/g, '&gt;')
+                    .replace(/"/g, '&quot;')
+                    .replace(/'/g, '&#039;');
+            },
+
+            portalUpper: (value) => app.escapeHtml(String(value ?? '').toUpperCase()),
+
+            getLecturerSubmissions: () => {
+                return JSON.parse(localStorage.getItem('sta104_submissions')) || [];
+            },
+
+            populateLecturerModuleFilter: () => {
+                const select = document.getElementById('lecturer-module-filter');
+                if (!select) return;
+                const previous = app.portalFilters.module || select.value || 'all';
+                select.innerHTML = '<option value="all">All Modules</option>' + sta104Topics
+                    .map(topic => `<option value="${topic.id}">Module ${String(topic.id + 1).padStart(2, '0')} — ${app.escapeHtml(topic.title)}</option>`)
+                    .join('');
+                if ([...select.options].some(o => o.value === String(previous))) select.value = String(previous);
+                else select.value = 'all';
+            },
+
+            populateLecturerClassFilter: (submissions) => {
+                const select = document.getElementById('lecturer-class-filter');
+                if (!select) return;
+
+                const previous = app.portalFilters.group || select.value || 'all';
+                const groups = [...new Set(submissions
+                    .map(s => String(s.group || 'N/A').trim().toUpperCase())
+                    .filter(Boolean))]
+                    .sort((a, b) => a.localeCompare(b));
+
+                select.innerHTML = '<option value="all">All Classes</option>' + groups
+                    .map(group => `<option value="${app.escapeHtml(group)}">${app.escapeHtml(group)}</option>`)
+                    .join('');
+
+                if (groups.includes(previous)) select.value = previous;
+                else select.value = 'all';
+            },
+
+            getLecturerFilteredSubmissions: () => {
+                const submissions = app.getLecturerSubmissions();
+                const moduleFilter = app.portalFilters.module;
+                const groupFilter = app.portalFilters.group;
+
+                return submissions.filter(sub => {
+                    const subTopicId = String(sub.topicId ?? ((sub.module || 1) - 1));
+                    const subGroup = String(sub.group || 'N/A').trim().toUpperCase();
+                    const moduleMatches = moduleFilter === 'all' || subTopicId === String(moduleFilter);
+                    const groupMatches = groupFilter === 'all' || subGroup === String(groupFilter).toUpperCase();
+                    return moduleMatches && groupMatches;
+                });
+            },
+
+            renderLecturerRows: (submissions) => {
+                const tbody = document.getElementById('portal-submissions-body');
+                if (!tbody) return;
+                tbody.innerHTML = '';
+
+                const countEl = document.getElementById('lecturer-record-count');
+                const avgEl = document.getElementById('lecturer-average-score');
+                const average = submissions.length
+                    ? Math.round(submissions.reduce((sum, s) => sum + Number(s.score || 0), 0) / submissions.length)
+                    : 0;
+                if (countEl) countEl.textContent = submissions.length;
+                if (avgEl) avgEl.textContent = `${average}%`;
+
+                if (submissions.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="7" class="portal-empty-state">No student records match the selected filter.</td></tr>';
+                    return;
+                }
+
+                submissions.forEach(sub => {
+                    const moduleNo = sub.module || Number(sub.topicId) + 1;
+                    const moduleText = sub.topicTitle
+                        ? `MODULE ${String(moduleNo).padStart(2, '0')}: ${sub.topicTitle}`
+                        : 'LEGACY RECORD';
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td><strong>${app.portalUpper(sub.name)}</strong></td>
+                        <td>${app.portalUpper(sub.id)}</td>
+                        <td>${app.portalUpper(sub.group || 'N/A')}</td>
+                        <td>${app.portalUpper(moduleText)}</td>
+                        <td><span class="uitm-badge" style="font-size:0.78rem;">${app.escapeHtml(sub.score)}%</span></td>
+                        <td>${app.portalUpper(sub.feedback || 'NO COMMENTS PROVIDED.')}</td>
+                        <td>${app.portalUpper(sub.date || '')}</td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+            },
+
+            applyLecturerFilters: () => {
+                const moduleSelect = document.getElementById('lecturer-module-filter');
+                const classSelect = document.getElementById('lecturer-class-filter');
+                app.portalFilters.module = moduleSelect ? moduleSelect.value : 'all';
+                app.portalFilters.group = classSelect ? classSelect.value : 'all';
+                app.renderLecturerRows(app.getLecturerFilteredSubmissions());
+            },
+
+            resetLecturerFilters: () => {
+                app.portalFilters = { module: 'all', group: 'all' };
+                const moduleSelect = document.getElementById('lecturer-module-filter');
+                const classSelect = document.getElementById('lecturer-class-filter');
+                if (moduleSelect) moduleSelect.value = 'all';
+                if (classSelect) classSelect.value = 'all';
+                app.renderLecturerRows(app.getLecturerSubmissions());
             },
 
             renderLecturerPortal: () => {
@@ -3882,28 +4781,119 @@
                     return;
                 }
 
-                const tbody = document.getElementById('portal-submissions-body');
-                tbody.innerHTML = '';
+                app.setLecturerHeader();
+                const submissions = app.getLecturerSubmissions();
+                app.populateLecturerModuleFilter();
+                app.populateLecturerClassFilter(submissions);
 
-                const submissions = JSON.parse(localStorage.getItem('sta104_submissions')) || [];
+                const moduleSelect = document.getElementById('lecturer-module-filter');
+                const classSelect = document.getElementById('lecturer-class-filter');
+                if (moduleSelect) moduleSelect.value = app.portalFilters.module || 'all';
+                if (classSelect && [...classSelect.options].some(o => o.value === app.portalFilters.group)) {
+                    classSelect.value = app.portalFilters.group;
+                }
 
-                if (submissions.length === 0) {
-                    tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; color: var(--text-muted);">No student submissions stored yet.</td></tr>`;
+                app.renderLecturerRows(app.getLecturerFilteredSubmissions());
+            },
+
+            printLecturerReport: () => {
+                // Print exactly what is currently visible in the lecturer portal.
+                // The active filters are stored when "Filter Results" is pressed.
+                const selectedModule = app.portalFilters.module || 'all';
+                const selectedClass = app.portalFilters.group || 'all';
+                const reportRows = app.getLecturerFilteredSubmissions();
+
+                if (reportRows.length === 0) {
+                    alert('No student records are available in the current filtered view.');
                     return;
                 }
 
-                submissions.forEach(sub => {
-                    const tr = document.createElement('tr');
-                    tr.innerHTML = `
-                        <td><strong>${sub.name}</strong></td>
-                        <td>${sub.id}</td>
-                        <td>${sub.group || 'N/A'}</td>
-                        <td><span class="uitm-badge" style="font-size:0.85rem;">${sub.score}%</span></td>
-                        <td>${sub.feedback}</td>
-                        <td>${sub.date}</td>
-                    `;
-                    tbody.appendChild(tr);
-                });
+                let reportTitle = 'OVERALL STUDENT PERFORMANCE REPORT';
+                let reportSubtitle = 'ALL MODULES • ALL CLASSES';
+
+                const hasModuleFilter = selectedModule !== 'all';
+                const hasClassFilter = selectedClass !== 'all';
+                const topic = hasModuleFilter ? sta104Topics[Number(selectedModule)] : null;
+                const moduleLabel = hasModuleFilter
+                    ? `MODULE ${String(Number(selectedModule) + 1).padStart(2, '0')}${topic ? `: ${topic.title.toUpperCase()}` : ''}`
+                    : 'ALL MODULES';
+                const classLabel = hasClassFilter
+                    ? `CLASS / GROUP ${String(selectedClass).toUpperCase()}`
+                    : 'ALL CLASSES';
+
+                if (hasModuleFilter && hasClassFilter) {
+                    reportTitle = 'FILTERED STUDENT PERFORMANCE REPORT';
+                    reportSubtitle = `${moduleLabel} • ${classLabel}`;
+                } else if (hasModuleFilter) {
+                    reportTitle = `MODULE ${String(Number(selectedModule) + 1).padStart(2, '0')} REPORT`;
+                    reportSubtitle = `${topic ? topic.title.toUpperCase() : 'SELECTED MODULE'} • ALL CLASSES`;
+                } else if (hasClassFilter) {
+                    reportTitle = `${classLabel} REPORT`;
+                    reportSubtitle = 'ALL MODULES';
+                }
+
+                const average = Math.round(reportRows.reduce((sum, s) => sum + Number(s.score || 0), 0) / reportRows.length);
+                const rowsHtml = reportRows.map((sub, index) => {
+                    const moduleNo = sub.module || Number(sub.topicId) + 1;
+                    const moduleText = sub.topicTitle
+                        ? `MODULE ${String(moduleNo).padStart(2, '0')}: ${sub.topicTitle}`
+                        : 'LEGACY RECORD';
+                    return `<tr>
+                        <td>${index + 1}</td>
+                        <td><strong>${app.portalUpper(sub.name)}</strong></td>
+                        <td>${app.portalUpper(sub.id)}</td>
+                        <td>${app.portalUpper(sub.group || 'N/A')}</td>
+                        <td>${app.portalUpper(moduleText)}</td>
+                        <td><strong>${app.escapeHtml(sub.score)}%</strong></td>
+                        <td>${app.portalUpper(sub.feedback || 'NO COMMENTS PROVIDED.')}</td>
+                        <td>${app.portalUpper(sub.date || '')}</td>
+                    </tr>`;
+                }).join('');
+
+                const printWindow = window.open('', '_blank');
+                if (!printWindow) {
+                    alert('Please allow pop-ups to print the lecturer report.');
+                    return;
+                }
+
+                printWindow.document.write(`<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>${app.escapeHtml(reportTitle)}</title>
+<style>
+@page { size: A4 landscape; margin: 12mm; }
+* { box-sizing: border-box; }
+body { font-family: Arial, Helvetica, sans-serif; margin: 0; color: #15221D; font-size: 10px; }
+.report-head { border-bottom: 3px solid #0B5A45; padding-bottom: 10px; margin-bottom: 14px; }
+.brand { font-size: 12px; font-weight: 700; letter-spacing: .08em; color: #0B5A45; }
+h1 { margin: 5px 0 3px; font-size: 21px; line-height: 1.1; }
+.subtitle { color: #5F6D68; font-weight: 700; }
+.meta { display: flex; gap: 24px; margin: 10px 0 14px; padding: 9px 12px; background: #F2F6F4; border: 1px solid #DCE6E1; }
+.meta strong { color: #0B5A45; }
+table { width: 100%; border-collapse: collapse; table-layout: auto; }
+th { background: #0B5A45; color: white; font-size: 8.5px; text-align: left; padding: 7px 6px; text-transform: uppercase; }
+td { border-bottom: 1px solid #DDE5E1; padding: 6px; vertical-align: top; font-size: 8.5px; text-transform: uppercase; }
+tr:nth-child(even) td { background: #F8FAF9; }
+.footer { margin-top: 12px; color: #6A7772; font-size: 8px; text-align: right; }
+</style></head><body>
+<div class="report-head">
+    <div class="brand">UiTM • evaluSTAT • STA104</div>
+    <h1>${app.escapeHtml(reportTitle)}</h1>
+    <div class="subtitle">${app.escapeHtml(reportSubtitle)}</div>
+</div>
+<div class="meta">
+    <span>LECTURER: <strong>NOOREZATTY</strong></span>
+    <span>RECORDS: <strong>${reportRows.length}</strong></span>
+    <span>AVERAGE TOPIC SCORE: <strong>${average}%</strong></span>
+    <span>GENERATED: <strong>${new Date().toLocaleString('en-MY').toUpperCase()}</strong></span>
+</div>
+<table>
+<thead><tr><th>No.</th><th>Student Name</th><th>Student ID</th><th>Class / Group</th><th>Module / Topic</th><th>Score</th><th>Feedback</th><th>Date</th></tr></thead>
+<tbody>${rowsHtml}</tbody>
+</table>
+<div class="footer">Generated from evaluSTAT Lecturer Portal</div>
+<script>window.onload = function(){ setTimeout(function(){ window.print(); }, 250); };<\/script>
+</body></html>`);
+                printWindow.document.close();
             },
 
             clearLecturerData: () => {
@@ -3911,6 +4901,7 @@
                     localStorage.removeItem('sta104_submissions');
                     localStorage.removeItem('sta104_all_progress');
                     state.allProgress = {};
+                    app.portalFilters = { module: 'all', group: 'all' };
                     app.renderLecturerPortal();
                 }
             }
