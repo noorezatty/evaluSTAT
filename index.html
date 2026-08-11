@@ -7,33 +7,32 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
         /* ==========================================================================
-           1. CONSTANTS & THEME SETUP
+           1. CONSTANTS & EMERALD THEME SETUP
            ========================================================================== */
         :root {
-            --matcha-dark: #122B18;
-            --matcha-mid: #3B5E2B;
-            --matcha-light: #8BAF6C;
-            --matcha-soft: #F0F6EE;
+            --emerald-deep: #052217;
+            --emerald-dark: #0B4330;
+            --emerald-mid: #125E46;
+            --emerald-accent: #1A8B66;
+            --emerald-light: #23B381;
+            --emerald-soft: #E8F5F1;
             
             --pink-accent: #D85B73;
-            --pink-light: #F29CA9;
             --pink-soft: #FFF0F4;
-            
             --gold-accent: #C5A059;
-            --gold-light: #EAD08B;
             
-            --bg-bright: #FAFCF8;
-            --text-dark: #101E13;
-            --text-muted: #4F6352;
+            --bg-bright: #F4F9F6;
+            --text-dark: #081B14;
+            --text-muted: #4B685C;
             --white: #FFFFFF;
             
-            --shadow-soft: 0 12px 30px rgba(18, 43, 24, 0.06);
-            --shadow-hover: 0 18px 36px rgba(18, 43, 24, 0.12);
-            --radius-card: 22px;
+            --shadow-soft: 0 12px 32px rgba(5, 34, 23, 0.08);
+            --shadow-hover: 0 18px 40px rgba(5, 34, 23, 0.15);
+            --radius-card: 24px;
             --radius-btn: 14px;
         }
 
@@ -59,7 +58,7 @@
         }
 
         /* ==========================================================================
-           2. SVG BACKGROUND DOODLES (BRIGHTER & CLEANER)
+           2. SVG BACKGROUND DOODLES
            ========================================================================== */
         .bg-doodles {
             position: fixed;
@@ -69,7 +68,7 @@
             height: 100vh;
             pointer-events: none;
             z-index: 0;
-            opacity: 0.18;
+            opacity: 0.15;
         }
 
         /* ==========================================================================
@@ -80,12 +79,12 @@
             z-index: 10;
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(14px);
-            border-bottom: 2px solid rgba(139, 175, 108, 0.3);
-            padding: 16px 32px;
+            border-bottom: 2px solid rgba(26, 139, 102, 0.2);
+            padding: 14px 28px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
             gap: 15px;
             flex-wrap: wrap;
         }
@@ -94,46 +93,57 @@
             display: flex;
             align-items: center;
             gap: 12px;
+            white-space: nowrap;
+            flex-wrap: nowrap;
         }
 
         .uitm-badge {
-            background: var(--matcha-dark);
+            background: var(--emerald-deep);
             color: var(--pink-soft);
             padding: 6px 14px;
             border-radius: 10px;
             font-weight: 700;
-            font-size: 1.2rem;
+            font-size: 1.15rem;
             letter-spacing: 1px;
-            box-shadow: 0 4px 8px rgba(18, 43, 24, 0.2);
+            box-shadow: 0 4px 8px rgba(5, 34, 23, 0.2);
             transition: all 0.3s ease;
             white-space: nowrap;
+            display: inline-block;
         }
 
-        /* Product Branding Badge */
         .evalustat-badge {
-            background: var(--pink-accent);
+            background: var(--emerald-accent);
             color: var(--white);
             padding: 6px 14px;
             border-radius: 10px;
             font-weight: 700;
-            font-size: 1.2rem;
+            font-size: 1.15rem;
             letter-spacing: 1px;
-            box-shadow: 0 4px 8px rgba(216, 91, 115, 0.25);
+            box-shadow: 0 4px 8px rgba(26, 139, 102, 0.25);
             font-family: 'Fredoka', cursive;
             transition: all 0.3s ease;
+            white-space: nowrap;
+            display: inline-block;
+        }
+
+        .course-title-block {
+            display: inline-flex;
+            flex-direction: column;
             white-space: nowrap;
         }
 
         .course-title {
-            font-size: 1.1rem;
-            color: var(--matcha-dark);
+            font-size: 1.05rem;
+            color: var(--emerald-deep);
             font-weight: 600;
+            white-space: nowrap;
         }
 
         .student-info-tag {
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             color: var(--text-muted);
             font-weight: 500;
+            white-space: nowrap;
         }
 
         .header-actions {
@@ -155,9 +165,9 @@
             font-size: 0.95rem;
             font-weight: 600;
             color: var(--white);
-            background-color: var(--matcha-mid);
+            background-color: var(--emerald-mid);
             border: none;
-            border-bottom: 4px solid var(--matcha-dark);
+            border-bottom: 4px solid var(--emerald-deep);
             border-radius: var(--radius-btn);
             cursor: pointer;
             transition: all 0.15s ease;
@@ -167,9 +177,9 @@
         }
 
         .btn-3d:hover:not(:disabled) {
-            background-color: #487233;
+            background-color: var(--emerald-accent);
             transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(59, 94, 43, 0.25);
+            box-shadow: 0 6px 16px rgba(18, 94, 70, 0.25);
         }
 
         .btn-3d:active:not(:disabled) {
@@ -180,34 +190,34 @@
 
         .btn-3d:disabled {
             background-color: #CBD6C5;
-            border-bottom-color: #A1B299;
-            color: #7A8C78;
+            border-bottom-color: #98B0A9;
+            color: #6C7569;
             cursor: not-allowed;
             opacity: 0.7;
         }
 
         .btn-pink {
-            background-color: var(--pink-accent);
-            border-bottom-color: #AA3D51;
+            background-color: var(--emerald-accent);
+            border-bottom-color: var(--emerald-deep);
         }
 
         .btn-pink:hover:not(:disabled) {
-            background-color: #E26C83;
-            box-shadow: 0 6px 16px rgba(216, 91, 115, 0.3);
+            background-color: var(--emerald-light);
+            box-shadow: 0 6px 16px rgba(35, 179, 129, 0.3);
         }
 
         .btn-secondary {
-            background-color: var(--matcha-soft);
-            color: var(--matcha-dark);
-            border-bottom: 4px solid #C8DDC3;
+            background-color: var(--emerald-soft);
+            color: var(--emerald-deep);
+            border-bottom: 4px solid #C0DFC0;
         }
 
         .btn-secondary:hover:not(:disabled) {
-            background-color: #E2EEE0;
+            background-color: #D6EDE3;
         }
 
         /* ==========================================================================
-           5. MAIN SPA CONTAINER & GLASS CARD LAYOUT
+           5. MAIN SPA CONTAINER
            ========================================================================== */
         main {
             position: relative;
@@ -220,7 +230,7 @@
 
         .glass-card {
             background: #FFFFFF;
-            border: 2px solid rgba(139, 175, 108, 0.25);
+            border: 2px solid rgba(26, 139, 102, 0.2);
             border-radius: var(--radius-card);
             padding: 32px;
             box-shadow: var(--shadow-soft);
@@ -242,45 +252,160 @@
         }
 
         /* ==========================================================================
-           6. SCREEN 1: REGISTRATION
+           6. SCREEN 1: REDESIGNED GRADIENT FRONT PAGE (FORMAL & CENTERED)
            ========================================================================== */
-        .reg-header {
+        #registration-screen {
+            padding: 0;
+            background: transparent;
+        }
+
+        .front-card-wrapper {
+            max-width: 520px;
+            margin: 15px auto;
+            background: linear-gradient(135deg, #0A3A2B 0%, #052217 50%, #02120B 100%);
+            border-radius: 28px;
+            padding: 42px 32px;
+            color: var(--white);
+            box-shadow: 0 22px 55px rgba(2, 18, 11, 0.45);
+            border: 2px solid var(--emerald-light);
             text-align: center;
-            margin-bottom: 25px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
-        .reg-header h2 {
-            font-size: 2.1rem;
-            color: var(--matcha-dark);
-            margin-bottom: 8px;
+        .front-card-wrapper::before {
+            content: '';
+            position: absolute;
+            top: -40%;
+            left: -40%;
+            width: 180%;
+            height: 180%;
+            background: radial-gradient(circle at 50% 25%, rgba(35, 179, 129, 0.22) 0%, transparent 65%);
+            pointer-events: none;
         }
 
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: var(--matcha-dark);
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 13px 18px;
-            border: 2px solid var(--matcha-light);
-            border-radius: 12px;
-            font-size: 0.95rem;
-            font-family: 'Poppins', sans-serif;
+        .front-logo-badge {
             background: #FFFFFF;
-            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            padding: 12px 26px;
+            border-radius: 18px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
         }
 
-        .form-control:focus {
-            outline: none;
-            border-color: var(--matcha-mid);
-            box-shadow: 0 0 0 4px rgba(139, 175, 108, 0.25);
+        .front-logo-badge .uitm-text {
+            color: var(--emerald-deep);
+            font-family: 'Fredoka', cursive;
+            font-weight: 700;
+            font-size: 1.35rem;
+            letter-spacing: 1px;
+        }
+
+        .front-logo-badge .evalustat-text {
+            color: var(--emerald-accent);
+            font-family: 'Fredoka', cursive;
+            font-weight: 700;
+            font-size: 1.35rem;
+            border-left: 2px solid #E0E0E0;
+            padding-left: 12px;
+        }
+
+        .front-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            line-height: 1.35;
+            margin-bottom: 14px;
+            color: #FFFFFF;
+            font-family: 'Georgia', serif;
+            text-align: center;
+            letter-spacing: 0.5px;
+        }
+
+        .front-subtitle {
+            font-size: 0.92rem;
+            color: #B5D8C8;
+            line-height: 1.55;
+            margin-bottom: 28px;
+            font-weight: 400;
+            text-align: center;
+            max-width: 440px;
+        }
+
+        .front-form {
+            width: 100%;
+            max-width: 420px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .front-form .form-group {
+            margin-bottom: 16px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .front-form .form-control {
+            background: #FFFFFF;
+            color: var(--text-dark);
+            border: 2px solid transparent;
+            padding: 14px 18px;
+            border-radius: 14px;
+            font-size: 0.95rem;
+            text-align: center;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.06);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .front-form .form-control:focus {
+            border-color: var(--emerald-light);
+            box-shadow: 0 0 0 4px rgba(35, 179, 129, 0.35);
+        }
+
+        .front-btn-submit {
+            width: 100%;
+            padding: 16px;
+            font-size: 1.05rem;
+            background: linear-gradient(135deg, #23B381 0%, #125E46 100%);
+            border: none;
+            border-bottom: 4px solid #052217;
+            border-radius: 14px;
+            color: #FFFFFF;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-top: 10px;
+            letter-spacing: 0.5px;
+            text-align: center;
+        }
+
+        .front-btn-submit:hover {
+            background: linear-gradient(135deg, #2CD99C 0%, #1A8B66 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 22px rgba(35, 179, 129, 0.35);
+        }
+
+        .front-btn-submit:active {
+            transform: translateY(2px);
+            border-bottom-width: 2px;
+            box-shadow: none;
+        }
+
+        .front-credit-footer {
+            margin-top: 28px;
+            font-size: 0.85rem;
+            color: #92BDB0;
+            font-weight: 500;
+            text-align: center;
+            font-family: 'Poppins', sans-serif;
         }
 
         /* ==========================================================================
@@ -297,17 +422,17 @@
 
         .progress-bar-container {
             width: 100%;
-            background: var(--matcha-soft);
+            background: var(--emerald-soft);
             height: 14px;
             border-radius: 10px;
             overflow: hidden;
             margin-bottom: 25px;
-            border: 1px solid var(--matcha-light);
+            border: 1px solid var(--emerald-light);
         }
 
         .progress-bar-fill {
             height: 100%;
-            background: linear-gradient(90deg, var(--matcha-light), var(--matcha-mid));
+            background: linear-gradient(90deg, var(--emerald-light), var(--emerald-mid));
             width: 0%;
             transition: width 0.5s ease;
         }
@@ -321,7 +446,7 @@
 
         .topic-card {
             background: var(--white);
-            border: 2px solid var(--matcha-soft);
+            border: 2px solid var(--emerald-soft);
             border-radius: 16px;
             padding: 20px;
             display: flex;
@@ -334,12 +459,12 @@
         .topic-card:hover {
             transform: translateY(-4px);
             box-shadow: var(--shadow-hover);
-            border-color: var(--matcha-light);
+            border-color: var(--emerald-light);
         }
 
         .topic-card.completed {
-            border-color: var(--matcha-light);
-            background: linear-gradient(180deg, #FFFFFF 0%, #F4F9F2 100%);
+            border-color: var(--emerald-light);
+            background: linear-gradient(180deg, #FFFFFF 0%, #F4F9F6 100%);
         }
 
         .topic-number {
@@ -353,7 +478,7 @@
 
         .topic-title {
             font-size: 1.15rem;
-            color: var(--matcha-dark);
+            color: var(--emerald-deep);
             margin-bottom: 10px;
         }
 
@@ -367,7 +492,7 @@
         }
 
         .status-pending { background: #FFF3D6; color: #B27B00; }
-        .status-done { background: var(--matcha-soft); color: var(--matcha-dark); }
+        .status-done { background: var(--emerald-soft); color: var(--emerald-deep); }
 
         /* ==========================================================================
            8. SCREEN 3: MODULE QUIZ & INTERACTIVE QUESTION TYPES
@@ -376,7 +501,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 2px dashed var(--matcha-light);
+            border-bottom: 2px dashed var(--emerald-light);
             padding-bottom: 15px;
             margin-bottom: 20px;
             flex-wrap: wrap;
@@ -388,7 +513,7 @@
             border-radius: 16px;
             padding: 20px;
             margin-bottom: 20px;
-            border: 1px solid rgba(139, 175, 108, 0.35);
+            border: 1px solid rgba(26, 139, 102, 0.25);
             box-shadow: 0 4px 12px rgba(0,0,0,0.02);
         }
 
@@ -406,11 +531,10 @@
         .q-prompt {
             font-size: 1.05rem;
             font-weight: 600;
-            color: var(--matcha-dark);
+            color: var(--emerald-deep);
             margin-bottom: 15px;
         }
 
-        /* Q1: MCQ Options */
         .mcq-options {
             display: flex;
             flex-direction: column;
@@ -422,7 +546,7 @@
             align-items: center;
             gap: 12px;
             padding: 12px 14px;
-            border: 2px solid var(--matcha-soft);
+            border: 2px solid var(--emerald-soft);
             border-radius: 12px;
             cursor: pointer;
             transition: all 0.2s ease;
@@ -430,29 +554,27 @@
         }
 
         .mcq-label:hover {
-            background: var(--matcha-soft);
-            border-color: var(--matcha-light);
+            background: var(--emerald-soft);
+            border-color: var(--emerald-light);
         }
 
         .mcq-label input[type="radio"] {
-            accent-color: var(--matcha-mid);
+            accent-color: var(--emerald-mid);
             width: 18px;
             height: 18px;
             flex-shrink: 0;
         }
 
-        /* Q3: SVG Diagram Styling */
         .svg-diagram-container {
             text-align: center;
             background: var(--bg-bright);
             padding: 12px;
             border-radius: 12px;
             margin-bottom: 15px;
-            border: 1px dashed var(--matcha-light);
+            border: 1px dashed var(--emerald-light);
             overflow-x: auto;
         }
 
-        /* Q4: Sequence Ordering */
         .sequence-list {
             display: flex;
             flex-direction: column;
@@ -464,9 +586,9 @@
             align-items: center;
             justify-content: space-between;
             padding: 10px 14px;
-            background: var(--matcha-soft);
+            background: var(--emerald-soft);
             border-radius: 10px;
-            border: 1px solid var(--matcha-light);
+            border: 1px solid var(--emerald-light);
             font-weight: 500;
             gap: 10px;
             font-size: 0.9rem;
@@ -480,8 +602,8 @@
 
         .btn-arrow {
             background: var(--white);
-            border: 1px solid var(--matcha-mid);
-            color: var(--matcha-dark);
+            border: 1px solid var(--emerald-mid);
+            color: var(--emerald-deep);
             width: 32px;
             height: 32px;
             border-radius: 6px;
@@ -493,16 +615,14 @@
             touch-action: manipulation;
         }
 
-        .btn-arrow:hover { background: var(--matcha-light); }
+        .btn-arrow:hover { background: var(--emerald-light); }
 
-        /* Q5: Concept Matching Pair */
         .matching-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 15px;
         }
 
-        /* Q6: True / False Toggle */
         .tf-group {
             display: flex;
             gap: 12px;
@@ -512,7 +632,7 @@
             flex: 1;
             padding: 12px;
             text-align: center;
-            border: 2px solid var(--matcha-light);
+            border: 2px solid var(--emerald-light);
             border-radius: 12px;
             font-family: 'Fredoka', cursive;
             font-size: 1rem;
@@ -524,9 +644,9 @@
         }
 
         .tf-btn.selected-true {
-            background: var(--matcha-mid);
+            background: var(--emerald-mid);
             color: white;
-            border-color: var(--matcha-dark);
+            border-color: var(--emerald-deep);
         }
 
         .tf-btn.selected-false {
@@ -535,7 +655,6 @@
             border-color: #AA3D51;
         }
 
-        /* Q7: HTML5 Multi-Chip Drag & Drop */
         .drag-section {
             display: flex;
             flex-direction: column;
@@ -548,7 +667,7 @@
             gap: 8px;
             padding: 12px;
             background: #F4F8F3;
-            border: 2px dashed var(--matcha-light);
+            border: 2px dashed var(--emerald-light);
             border-radius: 14px;
             min-height: 60px;
             align-items: center;
@@ -561,7 +680,7 @@
             padding: 8px 14px;
             background: var(--pink-soft);
             color: var(--pink-accent);
-            border: 2px solid var(--pink-light);
+            border: 2px solid #F29CA9;
             border-radius: 20px;
             font-weight: 600;
             font-size: 0.85rem;
@@ -578,9 +697,9 @@
 
         .drop-zone {
             min-height: 60px;
-            border: 2px dashed var(--matcha-mid);
+            border: 2px dashed var(--emerald-mid);
             border-radius: 14px;
-            background: var(--matcha-soft);
+            background: var(--emerald-soft);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -593,15 +712,15 @@
         }
 
         .drop-zone.drag-over {
-            background: #E2EEE0;
+            background: #D6EDE3;
             border-style: solid;
         }
 
         /* ==========================================================================
-           9. SCREEN 4: REDESIGNED LUXURY CERTIFICATE TEMPLATE
+           9. SCREEN 4: CERTIFICATE TEMPLATE
            ========================================================================== */
         .cert-container {
-            border: 12px double var(--matcha-dark);
+            border: 12px double var(--emerald-deep);
             outline: 3px solid var(--gold-accent);
             outline-offset: -8px;
             background: #FFFFFF;
@@ -610,20 +729,16 @@
             text-align: center;
             position: relative;
             margin-bottom: 25px;
-            box-shadow: 0 15px 40px rgba(18, 43, 24, 0.08);
+            box-shadow: 0 15px 40px rgba(5, 34, 23, 0.08);
             background-image: 
                 radial-gradient(circle at top left, rgba(197, 160, 89, 0.08) 0%, transparent 40%),
-                radial-gradient(circle at bottom right, rgba(59, 94, 43, 0.06) 0%, transparent 40%);
+                radial-gradient(circle at bottom right, rgba(18, 94, 70, 0.06) 0%, transparent 40%);
         }
 
         .cert-org-header {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
             font-size: 0.9rem;
             letter-spacing: 2px;
-            color: var(--matcha-dark);
+            color: var(--emerald-deep);
             font-weight: 700;
             text-transform: uppercase;
             margin-bottom: 12px;
@@ -631,7 +746,7 @@
 
         .cert-header {
             font-size: 2.3rem;
-            color: var(--matcha-dark);
+            color: var(--emerald-deep);
             font-family: 'Georgia', serif;
             letter-spacing: 3px;
             margin-bottom: 5px;
@@ -672,8 +787,8 @@
 
         .cert-score-badge {
             font-size: 1.25rem;
-            background: linear-gradient(135deg, var(--matcha-soft) 0%, #FFFFFF 100%);
-            color: var(--matcha-dark);
+            background: linear-gradient(135deg, var(--emerald-soft) 0%, #FFFFFF 100%);
+            color: var(--emerald-deep);
             padding: 10px 30px;
             border-radius: 40px;
             display: inline-block;
@@ -709,10 +824,9 @@
             margin-top: 2px;
         }
 
-        /* On-Screen Student Question Result Summary Panel */
         .answer-key-section {
             background: var(--white);
-            border: 2px solid var(--matcha-light);
+            border: 2px solid var(--emerald-light);
             border-radius: 16px;
             padding: 20px;
             margin-bottom: 25px;
@@ -726,23 +840,22 @@
             overflow-x: auto;
         }
 
-        .portal-table, .breakdown-table {
+        .portal-table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 15px;
             font-size: 0.88rem;
-            min-width: 500px;
+            min-width: 550px;
         }
 
-        .portal-table th, .portal-table td,
-        .breakdown-table th, .breakdown-table td {
+        .portal-table th, .portal-table td {
             padding: 10px 12px;
-            border: 1px solid var(--matcha-soft);
+            border: 1px solid var(--emerald-soft);
             text-align: left;
         }
 
-        .portal-table th, .breakdown-table th {
-            background: var(--matcha-dark);
+        .portal-table th {
+            background: var(--emerald-deep);
             color: var(--white);
             font-family: 'Fredoka', cursive;
         }
@@ -767,11 +880,11 @@
             width: 100%;
             max-width: 400px;
             box-shadow: var(--shadow-hover);
-            border: 2px solid var(--matcha-light);
+            border: 2px solid var(--emerald-light);
         }
 
         /* ==========================================================================
-           11. SMARTPHONE & MOBILE RESPONSIVE MEDIA QUERIES
+           11. LEGACY RESPONSIVE RULES (OVERRIDDEN BY CORPORATE UI SYSTEM BELOW)
            ========================================================================== */
         @media (max-width: 768px) {
             header {
@@ -806,19 +919,17 @@
                 border-radius: 16px;
             }
 
-            .reg-header h2 {
-                font-size: 1.6rem;
+            .front-card-wrapper {
+                padding: 30px 18px;
+                margin: 10px auto;
             }
 
-            .topic-grid {
+            .front-title {
+                font-size: 1.45rem;
+            }
+
+            .topic-grid, .matching-grid, .tf-group {
                 grid-template-columns: 1fr;
-            }
-
-            .matching-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .tf-group {
                 flex-direction: column;
             }
 
@@ -845,20 +956,860 @@
             .cert-name {
                 font-size: 1.4rem;
             }
+        }
 
-            .cert-score-badge {
-                font-size: 1rem;
-                padding: 8px 18px;
+
+        /* ==========================================================================
+           CORPORATE UI SYSTEM — CONSISTENT DESKTOP + SMARTPHONE EXPERIENCE
+           ========================================================================== */
+        :root {
+            --emerald-deep: #0B2F28;
+            --emerald-dark: #10483D;
+            --emerald-mid: #176655;
+            --emerald-accent: #1F7A66;
+            --emerald-light: #39A58A;
+            --emerald-soft: #EEF7F4;
+            --pink-accent: #A94D61;
+            --pink-soft: #FBF1F3;
+            --gold-accent: #B58A42;
+            --bg-bright: #F5F7FA;
+            --text-dark: #17212B;
+            --text-muted: #62707D;
+            --border: #DDE4EA;
+            --border-strong: #C9D3DC;
+            --surface: #FFFFFF;
+            --surface-muted: #F8FAFB;
+            --white: #FFFFFF;
+            --shadow-soft: 0 8px 24px rgba(15, 35, 50, 0.07);
+            --shadow-hover: 0 14px 32px rgba(15, 35, 50, 0.11);
+            --radius-card: 16px;
+            --radius-btn: 10px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            font-family: 'Inter', Arial, sans-serif;
+            background: linear-gradient(180deg, #F7F9FB 0%, #F1F5F7 100%);
+            color: var(--text-dark);
+            font-size: 16px;
+            line-height: 1.55;
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+        }
+
+        h1, h2, h3, h4, h5, h6,
+        .brand-logo, .badge, .btn-3d, .uitm-badge, .evalustat-badge,
+        .topic-number, .topic-title, .q-badge, .tf-btn, .portal-table th,
+        .front-title, .front-logo-badge .uitm-text, .front-logo-badge .evalustat-text {
+            font-family: 'Inter', Arial, sans-serif !important;
+        }
+
+        h1, h2, h3, h4 { letter-spacing: -0.02em; }
+        h2 { font-size: clamp(1.35rem, 2.2vw, 1.8rem); line-height: 1.25; }
+        h3 { font-size: 1.05rem; line-height: 1.35; }
+        p { line-height: 1.65; }
+
+        .bg-doodles { opacity: 0.035; }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            box-shadow: 0 2px 12px rgba(15, 35, 50, 0.04);
+            padding: 12px max(20px, calc((100vw - 1180px) / 2));
+            gap: 18px;
+        }
+
+        .brand-container { gap: 10px; min-width: 0; }
+
+        .uitm-badge,
+        .evalustat-badge {
+            border-radius: 8px;
+            padding: 7px 11px;
+            box-shadow: none;
+            font-size: 0.9rem;
+            letter-spacing: 0.02em;
+        }
+
+        .uitm-badge { background: var(--emerald-deep); color: #FFFFFF; }
+        .evalustat-badge { background: #FFFFFF; color: var(--emerald-mid); border: 1px solid var(--border-strong); }
+
+        .course-title-block { min-width: 0; white-space: normal; }
+        .course-title {
+            font-size: 0.92rem;
+            color: var(--text-dark);
+            font-weight: 650;
+            white-space: normal;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .student-info-tag {
+            font-size: 0.76rem;
+            color: var(--text-muted);
+            white-space: normal;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .header-actions { gap: 8px; }
+
+        .btn-3d,
+        .front-btn-submit {
+            min-height: 44px;
+            border-radius: var(--radius-btn);
+            border: 1px solid transparent;
+            border-bottom: 1px solid transparent;
+            box-shadow: none;
+            font-family: 'Inter', Arial, sans-serif !important;
+            font-weight: 650;
+            letter-spacing: 0;
+            transition: background-color .18s ease, border-color .18s ease, box-shadow .18s ease, transform .18s ease;
+        }
+
+        .btn-3d {
+            background: var(--emerald-mid);
+            color: #FFFFFF;
+            padding: 10px 16px;
+            font-size: 0.9rem;
+        }
+        .btn-3d:hover:not(:disabled) {
+            background: var(--emerald-dark);
+            transform: translateY(-1px);
+            box-shadow: 0 7px 18px rgba(23, 102, 85, 0.18);
+        }
+        .btn-3d:active:not(:disabled) { transform: translateY(0); border-bottom-width: 1px; }
+        .btn-pink { background: var(--emerald-mid); border-color: var(--emerald-mid); }
+        .btn-pink:hover:not(:disabled) { background: var(--emerald-dark); }
+        .btn-secondary {
+            background: #FFFFFF;
+            color: var(--emerald-dark);
+            border: 1px solid var(--border-strong);
+        }
+        .btn-secondary:hover:not(:disabled) { background: var(--surface-muted); border-color: #AEBCC7; }
+        .btn-3d:disabled {
+            background: #EDF1F3;
+            border-color: #D7DFE4;
+            color: #87939C;
+            opacity: 1;
+        }
+
+        main.glass-card {
+            max-width: 1180px;
+            width: calc(100% - 40px);
+            margin: 28px auto 42px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.98);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .screen.active { animation: corporateFade .25s ease-out; }
+        @keyframes corporateFade {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Corporate registration / hero */
+        #registration-screen { padding: 0; }
+        .front-card-wrapper {
+            max-width: none;
+            margin: 0;
+            padding: 0;
+            min-height: 600px;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-items: stretch;
+            color: var(--text-dark);
+            background: #FFFFFF;
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: none;
+            text-align: left;
+        }
+        .front-card-wrapper::before { display: none; }
+
+        .front-hero-panel {
+            padding: clamp(36px, 5vw, 66px);
+            background:
+                radial-gradient(circle at 15% 15%, rgba(57, 165, 138, 0.15), transparent 34%),
+                linear-gradient(145deg, #0B2F28 0%, #10483D 58%, #176655 100%);
+            color: #FFFFFF;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-width: 0;
+            flex: 1.15 1 560px;
+        }
+
+        .front-eyebrow,
+        .front-access-kicker {
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: .13em;
+            text-transform: uppercase;
+        }
+        .front-eyebrow { color: #A9D7CB; margin-bottom: 18px; }
+
+        .front-logo-badge {
+            align-self: flex-start;
+            background: rgba(255,255,255,.09);
+            border: 1px solid rgba(255,255,255,.2);
+            padding: 9px 14px;
+            border-radius: 9px;
+            box-shadow: none;
+            margin-bottom: 28px;
+            gap: 10px;
+        }
+        .front-logo-badge .uitm-text,
+        .front-logo-badge .evalustat-text {
+            font-size: 1rem;
+            letter-spacing: 0;
+            color: #FFFFFF;
+        }
+        .front-logo-badge .evalustat-text {
+            border-left: 1px solid rgba(255,255,255,.28);
+            padding-left: 10px;
+        }
+
+        .front-title {
+            font-size: clamp(2rem, 4vw, 3.35rem);
+            line-height: 1.08;
+            max-width: 720px;
+            margin: 0 0 20px;
+            color: #FFFFFF;
+            font-weight: 700;
+            text-align: left;
+            letter-spacing: -0.045em;
+        }
+
+        .front-subtitle {
+            max-width: 690px;
+            margin: 0 0 32px;
+            color: #D8E9E4;
+            font-size: clamp(.95rem, 1.5vw, 1.05rem);
+            line-height: 1.7;
+            text-align: left;
+        }
+
+        .front-feature-grid {
+            display: flex;
+            gap: 12px;
+            margin-top: 4px;
+        }
+        .front-feature-item {
+            min-width: 0;
+            flex: 1 1 170px;
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+            padding: 13px 12px;
+            border-radius: 10px;
+            background: rgba(255,255,255,.075);
+            border: 1px solid rgba(255,255,255,.12);
+        }
+        .front-feature-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            flex: 0 0 30px;
+            border-radius: 8px;
+            background: rgba(255,255,255,.12);
+            color: #FFFFFF;
+            font-size: .77rem;
+            font-weight: 700;
+        }
+        .front-feature-item strong { display: block; font-size: .82rem; line-height: 1.25; color: #FFFFFF; }
+        .front-feature-item small { display: block; margin-top: 4px; color: #BFD8D2; font-size: .69rem; line-height: 1.35; }
+
+        .front-credit-footer {
+            margin-top: 34px;
+            color: #AACBC3;
+            font-size: .76rem;
+            text-align: left;
+            font-weight: 500;
+        }
+
+        .front-access-panel {
+            padding: clamp(34px, 4.5vw, 58px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: #FFFFFF;
+            min-width: 0;
+            flex: .85 1 380px;
+        }
+        .front-access-kicker { color: var(--emerald-mid); margin-bottom: 8px; }
+        .front-access-panel h2 {
+            margin: 0 0 8px;
+            color: var(--text-dark);
+            font-size: clamp(1.55rem, 2.4vw, 2rem);
+        }
+        .front-access-copy { margin: 0 0 26px; color: var(--text-muted); font-size: .92rem; }
+
+        .front-form {
+            width: 100%;
+            max-width: none;
+            align-items: stretch;
+        }
+        .form-group { margin-bottom: 16px; }
+        .front-form .form-group { width: 100%; text-align: left; }
+        .form-group label {
+            display: block;
+            margin-bottom: 7px;
+            color: #35424D;
+            font-size: .82rem !important;
+            font-weight: 650;
+        }
+        .form-control,
+        .front-form .form-control {
+            width: 100%;
+            min-height: 46px;
+            padding: 11px 13px;
+            border: 1px solid var(--border-strong);
+            border-radius: 9px;
+            background: #FFFFFF;
+            color: var(--text-dark);
+            font-family: 'Inter', Arial, sans-serif;
+            font-size: 16px;
+            line-height: 1.35;
+            text-align: left;
+            box-shadow: none;
+            outline: none;
+        }
+        textarea.form-control { min-height: 96px; resize: vertical; }
+        .form-control::placeholder { color: #9AA5AE; }
+        .form-control:focus,
+        .front-form .form-control:focus {
+            border-color: var(--emerald-accent);
+            box-shadow: 0 0 0 3px rgba(31, 122, 102, .12);
+        }
+        .front-btn-submit {
+            width: 100%;
+            padding: 13px 16px;
+            margin-top: 4px;
+            background: var(--emerald-mid);
+            color: #FFFFFF;
+            font-size: .94rem;
+        }
+        .front-btn-submit:hover { background: var(--emerald-dark); transform: translateY(-1px); box-shadow: 0 7px 18px rgba(23,102,85,.18); }
+        .front-privacy-note {
+            margin-top: 16px;
+            padding-top: 14px;
+            border-top: 1px solid var(--border);
+            color: #7A8791;
+            font-size: .72rem;
+            line-height: 1.5;
+        }
+
+        /* Topic hub */
+        .hub-header {
+            align-items: flex-start;
+            margin-bottom: 18px;
+            padding-bottom: 18px;
+            border-bottom: 1px solid var(--border);
+        }
+        .hub-header > div { flex: 1 1 560px; min-width: 0; }
+        .hub-header p { margin-top: 7px; font-size: .9rem; max-width: 760px; }
+        .progress-bar-container {
+            height: 8px;
+            margin: 20px 0 26px;
+            border: 0;
+            background: #E7ECEF;
+            border-radius: 999px;
+        }
+        .progress-bar-fill { background: linear-gradient(90deg, var(--emerald-mid), var(--emerald-light)); }
+
+        .topic-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
+            margin-bottom: 8px;
+        }
+        .topic-card {
+            min-height: 260px;
+            padding: 22px;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            background: #FFFFFF;
+            box-shadow: none;
+        }
+        .topic-card:hover {
+            transform: translateY(-2px);
+            border-color: #BFCBD3;
+            box-shadow: var(--shadow-hover);
+        }
+        .topic-card.completed {
+            border-color: #B9D8CF;
+            background: linear-gradient(180deg, #FFFFFF 0%, #F7FBFA 100%);
+        }
+        .topic-number {
+            margin-bottom: 8px;
+            color: var(--emerald-mid);
+            font-size: .7rem;
+            font-weight: 700;
+            letter-spacing: .11em;
+        }
+        .topic-title {
+            margin-bottom: 8px;
+            color: var(--text-dark);
+            font-size: 1.08rem;
+            font-weight: 700;
+        }
+        .topic-description {
+            min-height: 50px;
+            margin-bottom: 14px;
+            color: var(--text-muted);
+            font-size: .84rem;
+            line-height: 1.55;
+        }
+        .topic-status {
+            margin: 0 0 18px;
+            padding: 5px 9px;
+            border-radius: 7px;
+            font-size: .72rem;
+            font-weight: 650;
+        }
+        .status-pending { background: #F5F2E8; color: #80662C; }
+        .status-done { background: var(--emerald-soft); color: var(--emerald-dark); }
+
+        /* Quiz and interaction system */
+        .quiz-topbar {
+            align-items: flex-start;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 18px;
+            margin-bottom: 22px;
+        }
+        .quiz-topbar h2 { margin-top: 5px; }
+        .question-block {
+            margin-bottom: 16px;
+            padding: 22px;
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--emerald-mid);
+            border-radius: 14px;
+            background: #FFFFFF;
+            box-shadow: none;
+        }
+        .q-badge {
+            margin-bottom: 10px;
+            padding: 5px 8px;
+            border-radius: 7px;
+            background: var(--emerald-soft);
+            color: var(--emerald-dark);
+            font-size: .68rem;
+            font-weight: 700;
+            letter-spacing: .04em;
+        }
+        .q-prompt {
+            margin-bottom: 16px;
+            color: var(--text-dark);
+            font-size: 1rem;
+            font-weight: 650;
+            line-height: 1.55;
+        }
+        .concept-callout {
+            margin: 0 0 14px;
+            padding: 13px 14px;
+            border-left: 3px solid #9FBFB6;
+            background: #F6F9F8;
+            color: #44525C;
+            border-radius: 0 9px 9px 0;
+            font-size: .9rem;
+            font-style: normal;
+        }
+        .match-label { margin-bottom: 7px; color: #3A4650; font-size: .83rem; font-weight: 650; }
+        .interaction-hint { margin: 0; color: var(--text-muted); font-size: .8rem; }
+
+        .mcq-options { gap: 8px; }
+        .mcq-label {
+            min-height: 46px;
+            padding: 11px 13px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            background: #FFFFFF;
+            font-size: .9rem;
+            line-height: 1.45;
+        }
+        .mcq-label:hover { background: #F7FAF9; border-color: #B8CCC6; }
+        .mcq-label:has(input:checked) { background: var(--emerald-soft); border-color: #87B9AB; }
+        .mcq-label input[type="radio"] { width: 17px; height: 17px; accent-color: var(--emerald-mid); }
+
+        .svg-diagram-container {
+            margin-bottom: 14px;
+            padding: 14px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            background: #FAFBFC;
+        }
+        .svg-diagram-container svg { max-width: 100%; height: auto; }
+
+        .sequence-list { gap: 8px; }
+        .sequence-item {
+            padding: 10px 12px;
+            background: #F8FAFB;
+            border: 1px solid var(--border);
+            border-radius: 9px;
+            font-size: .86rem;
+            line-height: 1.45;
+        }
+        .sequence-item > span { min-width: 0; overflow-wrap: anywhere; }
+        .btn-arrow {
+            width: 38px;
+            height: 38px;
+            flex: 0 0 38px;
+            border: 1px solid var(--border-strong);
+            border-radius: 8px;
+            background: #FFFFFF;
+            color: var(--emerald-dark);
+        }
+        .btn-arrow:hover { background: var(--emerald-soft); }
+
+        .matching-grid { gap: 14px; }
+        .matching-grid > div {
+            padding: 13px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            background: #FAFBFC;
+        }
+
+        .tf-group { gap: 10px; }
+        .tf-btn {
+            min-height: 46px;
+            padding: 12px;
+            border: 1px solid var(--border-strong);
+            border-radius: 10px;
+            background: #FFFFFF;
+            color: #34434D;
+            font-size: .88rem;
+            font-weight: 700;
+        }
+        .tf-btn.selected-true { background: var(--emerald-mid); border-color: var(--emerald-mid); color: #FFFFFF; }
+        .tf-btn.selected-false { background: #8E4655; border-color: #8E4655; color: #FFFFFF; }
+
+        .drag-section { gap: 10px; }
+        .chip-pool,
+        .drop-zone {
+            min-height: 66px;
+            padding: 12px;
+            border: 1px dashed #A9B9C3;
+            border-radius: 10px;
+            background: #F8FAFB;
+        }
+        .drag-chip {
+            padding: 8px 11px;
+            border: 1px solid #C7D8D2;
+            border-radius: 8px;
+            background: #FFFFFF;
+            color: var(--emerald-dark);
+            font-size: .8rem;
+            font-weight: 650;
+        }
+        .drag-chip:hover { box-shadow: 0 4px 10px rgba(15,35,50,.08); }
+        .drop-zone { color: #65737D; font-size: .84rem; font-weight: 600; }
+        .drop-zone.drag-over { background: var(--emerald-soft); border-style: solid; border-color: #83B6A8; }
+
+        /* Certificate, results and feedback */
+        .cert-container {
+            width: 100%;
+            max-width: 980px;
+            margin: 0 auto 24px;
+            padding: clamp(26px, 5vw, 48px);
+            border: 5px double var(--emerald-deep);
+            outline: 1px solid var(--gold-accent);
+            outline-offset: -8px;
+            border-radius: 8px;
+            box-shadow: var(--shadow-soft);
+        }
+        .cert-org-header { font-size: .72rem; letter-spacing: .13em; }
+        .cert-header {
+            font-family: 'Inter', Arial, sans-serif !important;
+            font-size: clamp(1.65rem, 4vw, 2.35rem);
+            line-height: 1.15;
+            letter-spacing: .05em;
+        }
+        .cert-subheader { font-family: 'Inter', Arial, sans-serif; font-size: .9rem; }
+        .cert-name {
+            font-family: 'Inter', Arial, sans-serif !important;
+            font-size: clamp(1.5rem, 4vw, 2.1rem);
+            letter-spacing: -.02em;
+            overflow-wrap: anywhere;
+        }
+        .cert-id-tag { font-size: .84rem; }
+        .cert-score-badge {
+            margin: 14px 0 20px;
+            padding: 9px 18px;
+            border-radius: 9px;
+            border: 1px solid #D6C294;
+            background: #FFFCF5;
+            font-size: 1rem;
+            box-shadow: none;
+        }
+        .cert-footer-layout { margin-top: 24px; }
+        .cert-sig-line { font-size: .95rem; }
+        .cert-sig-line span { font-size: .74rem; }
+
+        .answer-key-section,
+        .feedback-section {
+            margin-bottom: 18px !important;
+            padding: 20px !important;
+            border: 1px solid var(--border) !important;
+            border-radius: 14px !important;
+            background: #FFFFFF !important;
+        }
+        .answer-key-section h3,
+        .feedback-section h3 { color: var(--text-dark) !important; font-size: 1rem; }
+        .feedback-section > div { align-items: stretch; }
+
+        /* Lecturer portal + modal */
+        .portal-table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            background: #FFFFFF;
+        }
+        .portal-table {
+            min-width: 720px;
+            margin-top: 0;
+            font-size: .8rem;
+        }
+        .portal-table th,
+        .portal-table td { padding: 11px 12px; border: 0; border-bottom: 1px solid var(--border); vertical-align: top; }
+        .portal-table th {
+            position: sticky;
+            top: 0;
+            background: #F2F5F6;
+            color: #33414A;
+            font-size: .72rem;
+            font-weight: 700;
+            letter-spacing: .03em;
+        }
+        .portal-table tbody tr:hover { background: #FAFBFC; }
+
+        .modal-overlay { background: rgba(9, 20, 27, .55); padding: 18px; }
+        .modal-card {
+            max-width: 420px;
+            padding: 26px;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            box-shadow: 0 22px 60px rgba(9,20,27,.2);
+        }
+
+        /* Tablets */
+        @media (max-width: 900px) {
+            main.glass-card { width: calc(100% - 28px); padding: 22px; margin-top: 18px; }
+            .front-card-wrapper { min-height: 0; }
+            .front-hero-panel, .front-access-panel { padding: 38px; }
+            .front-feature-grid { display: flex; }
+            .topic-grid { grid-template-columns: 1fr; }
+            .topic-card { min-height: 0; }
+            .topic-description { min-height: 0; }
+        }
+
+        /* Smartphones */
+        @media (max-width: 600px) {
+            body {
+                background: #FFFFFF;
+                font-size: 15px;
+                padding-bottom: env(safe-area-inset-bottom);
+            }
+            .bg-doodles { display: none; }
+
+            header {
+                position: relative;
+                padding: 11px 14px;
+                gap: 10px;
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .brand-container {
+                width: 100%;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 7px;
+                align-items: center;
+            }
+            .uitm-badge, .evalustat-badge { font-size: .78rem; padding: 6px 9px; }
+            .course-title-block {
+                flex: 1 1 100%;
+                width: 100%;
+                padding-top: 3px;
+                white-space: normal;
+            }
+            .course-title,
+            .student-info-tag { white-space: normal; overflow: visible; text-overflow: clip; }
+            .course-title { font-size: .79rem; }
+            .student-info-tag { font-size: .7rem; margin-top: 2px; overflow-wrap: anywhere; }
+            .header-actions {
+                width: 100%;
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0,1fr));
+                gap: 7px;
+            }
+            .header-actions .btn-3d {
+                width: 100%;
+                min-width: 0;
+                padding: 8px 7px;
+                font-size: .72rem;
+                line-height: 1.3;
+            }
+            .header-actions .btn-3d:only-child { grid-column: 1 / -1; }
+            #btn-switch-student[style*="display: none"] + #btn-toggle-portal { grid-column: 1 / -1; }
+
+            main.glass-card {
+                width: 100%;
+                margin: 0;
+                padding: 14px;
+                border: 0;
+                border-radius: 0;
+                box-shadow: none;
+                background: #FFFFFF;
             }
 
-            .cert-footer-layout {
-                gap: 15px;
+            .front-card-wrapper { border-radius: 14px; }
+            .front-hero-panel { padding: 30px 22px 28px; }
+            .front-access-panel { padding: 28px 22px 30px; }
+            .front-eyebrow { margin-bottom: 14px; font-size: .64rem; }
+            .front-logo-badge { margin-bottom: 22px; }
+            .front-title { font-size: clamp(1.9rem, 9vw, 2.45rem); }
+            .front-subtitle { margin-bottom: 24px; font-size: .9rem; }
+            .front-feature-grid { flex-direction: column; gap: 8px; }
+            .front-feature-item { padding: 10px 11px; flex: 1 1 auto; }
+            .front-feature-item strong { font-size: .8rem; }
+            .front-feature-item small { font-size: .69rem; }
+            .front-credit-footer { margin-top: 24px; font-size: .69rem; }
+            .front-access-panel h2 { font-size: 1.45rem; }
+            .front-access-copy { margin-bottom: 20px; }
+
+            .form-control,
+            .front-form .form-control,
+            select.form-control,
+            textarea.form-control { font-size: 16px; }
+
+            .hub-header {
+                flex-direction: column;
+                gap: 12px;
+                padding-bottom: 14px;
+            }
+            .hub-header .btn-3d { width: 100%; }
+            .hub-header p { font-size: .82rem; }
+            .progress-bar-container { margin: 16px 0 20px; }
+            .topic-grid { gap: 12px; }
+            .topic-card { padding: 17px; border-radius: 12px; }
+            .topic-title { font-size: 1rem; }
+            .topic-description { font-size: .8rem; }
+            .topic-card .btn-3d { width: 100%; }
+
+            .quiz-topbar {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 12px;
+                margin-bottom: 16px;
+            }
+            .quiz-topbar .btn-3d { width: 100%; }
+            .question-block {
+                padding: 16px;
+                margin-bottom: 12px;
+                border-left-width: 3px;
+                border-radius: 11px;
+            }
+            .q-prompt { font-size: .94rem; }
+            .mcq-label { align-items: flex-start; padding: 11px; font-size: .84rem; }
+            .matching-grid { grid-template-columns: 1fr; gap: 9px; }
+            .matching-grid > div { padding: 11px; }
+            .tf-group { flex-direction: row; }
+            .tf-btn { min-width: 0; font-size: .82rem; }
+            .sequence-item { align-items: flex-start; font-size: .8rem; }
+            .seq-btn-group { gap: 5px; }
+            .btn-arrow { width: 40px; height: 40px; flex-basis: 40px; }
+            .chip-pool { align-items: stretch; }
+            .drag-chip { width: 100%; justify-content: flex-start; }
+            .drop-zone { min-height: 74px; }
+            #quiz-form > div[style*="text-align: right"] { text-align: stretch !important; }
+            #quiz-form > div[style*="text-align: right"] .btn-3d { width: 100%; padding: 13px 16px !important; font-size: .92rem !important; }
+
+            .cert-container {
+                padding: 24px 14px;
+                border-width: 3px;
+                outline-offset: -5px;
+                border-radius: 6px;
+            }
+            .cert-org-header { font-size: .58rem; letter-spacing: .09em; }
+            .cert-header { font-size: 1.35rem; letter-spacing: .03em; }
+            .cert-divider { width: 90px; margin: 10px auto 15px; }
+            .cert-subheader { font-size: .78rem; }
+            .cert-name { font-size: 1.3rem; padding: 0 6px 4px; }
+            .cert-id-tag { font-size: .72rem; overflow-wrap: anywhere; }
+            .cert-container p[style] { font-size: .78rem !important; }
+            .cert-container h3[style] { font-size: 1rem !important; }
+            .cert-score-badge { max-width: 100%; padding: 8px 10px; font-size: .82rem; }
+            .cert-sig-line { font-size: .83rem; }
+            .cert-sig-line span { font-size: .65rem; }
+
+            .answer-key-section,
+            .feedback-section { padding: 16px !important; border-radius: 11px !important; }
+            .answer-key-section p,
+            .feedback-section p { font-size: .8rem !important; }
+            .feedback-section > div {
+                display: grid !important;
+                grid-template-columns: 1fr !important;
+            }
+            .feedback-section .btn-3d { width: 100%; }
+
+            #lecturer-portal-screen > div:first-child {
+                align-items: stretch !important;
+            }
+            #lecturer-portal-screen > div:first-child .btn-3d { width: 100%; }
+            .portal-table { min-width: 680px; font-size: .74rem; }
+            .portal-table th, .portal-table td { padding: 9px 10px; }
+
+            .modal-overlay {
+                align-items: flex-end;
+                padding: 12px;
+            }
+            .modal-card {
+                max-width: none;
+                padding: 22px 18px calc(22px + env(safe-area-inset-bottom));
+                border-radius: 16px;
+            }
+            .modal-card > form > div:last-child {
+                display: grid !important;
+                grid-template-columns: 1fr 1fr;
+            }
+            .modal-card .btn-3d { width: 100%; }
+        }
+
+        @media (max-width: 380px) {
+            main.glass-card { padding: 10px; }
+            .front-hero-panel, .front-access-panel { padding-left: 18px; padding-right: 18px; }
+            .front-title { font-size: 1.75rem; }
+            .question-block { padding: 14px; }
+            .tf-group { flex-direction: column; }
+            .header-actions { grid-template-columns: 1fr; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                scroll-behavior: auto !important;
+                animation-duration: .01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: .01ms !important;
             }
         }
 
         /* ==========================================================================
            12. PRINT STYLESHEET (@media print)
-           ISOLATES ONLY THE DEDICATED LANDSCAPE A4 CERTIFICATE
            ========================================================================== */
         @media print {
             @page {
@@ -873,7 +1824,6 @@
                 margin: 0 !important;
             }
 
-            /* Hide header, doodles, and all non-certificate sections */
             header, .bg-doodles, .btn-3d, .no-print, 
             #registration-screen, #topic-hub-screen, #quiz-screen, 
             #lecturer-portal-screen, .feedback-section, .modal-overlay,
@@ -905,7 +1855,7 @@
 
             #printable-certificate {
                 display: block !important;
-                border: 10px double #122B18 !important;
+                border: 10px double #052217 !important;
                 outline: 3px solid #C5A059 !important;
                 outline-offset: -8px !important;
                 padding: 40px 50px !important;
@@ -925,20 +1875,20 @@
 </head>
 <body>
 
-    <!-- Fixed Background SVG Doodles (Bright & Clear) -->
+    <!-- Fixed Background SVG Doodles -->
     <svg class="bg-doodles" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
-        <g stroke="#3B5E2B" stroke-width="2" fill="none" stroke-linecap="round">
+        <g stroke="#125E46" stroke-width="2" fill="none" stroke-linecap="round">
             <path d="M 50,100 L 80,130 L 70,140 L 40,110 Z M 75,135 L 85,145" />
             <rect x="200" y="80" width="40" height="60" rx="5" />
-            <circle cx="210" cy="100" r="3" fill="#3B5E2B" />
-            <circle cx="220" cy="100" r="3" fill="#3B5E2B" />
-            <circle cx="230" cy="100" r="3" fill="#3B5E2B" />
+            <circle cx="210" cy="100" r="3" fill="#125E46" />
+            <circle cx="220" cy="100" r="3" fill="#125E46" />
+            <circle cx="230" cy="100" r="3" fill="#125E46" />
             <path d="M 400,120 Q 450,120 475,60 Q 500,120 550,120" />
             <path d="M 700,140 L 700,70 L 780,70" />
             <path d="M 700,130 L 720,110 L 740,120 L 770,80" stroke-dasharray="4" />
-            <text x="100" y="300" font-family="Fredoka" font-size="28" fill="#3B5E2B">∑</text>
-            <text x="850" y="200" font-family="Fredoka" font-size="28" fill="#3B5E2B">μ</text>
-            <text x="300" y="500" font-family="Fredoka" font-size="28" fill="#3B5E2B">σ²</text>
+            <text x="100" y="300" font-family="Fredoka" font-size="28" fill="#125E46">∑</text>
+            <text x="850" y="200" font-family="Fredoka" font-size="28" fill="#125E46">μ</text>
+            <text x="300" y="500" font-family="Fredoka" font-size="28" fill="#125E46">σ²</text>
             <rect x="600" y="450" width="120" height="30" rx="3" />
             <line x1="620" y1="450" x2="620" y2="462" />
             <line x1="640" y1="450" x2="640" y2="467" />
@@ -948,12 +1898,12 @@
         </g>
     </svg>
 
-    <!-- Branding Header -->
+    <!-- Branding Header (Single-Line Enforced) -->
     <header>
         <div class="brand-container">
             <span id="header-uitm-badge" class="uitm-badge">UiTM</span>
             <span id="header-evalustat-badge" class="evalustat-badge">evaluSTAT</span>
-            <div>
+            <div class="course-title-block">
                 <div class="course-title">STA104: Introduction to Statistics</div>
                 <div id="header-student-tag" class="student-info-tag">Not Registered</div>
             </div>
@@ -971,7 +1921,7 @@
     <!-- Lecturer Authentication Modal -->
     <div id="lecturer-auth-modal" class="modal-overlay">
         <div class="modal-card">
-            <h3 style="color: var(--matcha-dark); margin-bottom: 10px;">🔒 Lecturer Login</h3>
+            <h3 style="color: var(--emerald-deep); margin-bottom: 10px;">🔒 Lecturer Login</h3>
             <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px;">Please enter lecturer credentials to access student scores.</p>
             <form onsubmit="app.handleLecturerLogin(event)">
                 <div class="form-group">
@@ -992,26 +1942,64 @@
 
     <!-- Main Container Card -->
     <main class="glass-card">
-
-        <!-- SCREEN 1: REGISTRATION -->
+        <!-- SCREEN 1: CORPORATE RESPONSIVE LANDING PAGE -->
         <section id="registration-screen" class="screen active">
-            <div class="reg-header">
-                <h2>Welcome Students! 👋</h2>
-                <p style="color: var(--text-muted);">Enter your details to start your interactive STA104 Statistics module quizzes on <strong>evaluSTAT</strong>.</p>
+            <div class="front-card-wrapper">
+                <div class="front-hero-panel">
+                    <div class="front-eyebrow">STA104 · INTRODUCTION TO STATISTICS</div>
+                    <div class="front-logo-badge" aria-label="UiTM evaluSTAT">
+                        <span class="uitm-text">UiTM</span>
+                        <span class="evalustat-text">evaluSTAT</span>
+                    </div>
+
+                    <h1 class="front-title">Interactive Statistics Assessment Platform</h1>
+                    <p class="front-subtitle">
+                        A structured digital assessment experience designed to help university students practise,
+                        assess and strengthen essential statistics knowledge through immediate feedback.
+                    </p>
+
+                    <div class="front-feature-grid" aria-label="Platform highlights">
+                        <div class="front-feature-item">
+                            <span class="front-feature-icon">06</span>
+                            <div><strong>Assessment Modules</strong><small>Topic-based learning checks</small></div>
+                        </div>
+                        <div class="front-feature-item">
+                            <span class="front-feature-icon">✓</span>
+                            <div><strong>Instant Evaluation</strong><small>Automatic scoring and review</small></div>
+                        </div>
+                        <div class="front-feature-item">
+                            <span class="front-feature-icon">★</span>
+                            <div><strong>Achievement Record</strong><small>Certificate and lecturer view</small></div>
+                        </div>
+                    </div>
+
+                    <div class="front-credit-footer">Developed by Noorezatty Mohd Yusop</div>
+                </div>
+
+                <div class="front-access-panel">
+                    <div class="front-access-kicker">STUDENT ACCESS</div>
+                    <h2>Start your assessment</h2>
+                    <p class="front-access-copy">Enter your details to continue to the STA104 Topic Hub.</p>
+
+                    <form class="front-form" onsubmit="app.handleRegistration(event)">
+                        <div class="form-group">
+                            <label for="student-name">Full name</label>
+                            <input type="text" id="student-name" class="form-control" placeholder="e.g., Nur Aisyah Ahmad" autocomplete="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="student-id">Student ID</label>
+                            <input type="text" id="student-id" class="form-control" placeholder="10-digit UiTM Student ID" inputmode="numeric" autocomplete="off" required pattern="[0-9]{10}" title="Please enter a valid 10-digit UiTM Student ID">
+                        </div>
+                        <div class="form-group">
+                            <label for="student-group">Group</label>
+                            <input type="text" id="student-group" class="form-control" placeholder="e.g., CS1104A" autocomplete="off" required>
+                        </div>
+                        <button type="submit" class="front-btn-submit">Continue to Topic Hub <span aria-hidden="true">→</span></button>
+                    </form>
+
+                    <div class="front-privacy-note">Your progress is stored locally in this browser for assessment use.</div>
+                </div>
             </div>
-            <form onsubmit="app.handleRegistration(event)">
-                <div class="form-group">
-                    <label for="student-name">Full Student Name</label>
-                    <input type="text" id="student-name" class="form-control" placeholder="e.g., Nurul Aishah Binti Ahmad" required>
-                </div>
-                <div class="form-group">
-                    <label for="student-id">UiTM Student ID</label>
-                    <input type="text" id="student-id" class="form-control" placeholder="e.g., 2023456789" required pattern="[0-9]{10}" title="Please enter a valid 10-digit UiTM Student ID">
-                </div>
-                <button type="submit" class="btn-3d btn-pink" style="width: 100%; margin-top: 10px;">
-                    🚀 Enter Topic Hub
-                </button>
-            </form>
         </section>
 
         <!-- SCREEN 2: TOPIC HUB -->
@@ -1065,18 +2053,16 @@
             
             <!-- ISOLATED OFFICIAL SINGLE-PAGE PRINTABLE CERTIFICATE TEMPLATE (A4 LANDSCAPE) -->
             <div class="cert-container" id="printable-certificate">
-                <div class="cert-org-header">
-                    <span>🏛️ UNIVERSITI TEKNOLOGI MARA (UiTM)</span>
-                </div>
+                <div class="cert-org-header">UNIVERSITI TEKNOLOGI MARA (UiTM)</div>
                 <h1 class="cert-header">CERTIFICATE OF ACHIEVEMENT</h1>
                 <div class="cert-divider"></div>
                 <p class="cert-subheader">This is to proudly certify that</p>
                 
                 <div class="cert-name" id="cert-student-name">Student Name</div>
                 <br>
-                <p class="cert-id-tag">Student ID: <strong id="cert-student-id">2023XXXXXX</strong></p>
+                <p class="cert-id-tag">Student ID: <strong id="cert-student-id">2023XXXXXX</strong> | Group: <strong id="cert-student-group">N/A</strong></p>
                 <p style="margin-top: 5px; font-size: 0.95rem; color: var(--text-dark);">has successfully completed all required interactive assessment modules on <strong>evaluSTAT</strong> for course</p>
-                <h3 style="color: var(--matcha-dark); margin: 8px 0; font-size: 1.35rem; font-family: 'Fredoka', cursive;">STA104: Introduction to Statistics</h3>
+                <h3 style="color: var(--emerald-deep); margin: 8px 0; font-size: 1.35rem; font-family: 'Fredoka', cursive;">STA104: Introduction to Statistics</h3>
                 
                 <div class="cert-score-badge">
                     Overall Aggregate Score: <span id="cert-aggregate-score">0%</span>
@@ -1085,26 +2071,27 @@
                 <div class="cert-footer-layout">
                     <div class="cert-sig-line">
                         Noorezatty Mohd Yusop
+                        <span>Lecturer</span>
                         <span>Faculty of Computer & Mathematical Sciences</span>
                     </div>
                 </div>
             </div>
 
-            <!-- ON-SCREEN STUDENT QUESTION RESULT SUMMARY (STUDENTS CAN VIEW TICKMARKS, EXCLUDED FROM PRINT) -->
+            <!-- ON-SCREEN STUDENT QUESTION RESULT SUMMARY -->
             <div class="answer-key-section no-print">
-                <h3 style="color: var(--matcha-dark); margin-bottom: 10px;">🔍 Module Question Performance Summary</h3>
+                <h3 style="color: var(--emerald-deep); margin-bottom: 10px;">🔍 Module Question Performance Summary</h3>
                 <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">
                     Summary of your question results (✔️ Correct / ❌ Incorrect) by module. <em>(Note: Excluded from official certificate printing).</em>
                 </p>
                 
                 <div id="answer-key-content-container">
-                    <!-- Populated dynamically with question tickmark indicators by module -->
+                    <!-- Populated dynamically -->
                 </div>
             </div>
 
-            <!-- FEEDBACK & ACTION BUTTONS (EXCLUDED FROM PRINT) -->
-            <div class="feedback-section no-print" style="background: var(--matcha-soft); padding: 20px; border-radius: 16px;">
-                <h3 style="color: var(--matcha-dark); margin-bottom: 10px;">Lecturer Feedback & Submission</h3>
+            <!-- FEEDBACK & ACTION BUTTONS -->
+            <div class="feedback-section no-print" style="background: var(--emerald-soft); padding: 20px; border-radius: 16px;">
+                <h3 style="color: var(--emerald-deep); margin-bottom: 10px;">Lecturer Feedback & Submission</h3>
                 <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">Leave comments for your lecturer regarding your module learning experience. You must submit your score to unlock the Return button.</p>
                 <textarea id="feedback-text" class="form-control" rows="3" placeholder="Write your thoughts or feedback here..."></textarea>
                 
@@ -1140,6 +2127,7 @@
                         <tr>
                             <th>Student Name</th>
                             <th>Student ID</th>
+                            <th>Group</th>
                             <th>Aggregate Score</th>
                             <th>Feedback / Comments</th>
                             <th>Date Completed</th>
@@ -1188,8 +2176,8 @@
                         badge: "Question 3: Diagram Labeling",
                         prompt: "Identify the element indicated by the dropdown in the Population vs. Sample diagram:",
                         svg: `<svg width="100%" height="120" viewBox="0 0 300 120">
-                                <circle cx="100" cy="60" r="50" fill="#EBF2E6" stroke="#3B5E2B" stroke-width="2"/>
-                                <text x="75" y="40" font-family="Fredoka" font-size="12" fill="#122B18">Population (N)</text>
+                                <circle cx="100" cy="60" r="50" fill="#E8F5F1" stroke="#125E46" stroke-width="2"/>
+                                <text x="75" y="40" font-family="Fredoka" font-size="12" fill="#052217">Population (N)</text>
                                 <circle cx="115" cy="75" r="20" fill="#FFF0F4" stroke="#D85B73" stroke-width="2"/>
                                 <text x="103" y="79" font-family="Fredoka" font-size="10" fill="#D85B73">n</text>
                                 <path d="M 135 75 L 200 75" stroke="#D85B73" stroke-width="2" stroke-dasharray="3,3"/>
@@ -1259,7 +2247,7 @@
                         prompt: "Identify the shape of the distribution shown in the curve:",
                         svg: `<svg width="100%" height="120" viewBox="0 0 300 120">
                                 <path d="M 20 100 Q 60 20 120 70 T 280 100" fill="none" stroke="#D85B73" stroke-width="3"/>
-                                <line x1="10" y1="100" x2="290" y2="100" stroke="#122B18" stroke-width="2"/>
+                                <line x1="10" y1="100" x2="290" y2="100" stroke="#052217" stroke-width="2"/>
                               </svg>`,
                         options: ["Symmetric Normal", "Right-Skewed (Positive)", "Left-Skewed (Negative)"],
                         answer: "Right-Skewed (Positive)"
@@ -1325,8 +2313,8 @@
                         badge: "Question 3: Diagram Labeling",
                         prompt: "Identify the component shown by the repeating quarterly peaks in the line graph:",
                         svg: `<svg width="100%" height="120" viewBox="0 0 300 120">
-                                <path d="M 20 90 L 50 30 L 70 80 L 100 20 L 120 75 L 150 15 L 170 70" fill="none" stroke="#3B5E2B" stroke-width="2"/>
-                                <line x1="15" y1="100" x2="280" y2="100" stroke="#122B18" stroke-width="2"/>
+                                <path d="M 20 90 L 50 30 L 70 80 L 100 20 L 120 75 L 150 15 L 170 70" fill="none" stroke="#125E46" stroke-width="2"/>
+                                <line x1="15" y1="100" x2="280" y2="100" stroke="#052217" stroke-width="2"/>
                               </svg>`,
                         options: ["Seasonal Pattern", "Cyclical Wave", "Random Outlier"],
                         answer: "Seasonal Pattern"
@@ -1394,7 +2382,7 @@
                         svg: `<svg width="100%" height="120" viewBox="0 0 300 120">
                                 <circle cx="30" cy="90" r="4" fill="#D85B73"/><circle cx="60" cy="75" r="4" fill="#D85B73"/>
                                 <circle cx="90" cy="60" r="4" fill="#D85B73"/><circle cx="120" cy="35" r="4" fill="#D85B73"/>
-                                <line x1="20" y1="100" x2="140" y2="20" stroke="#3B5E2B" stroke-width="2"/>
+                                <line x1="20" y1="100" x2="140" y2="20" stroke="#125E46" stroke-width="2"/>
                               </svg>`,
                         options: ["Positive Linear Correlation", "Negative Linear Correlation", "No Correlation"],
                         answer: "Positive Linear Correlation"
@@ -1460,7 +2448,7 @@
                         badge: "Question 3: Diagram Labeling",
                         prompt: "In the Price Relative formula I = (P₁ / P₀) × 100, identify P₀:",
                         svg: `<svg width="100%" height="100" viewBox="0 0 300 100">
-                                <text x="50" y="55" font-family="Fredoka" font-size="20" fill="#122B18">I = ( P₁ / P₀ ) × 100</text>
+                                <text x="50" y="55" font-family="Fredoka" font-size="20" fill="#052217">I = ( P₁ / P₀ ) × 100</text>
                                 <path d="M 120 65 L 120 85 L 180 85" stroke="#D85B73" stroke-width="2" fill="none"/>
                               </svg>`,
                         options: ["Base Year Price (P₀)", "Current Year Price (P₁)", "Base Quantity (Q₀)"],
@@ -1527,9 +2515,9 @@
                         badge: "Question 3: Diagram Labeling",
                         prompt: "Identify the shaded overlapping region in this Venn diagram:",
                         svg: `<svg width="100%" height="120" viewBox="0 0 300 120">
-                                <circle cx="110" cy="60" r="40" fill="#EBF2E6" stroke="#3B5E2B" stroke-width="2"/>
+                                <circle cx="110" cy="60" r="40" fill="#E8F5F1" stroke="#125E46" stroke-width="2"/>
                                 <circle cx="160" cy="60" r="40" fill="#FFF0F4" stroke="#D85B73" stroke-width="2" style="mix-blend-mode: multiply;"/>
-                                <text x="85" y="65" font-family="Fredoka" font-size="14" fill="#122B18">A</text>
+                                <text x="85" y="65" font-family="Fredoka" font-size="14" fill="#052217">A</text>
                                 <text x="180" y="65" font-family="Fredoka" font-size="14" fill="#D85B73">B</text>
                               </svg>`,
                         options: ["Intersection (A ∩ B)", "Union (A ∪ B)", "Complement (A')"],
@@ -1575,7 +2563,7 @@
 
         class AppState {
             constructor() {
-                this.student = JSON.parse(localStorage.getItem('sta104_current_student')) || { name: '', id: '' };
+                this.student = JSON.parse(localStorage.getItem('sta104_current_student')) || { name: '', id: '', group: '' };
                 this.allProgress = JSON.parse(localStorage.getItem('sta104_all_progress')) || {};
                 this.isLecturerAuthenticated = false;
                 this.currentTopicIndex = 0;
@@ -1590,8 +2578,8 @@
                 return this.allProgress[targetId] || {};
             }
 
-            saveStudent(name, id) {
-                this.student = { name, id };
+            saveStudent(name, id, group) {
+                this.student = { name, id, group };
                 localStorage.setItem('sta104_current_student', JSON.stringify(this.student));
                 if (!this.allProgress[id]) {
                     this.allProgress[id] = {};
@@ -1618,7 +2606,7 @@
             }
 
             clearCurrentStudent() {
-                this.student = { name: '', id: '' };
+                this.student = { name: '', id: '', group: '' };
                 localStorage.removeItem('sta104_current_student');
             }
         }
@@ -1660,7 +2648,7 @@
                 const tag = document.getElementById('header-student-tag');
                 const btnSwitch = document.getElementById('btn-switch-student');
                 if (state.student.name) {
-                    tag.innerHTML = `👤 <strong>${state.student.name}</strong> (${state.student.id})`;
+                    tag.innerHTML = `👤 <strong>${state.student.name}</strong> (${state.student.id} - ${state.student.group || 'N/A'})`;
                     btnSwitch.style.display = 'inline-flex';
                 } else {
                     tag.innerHTML = `Not Registered`;
@@ -1678,8 +2666,9 @@
                 e.preventDefault();
                 const name = document.getElementById('student-name').value.trim();
                 const id = document.getElementById('student-id').value.trim();
-                if (name && id) {
-                    state.saveStudent(name, id);
+                const group = document.getElementById('student-group').value.trim();
+                if (name && id && group) {
+                    state.saveStudent(name, id, group);
                     app.updateHeaderTag();
                     app.showScreen('topic-hub-screen');
                 }
@@ -1703,7 +2692,7 @@
                         <div>
                             <div class="topic-number">MODULE 0${idx + 1}</div>
                             <h3 class="topic-title">${topic.title}</h3>
-                            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">${topic.description}</p>
+                            <p class="topic-description">${topic.description}</p>
                             <span class="topic-status ${isDone ? 'status-done' : 'status-pending'}">
                                 ${isDone ? `✔️ Completed (${topicData.score}%)` : '⏳ Not Started'}
                             </span>
@@ -1764,7 +2753,7 @@
                         });
                         html += `</div>`;
                     } else if (q.type === 'term') {
-                        html += `<p style="background: var(--matcha-soft); padding: 12px; border-radius: 8px; margin-bottom: 12px; font-style: italic;">"${q.description}"</p>`;
+                        html += `<p class="concept-callout">“${q.description}”</p>`;
                         html += `<select class="form-control" name="q_${qIdx}" required>
                                     <option value="">-- Select Matching Term --</option>`;
                         q.options.forEach(opt => html += `<option value="${opt}">${opt}</option>`);
@@ -1783,7 +2772,7 @@
                         q.pairs.forEach((p, pIdx) => {
                             html += `
                                 <div>
-                                    <p style="font-size: 0.88rem; font-weight: 600; margin-bottom: 6px;">${p.prompt}</p>
+                                    <p class="match-label">${p.prompt}</p>
                                     <select class="form-control" name="q_${qIdx}_p${pIdx}" required>
                                         <option value="">-- Match --</option>
                                         ${p.options.map(o => `<option value="${o}">${o}</option>`).join('')}
@@ -1803,7 +2792,7 @@
                     } else if (q.type === 'dragdrop') {
                         html += `
                             <div class="drag-section">
-                                <p style="font-size: 0.85rem; color: var(--text-muted);">Available Concept Chips (Tap or Drag into target box):</p>
+                                <p class="interaction-hint">Available concepts — tap or drag one into the target area.</p>
                                 <div class="chip-pool" id="chip_pool_${qIdx}">
                         `;
                         q.chips.forEach(chip => {
@@ -1881,7 +2870,6 @@
                 input.value = val;
             },
 
-            // Mobile-Friendly Chip Tap Selection Alternative to Drag & Drop
             handleChipTap: (qIdx, chipId, chipValue) => {
                 const dropZone = document.getElementById(`drop_${qIdx}`);
                 const chipElem = document.getElementById(`chip_${qIdx}_${chipId}`);
@@ -1975,8 +2963,6 @@
                 });
 
                 const percentage = Math.round((scoreCount / topic.questions.length) * 100);
-                
-                // Save and Lock Attempt for this Student ID
                 state.saveTopicScore(topicId, percentage, answersRecord);
 
                 alert(`🎉 Module Quiz Submitted!\nStudent ID: ${state.student.id}\nFinal Score: ${percentage}% (${scoreCount}/${topic.questions.length} correct)\nThis module attempt is now recorded and locked for your ID.`);
@@ -1984,14 +2970,13 @@
             },
 
             renderCertificate: () => {
-                // Render Isolated Printable Certificate Details
                 document.getElementById('cert-student-name').innerText = state.student.name || 'Student Name';
                 document.getElementById('cert-student-id').innerText = state.student.id || '2023XXXXXX';
+                document.getElementById('cert-student-group').innerText = state.student.group || 'N/A';
                 
                 const agg = state.getAggregateScore();
                 document.getElementById('cert-aggregate-score').innerText = `${agg}%`;
 
-                // Render Summary Tickmarks by Module and Question Number (EXCLUDED FROM PRINT)
                 const reviewContainer = document.getElementById('answer-key-content-container');
                 reviewContainer.innerHTML = '';
 
@@ -2005,9 +2990,9 @@
                     topicCard.style.padding = '14px 16px';
                     topicCard.style.background = 'var(--bg-bright)';
                     topicCard.style.borderRadius = '12px';
-                    topicCard.style.border = '1px solid var(--matcha-light)';
+                    topicCard.style.border = '1px solid var(--emerald-light)';
 
-                    let html = `<div style="font-weight: 700; color: var(--matcha-dark); margin-bottom: 10px; font-size: 0.95rem;">
+                    let html = `<div style="font-weight: 700; color: var(--emerald-deep); margin-bottom: 10px; font-size: 0.95rem;">
                         📌 Module 0${topic.id + 1}: ${topic.title} ${res ? `— Score: ${res.score}%` : '(Not Attempted)'}
                     </div>`;
 
@@ -2015,9 +3000,9 @@
                         html += `<div style="display: flex; flex-wrap: wrap; gap: 8px;">`;
                         res.answers.forEach((a, i) => {
                             const isOk = a.correct;
-                            const bg = isOk ? 'var(--matcha-soft)' : 'var(--pink-soft)';
-                            const border = isOk ? 'var(--matcha-mid)' : 'var(--pink-accent)';
-                            const color = isOk ? 'var(--matcha-dark)' : 'var(--pink-accent)';
+                            const bg = isOk ? 'var(--emerald-soft)' : 'var(--pink-soft)';
+                            const border = isOk ? 'var(--emerald-mid)' : 'var(--pink-accent)';
+                            const color = isOk ? 'var(--emerald-deep)' : 'var(--pink-accent)';
                             const symbol = isOk ? '✔️' : '❌';
                             
                             html += `<div style="background: ${bg}; border: 1px solid ${border}; color: ${color}; padding: 6px 12px; border-radius: 8px; font-weight: 600; font-size: 0.85rem; display: flex; align-items: center; gap: 6px;">
@@ -2033,7 +3018,6 @@
                     reviewContainer.appendChild(topicCard);
                 });
 
-                // Check if already submitted to lecturer
                 const submissions = JSON.parse(localStorage.getItem('sta104_submissions')) || [];
                 const isSubmitted = submissions.some(s => s.id === state.student.id);
                 app.updateReturnButtonState(isSubmitted);
@@ -2069,6 +3053,7 @@
                 const record = {
                     name: state.student.name,
                     id: state.student.id,
+                    group: state.student.group || 'N/A',
                     score: state.getAggregateScore(),
                     feedback: feedback || 'No comments provided.',
                     date: new Date().toLocaleDateString('en-MY', { day: 'numeric', month: 'short', year: 'numeric' })
@@ -2101,8 +3086,10 @@
                 document.getElementById('feedback-text').value = '';
                 const nameInput = document.getElementById('student-name');
                 const idInput = document.getElementById('student-id');
+                const groupInput = document.getElementById('student-group');
                 if (nameInput) nameInput.value = '';
                 if (idInput) idInput.value = '';
+                if (groupInput) groupInput.value = '';
                 
                 app.updateHeaderTag();
                 app.showScreen('registration-screen');
@@ -2141,11 +3128,12 @@
                 state.isLecturerAuthenticated = false;
                 state.clearCurrentStudent();
                 
-                // Reset registration input fields
                 const nameInput = document.getElementById('student-name');
                 const idInput = document.getElementById('student-id');
+                const groupInput = document.getElementById('student-group');
                 if (nameInput) nameInput.value = '';
                 if (idInput) idInput.value = '';
+                if (groupInput) groupInput.value = '';
                 
                 app.updateHeaderTag();
                 alert('🔒 Lecturer Portal session closed. Returning to main registration page...');
@@ -2164,7 +3152,7 @@
                 const submissions = JSON.parse(localStorage.getItem('sta104_submissions')) || [];
 
                 if (submissions.length === 0) {
-                    tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; color: var(--text-muted);">No student submissions stored yet.</td></tr>`;
+                    tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; color: var(--text-muted);">No student submissions stored yet.</td></tr>`;
                     return;
                 }
 
@@ -2173,6 +3161,7 @@
                     tr.innerHTML = `
                         <td><strong>${sub.name}</strong></td>
                         <td>${sub.id}</td>
+                        <td>${sub.group || 'N/A'}</td>
                         <td><span class="uitm-badge" style="font-size:0.85rem;">${sub.score}%</span></td>
                         <td>${sub.feedback}</td>
                         <td>${sub.date}</td>
