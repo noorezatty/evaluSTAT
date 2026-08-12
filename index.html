@@ -2964,12 +2964,13 @@
         }
 
         /* ======================================================================
-           V22 SMARTPHONE CONTINUE BUTTON POSITION
-           - Moves Continue button slightly lower without affecting desktop/tablet
+           V23 SMARTPHONE CONTINUE BUTTON POSITION
+           - Clearly lowers Continue button on smartphone only
+           - Final override prevents earlier mobile rules from pulling it upward
            ====================================================================== */
         @media (max-width: 430px) {
             body.registration-mode .front-btn-submit {
-                margin-top: 16px !important;
+                margin-top: 26px !important;
             }
         }
 
