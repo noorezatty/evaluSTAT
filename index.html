@@ -2999,6 +2999,26 @@
                 padding: 12px 12px 37px !important;
             }
         }
+
+        /* V28: Dynamic lecturer selection and shared lecturer portal */
+        .cert-sig-line .cert-lecturer-name {
+            display: block;
+            margin-top: 0;
+            color: #000000;
+            font-size: inherit;
+            font-weight: 700;
+            line-height: inherit;
+        }
+
+        @media (min-width: 769px) {
+            .lecturer-filter-grid {
+                grid-template-columns: repeat(3, minmax(170px, 1fr)) auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .portal-table { min-width: 960px; }
+        }
 </style>
 </head>
 <body>
@@ -3104,6 +3124,15 @@
                             <label for="student-group">Group</label>
                             <input type="text" id="student-group" class="form-control" placeholder="e.g., CS1104A" autocomplete="off" required>
                         </div>
+                        <div class="form-group">
+                            <label for="student-lecturer">Lecturer</label>
+                            <select id="student-lecturer" class="form-control" required>
+                                <option value="" selected disabled>Select your lecturer</option>
+                                <option value="NOOR AISYAH IDRIS">NOOR AISYAH IDRIS</option>
+                                <option value="NURALINA AZLAN">NURALINA AZLAN</option>
+                                <option value="NOOREZATTY MOHD YUSOP">NOOREZATTY MOHD YUSOP</option>
+                            </select>
+                        </div>
                         <button type="submit" class="front-btn-submit">Continue <span aria-hidden="true">→</span></button>
                     </form>
 
@@ -3179,7 +3208,7 @@
 
                 <div class="cert-footer-layout">
                     <div class="cert-sig-line">
-                        Noorezatty Mohd Yusop
+                        <span id="cert-lecturer-name" class="cert-lecturer-name">LECTURER NAME</span>
                         <span>Lecturer</span>
                         <span>Faculty of Computer & Mathematical Sciences</span>
                     </div>
@@ -3222,8 +3251,8 @@
         <section id="lecturer-portal-screen" class="screen">
             <div class="lecturer-dashboard-head">
                 <div>
-                    <h2 class="lecturer-welcome">Welcome, Noorezatty</h2>
-                    <p class="lecturer-subtitle">Lecturer dashboard for reviewing topic-level assessment records, filtering student performance, and producing printable reports.</p>
+                    <h2 class="lecturer-welcome">Welcome to Lecturer Portal</h2>
+                    <p class="lecturer-subtitle">Shared lecturer dashboard for reviewing topic-level assessment records, filtering student performance by lecturer, module or class, and producing printable reports.</p>
                 </div>
                 <button class="btn-3d btn-secondary" onclick="app.logoutLecturer()">
                     🔒 Lock / Exit Portal
@@ -3242,6 +3271,12 @@
                         <label for="lecturer-class-filter">Filter by Class / Group</label>
                         <select id="lecturer-class-filter" class="lecturer-filter-select">
                             <option value="all">All Classes</option>
+                        </select>
+                    </div>
+                    <div class="lecturer-filter-field">
+                        <label for="lecturer-name-filter">Filter by Lecturer</label>
+                        <select id="lecturer-name-filter" class="lecturer-filter-select">
+                            <option value="all">All Lecturers</option>
                         </select>
                     </div>
                     <div class="lecturer-filter-actions">
@@ -3263,6 +3298,7 @@
                             <th>Student Name</th>
                             <th>Student ID</th>
                             <th>Class / Group</th>
+                            <th>Lecturer</th>
                             <th>Module / Topic</th>
                             <th>Topic Score</th>
                             <th>Feedback / Comments</th>
@@ -3288,6 +3324,12 @@
 
     <!-- JAVASCRIPT DATA & APPLICATION LOGIC -->
     <script>
+        const lecturerOptions = [
+            'NOOR AISYAH IDRIS',
+            'NURALINA AZLAN',
+            'NOOREZATTY MOHD YUSOP'
+        ];
+
         const sta104Topics = [
     {
         "id": 0,
@@ -4235,7 +4277,8 @@
 
         class AppState {
             constructor() {
-                this.student = JSON.parse(localStorage.getItem('sta104_current_student')) || { name: '', id: '', group: '' };
+                this.student = JSON.parse(localStorage.getItem('sta104_current_student')) || { name: '', id: '', group: '', lecturer: '' };
+                if (!Object.prototype.hasOwnProperty.call(this.student, 'lecturer')) this.student.lecturer = '';
                 this.allProgress = JSON.parse(localStorage.getItem('sta104_all_progress')) || {};
                 this.isLecturerAuthenticated = false;
                 this.currentTopicIndex = 0;
@@ -4251,8 +4294,8 @@
                 return this.allProgress[targetId] || {};
             }
 
-            saveStudent(name, id, group) {
-                this.student = { name, id, group };
+            saveStudent(name, id, group, lecturer) {
+                this.student = { name, id, group, lecturer };
                 localStorage.setItem('sta104_current_student', JSON.stringify(this.student));
                 if (!this.allProgress[id]) {
                     this.allProgress[id] = {};
@@ -4265,13 +4308,13 @@
                 if (!this.allProgress[this.student.id]) {
                     this.allProgress[this.student.id] = {};
                 }
-                this.allProgress[this.student.id][topicId] = { completed: true, score: score, answers: answers };
+                this.allProgress[this.student.id][topicId] = { completed: true, score: score, answers: answers, lecturer: this.student.lecturer || '' };
                 localStorage.setItem('sta104_all_progress', JSON.stringify(this.allProgress));
             }
 
 
             clearCurrentStudent() {
-                this.student = { name: '', id: '', group: '' };
+                this.student = { name: '', id: '', group: '', lecturer: '' };
                 localStorage.removeItem('sta104_current_student');
             }
         }
@@ -4279,7 +4322,7 @@
         const state = new AppState();
 
         const app = {
-            portalFilters: { module: 'all', group: 'all' },
+            portalFilters: { module: 'all', group: 'all', lecturer: 'all' },
 
             init: () => {
                 if (state.student.name && state.student.id) {
@@ -4339,8 +4382,9 @@
                 const name = document.getElementById('student-name').value.trim();
                 const id = document.getElementById('student-id').value.trim();
                 const group = document.getElementById('student-group').value.trim();
-                if (name && id && group) {
-                    state.saveStudent(name, id, group);
+                const lecturer = document.getElementById('student-lecturer').value.trim();
+                if (name && id && group && lecturer) {
+                    state.saveStudent(name, id, group, lecturer);
                     app.updateHeaderTag();
                     app.showScreen('topic-hub-screen');
                 }
@@ -4663,6 +4707,7 @@
                 document.getElementById('cert-student-name').innerText = state.student.name || 'Student Name';
                 document.getElementById('cert-student-id').innerText = state.student.id || '2023XXXXXX';
                 document.getElementById('cert-student-group').innerText = state.student.group || 'N/A';
+                document.getElementById('cert-lecturer-name').innerText = res.lecturer || state.student.lecturer || 'LECTURER NOT ASSIGNED';
                 document.getElementById('cert-module-number').innerText = `MODULE ${String(topicId + 1).padStart(2, '0')}`;
                 document.getElementById('cert-topic-title').innerText = topic.title;
                 document.getElementById('cert-topic-score').innerText = `${res.score}%`;
@@ -4729,6 +4774,7 @@
                     name: state.student.name,
                     id: state.student.id,
                     group: state.student.group || 'N/A',
+                    lecturer: res.lecturer || state.student.lecturer || 'NOT ASSIGNED',
                     topicId: topicId,
                     module: topicId + 1,
                     topicTitle: topic.title,
@@ -4750,7 +4796,7 @@
             setLecturerHeader: () => {
                 const tag = document.getElementById('header-student-tag');
                 const btnSwitch = document.getElementById('btn-switch-student');
-                if (tag) tag.innerHTML = '👩‍🏫 <strong>LECTURER MODE</strong> — NOOREZATTY';
+                if (tag) tag.innerHTML = '👩‍🏫 <strong>LECTURER MODE</strong> — evaluSTAT';
                 if (btnSwitch) btnSwitch.style.display = 'none';
             },
 
@@ -4791,11 +4837,13 @@
                 const nameInput = document.getElementById('student-name');
                 const idInput = document.getElementById('student-id');
                 const groupInput = document.getElementById('student-group');
+                const lecturerInput = document.getElementById('student-lecturer');
                 if (nameInput) nameInput.value = '';
                 if (idInput) idInput.value = '';
                 if (groupInput) groupInput.value = '';
+                if (lecturerInput) lecturerInput.value = '';
 
-                app.portalFilters = { module: 'all', group: 'all' };
+                app.portalFilters = { module: 'all', group: 'all', lecturer: 'all' };
                 app.updateHeaderTag();
                 alert('🔒 Lecturer Portal session closed. Returning to main registration page...');
                 app.showScreen('registration-screen');
@@ -4845,17 +4893,39 @@
                 else select.value = 'all';
             },
 
+            populateLecturerNameFilter: (submissions) => {
+                const select = document.getElementById('lecturer-name-filter');
+                if (!select) return;
+
+                const previous = app.portalFilters.lecturer || select.value || 'all';
+                const storedLecturers = submissions
+                    .map(s => String(s.lecturer || '').trim().toUpperCase())
+                    .filter(Boolean);
+                const lecturers = [...new Set([...lecturerOptions, ...storedLecturers])].sort((a, b) => a.localeCompare(b));
+                const hasLegacy = submissions.some(s => !String(s.lecturer || '').trim());
+
+                select.innerHTML = '<option value="all">All Lecturers</option>' + lecturers
+                    .map(name => `<option value="${app.escapeHtml(name)}">${app.escapeHtml(name)}</option>`)
+                    .join('') + (hasLegacy ? '<option value="NOT ASSIGNED">NOT ASSIGNED / LEGACY</option>' : '');
+
+                if ([...select.options].some(o => o.value === previous)) select.value = previous;
+                else select.value = 'all';
+            },
+
             getLecturerFilteredSubmissions: () => {
                 const submissions = app.getLecturerSubmissions();
                 const moduleFilter = app.portalFilters.module;
                 const groupFilter = app.portalFilters.group;
+                const lecturerFilter = app.portalFilters.lecturer;
 
                 return submissions.filter(sub => {
                     const subTopicId = String(sub.topicId ?? ((sub.module || 1) - 1));
                     const subGroup = String(sub.group || 'N/A').trim().toUpperCase();
+                    const subLecturer = String(sub.lecturer || 'NOT ASSIGNED').trim().toUpperCase();
                     const moduleMatches = moduleFilter === 'all' || subTopicId === String(moduleFilter);
                     const groupMatches = groupFilter === 'all' || subGroup === String(groupFilter).toUpperCase();
-                    return moduleMatches && groupMatches;
+                    const lecturerMatches = lecturerFilter === 'all' || subLecturer === String(lecturerFilter).toUpperCase();
+                    return moduleMatches && groupMatches && lecturerMatches;
                 });
             },
 
@@ -4873,7 +4943,7 @@
                 if (avgEl) avgEl.textContent = `${average}%`;
 
                 if (submissions.length === 0) {
-                    tbody.innerHTML = '<tr><td colspan="7" class="portal-empty-state">No student records match the selected filter.</td></tr>';
+                    tbody.innerHTML = '<tr><td colspan="8" class="portal-empty-state">No student records match the selected filter.</td></tr>';
                     return;
                 }
 
@@ -4887,6 +4957,7 @@
                         <td><strong>${app.portalUpper(sub.name)}</strong></td>
                         <td>${app.portalUpper(sub.id)}</td>
                         <td>${app.portalUpper(sub.group || 'N/A')}</td>
+                        <td>${app.portalUpper(sub.lecturer || 'NOT ASSIGNED')}</td>
                         <td>${app.portalUpper(moduleText)}</td>
                         <td><span class="uitm-badge" style="font-size:0.78rem;">${app.escapeHtml(sub.score)}%</span></td>
                         <td>${app.portalUpper(sub.feedback || 'NO COMMENTS PROVIDED.')}</td>
@@ -4899,17 +4970,21 @@
             applyLecturerFilters: () => {
                 const moduleSelect = document.getElementById('lecturer-module-filter');
                 const classSelect = document.getElementById('lecturer-class-filter');
+                const lecturerSelect = document.getElementById('lecturer-name-filter');
                 app.portalFilters.module = moduleSelect ? moduleSelect.value : 'all';
                 app.portalFilters.group = classSelect ? classSelect.value : 'all';
+                app.portalFilters.lecturer = lecturerSelect ? lecturerSelect.value : 'all';
                 app.renderLecturerRows(app.getLecturerFilteredSubmissions());
             },
 
             resetLecturerFilters: () => {
-                app.portalFilters = { module: 'all', group: 'all' };
+                app.portalFilters = { module: 'all', group: 'all', lecturer: 'all' };
                 const moduleSelect = document.getElementById('lecturer-module-filter');
                 const classSelect = document.getElementById('lecturer-class-filter');
+                const lecturerSelect = document.getElementById('lecturer-name-filter');
                 if (moduleSelect) moduleSelect.value = 'all';
                 if (classSelect) classSelect.value = 'all';
+                if (lecturerSelect) lecturerSelect.value = 'all';
                 app.renderLecturerRows(app.getLecturerSubmissions());
             },
 
@@ -4923,12 +4998,17 @@
                 const submissions = app.getLecturerSubmissions();
                 app.populateLecturerModuleFilter();
                 app.populateLecturerClassFilter(submissions);
+                app.populateLecturerNameFilter(submissions);
 
                 const moduleSelect = document.getElementById('lecturer-module-filter');
                 const classSelect = document.getElementById('lecturer-class-filter');
+                const lecturerSelect = document.getElementById('lecturer-name-filter');
                 if (moduleSelect) moduleSelect.value = app.portalFilters.module || 'all';
                 if (classSelect && [...classSelect.options].some(o => o.value === app.portalFilters.group)) {
                     classSelect.value = app.portalFilters.group;
+                }
+                if (lecturerSelect && [...lecturerSelect.options].some(o => o.value === app.portalFilters.lecturer)) {
+                    lecturerSelect.value = app.portalFilters.lecturer;
                 }
 
                 app.renderLecturerRows(app.getLecturerFilteredSubmissions());
@@ -4939,6 +5019,7 @@
                 // The active filters are stored when "Filter Results" is pressed.
                 const selectedModule = app.portalFilters.module || 'all';
                 const selectedClass = app.portalFilters.group || 'all';
+                const selectedLecturer = app.portalFilters.lecturer || 'all';
                 const reportRows = app.getLecturerFilteredSubmissions();
 
                 if (reportRows.length === 0) {
@@ -4946,11 +5027,9 @@
                     return;
                 }
 
-                let reportTitle = 'OVERALL STUDENT PERFORMANCE REPORT';
-                let reportSubtitle = 'ALL MODULES • ALL CLASSES';
-
                 const hasModuleFilter = selectedModule !== 'all';
                 const hasClassFilter = selectedClass !== 'all';
+                const hasLecturerFilter = selectedLecturer !== 'all';
                 const topic = hasModuleFilter ? sta104Topics[Number(selectedModule)] : null;
                 const moduleLabel = hasModuleFilter
                     ? `MODULE ${String(Number(selectedModule) + 1).padStart(2, '0')}${topic ? `: ${topic.title.toUpperCase()}` : ''}`
@@ -4958,17 +5037,14 @@
                 const classLabel = hasClassFilter
                     ? `CLASS / GROUP ${String(selectedClass).toUpperCase()}`
                     : 'ALL CLASSES';
+                const lecturerLabel = hasLecturerFilter
+                    ? `LECTURER ${String(selectedLecturer).toUpperCase()}`
+                    : 'ALL LECTURERS';
 
-                if (hasModuleFilter && hasClassFilter) {
-                    reportTitle = 'FILTERED STUDENT PERFORMANCE REPORT';
-                    reportSubtitle = `${moduleLabel} • ${classLabel}`;
-                } else if (hasModuleFilter) {
-                    reportTitle = `MODULE ${String(Number(selectedModule) + 1).padStart(2, '0')} REPORT`;
-                    reportSubtitle = `${topic ? topic.title.toUpperCase() : 'SELECTED MODULE'} • ALL CLASSES`;
-                } else if (hasClassFilter) {
-                    reportTitle = `${classLabel} REPORT`;
-                    reportSubtitle = 'ALL MODULES';
-                }
+                const reportTitle = (hasModuleFilter || hasClassFilter || hasLecturerFilter)
+                    ? 'FILTERED STUDENT PERFORMANCE REPORT'
+                    : 'OVERALL STUDENT PERFORMANCE REPORT';
+                const reportSubtitle = `${moduleLabel} • ${classLabel} • ${lecturerLabel}`;
 
                 const average = Math.round(reportRows.reduce((sum, s) => sum + Number(s.score || 0), 0) / reportRows.length);
                 const rowsHtml = reportRows.map((sub, index) => {
@@ -4981,6 +5057,7 @@
                         <td><strong>${app.portalUpper(sub.name)}</strong></td>
                         <td>${app.portalUpper(sub.id)}</td>
                         <td>${app.portalUpper(sub.group || 'N/A')}</td>
+                        <td>${app.portalUpper(sub.lecturer || 'NOT ASSIGNED')}</td>
                         <td>${app.portalUpper(moduleText)}</td>
                         <td><strong>${app.escapeHtml(sub.score)}%</strong></td>
                         <td>${app.portalUpper(sub.feedback || 'NO COMMENTS PROVIDED.')}</td>
@@ -5066,13 +5143,13 @@ tr:nth-child(even) td { background: #F8FAF9; }
     <div class="subtitle">${app.escapeHtml(reportSubtitle)}</div>
 </div>
 <div class="meta">
-    <span>LECTURER: <strong>NOOREZATTY</strong></span>
+    <span>LECTURER FILTER: <strong>${app.escapeHtml(selectedLecturer === 'all' ? 'ALL LECTURERS' : String(selectedLecturer).toUpperCase())}</strong></span>
     <span>RECORDS: <strong>${reportRows.length}</strong></span>
     <span>AVERAGE TOPIC SCORE: <strong>${average}%</strong></span>
     <span>GENERATED: <strong>${new Date().toLocaleString('en-MY').toUpperCase()}</strong></span>
 </div>
 <table>
-<thead><tr><th>No.</th><th>Student Name</th><th>Student ID</th><th>Class / Group</th><th>Module / Topic</th><th>Score</th><th>Feedback</th><th>Date</th></tr></thead>
+<thead><tr><th>No.</th><th>Student Name</th><th>Student ID</th><th>Class / Group</th><th>Lecturer</th><th>Module / Topic</th><th>Score</th><th>Feedback</th><th>Date</th></tr></thead>
 <tbody>${rowsHtml}</tbody>
 </table>
 <div class="footer">Generated from evaluSTAT Lecturer Portal</div>
@@ -5086,7 +5163,7 @@ tr:nth-child(even) td { background: #F8FAF9; }
                     localStorage.removeItem('sta104_submissions');
                     localStorage.removeItem('sta104_all_progress');
                     state.allProgress = {};
-                    app.portalFilters = { module: 'all', group: 'all' };
+                    app.portalFilters = { module: 'all', group: 'all', lecturer: 'all' };
                     app.renderLecturerPortal();
                 }
             }
