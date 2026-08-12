@@ -2948,18 +2948,18 @@
         }
 
         /* ======================================================================
-           V21 FINAL SMARTPHONE FRONT-PAGE TUNING
-           - Description: .70rem
-           - Green hero padding: 12px 12px 25px
+           V25 FINAL SMARTPHONE FRONT-PAGE TUNING
+           - Description: .75rem
+           - Green hero padding: 12px 12px 28px
            ====================================================================== */
         @media (max-width: 430px) {
             body.registration-mode .front-subtitle {
-                font-size: .70rem !important;
+                font-size: .75rem !important;
                 line-height: 1.42 !important;
             }
 
             body.registration-mode .front-hero-panel {
-                padding: 12px 12px 25px !important;
+                padding: 12px 12px 28px !important;
             }
         }
 
@@ -2970,7 +2970,7 @@
            ====================================================================== */
         @media (max-width: 430px) {
             body.registration-mode .front-btn-submit {
-                margin-top: 26px !important;
+                margin-top: 52px !important;
             }
         }
 
@@ -5025,7 +5025,16 @@ tr:nth-child(even) td { background: #F8FAF9; }
             }
         }
 
-    </style></head><body>
+    
+        /* v26: Gold-gradient evaluSTAT brand text on the front page */
+        #registration-screen .front-logo-badge .evalustat-text {
+            background: linear-gradient(90deg, #F7D774 0%, #FFD700 32%, #FFF0A6 55%, #D9A521 78%, #F7D774 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent !important;
+        }
+</style></head><body>
 <div class="report-head">
     <div class="brand">UiTM • evaluSTAT • STA104</div>
     <h1>${app.escapeHtml(reportTitle)}</h1>
