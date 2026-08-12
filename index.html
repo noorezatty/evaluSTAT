@@ -2974,7 +2974,32 @@
             }
         }
 
-    </style>
+    
+
+        /* ======================================================================
+           V27 SMARTPHONE HERO SPACING
+           - Doubles gap between STA104 eyebrow and UiTM/evaluSTAT badge: 9px -> 18px
+           - Increases green hero bottom padding proportionately: 28px -> 37px
+           - Keeps evaluSTAT brand text gold-gradient on the actual front page
+           ====================================================================== */
+        #registration-screen .front-logo-badge .evalustat-text {
+            background: linear-gradient(90deg, #F7D774 0%, #FFD700 32%, #FFF0A6 55%, #D9A521 78%, #F7D774 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent !important;
+        }
+
+        @media (max-width: 430px) {
+            body.registration-mode .front-eyebrow {
+                margin: 1px 0 18px !important;
+            }
+
+            body.registration-mode .front-hero-panel {
+                padding: 12px 12px 37px !important;
+            }
+        }
+</style>
 </head>
 <body>
 
