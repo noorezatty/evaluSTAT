@@ -2717,7 +2717,7 @@
            ========================================================================== */
         @media print {
             @page {
-                size: A4 portrait;
+                size: A4 landscape;
                 margin: 0;
             }
 
@@ -3684,12 +3684,12 @@
             #printable-certificate.cert-container::before { inset: 4px; border-radius: 11px; }
             #printable-certificate.cert-container::after { inset: 8px; border-radius: 8px; }
         }
-        /* INDEX12: one-page A4 portrait certificate. Display preview smaller in browser. */
+        /* INDEX17: one-page A4 landscape certificate. Display preview smaller in browser. */
         #printable-certificate.cert-container {
             box-sizing: border-box;
-            width: min(100%, 620px);
-            max-width: 620px;
-            aspect-ratio: 210 / 297;
+            width: min(100%, 760px);
+            max-width: 760px;
+            aspect-ratio: 297 / 210;
             min-height: 0;
             padding: 54px 43px;
             display: flex;
@@ -3718,7 +3718,7 @@
         #printable-certificate .cert-chip { padding: 10px 12px; }
         #printable-certificate .cert-approval-footer { margin: 0; padding-top: 22px; }
         @media (max-width: 620px) {
-            #printable-certificate.cert-container { width: 100%; aspect-ratio: 210 / 297; padding: 30px 21px; }
+            #printable-certificate.cert-container { width: 100%; aspect-ratio: 297 / 210; padding: 30px 21px; }
             #printable-certificate .cert-institution-center { margin-bottom: 13px; }
             #printable-certificate .cert-org-header { font-size: clamp(8px, 2vw, 11px); }
             #printable-certificate .cert-faculty-line { font-size: clamp(7px, 1.6vw, 9px); }
@@ -3739,12 +3739,12 @@
         }
         /* Dedicated PDF capture applies a fixed 793 x 1121 layout, independent of preview width. */
         #printable-certificate.cert-container.cert-pdf-render {
-            width: 793px !important;
-            max-width: 793px !important;
-            height: 1121px !important;
-            min-height: 1121px !important;
+            width: 1122px !important;
+            max-width: 1122px !important;
+            height: 793px !important;
+            min-height: 793px !important;
             aspect-ratio: auto !important;
-            padding: 78px 70px !important;
+            padding: 42px 75px !important;
             margin: 0 !important;
             border-radius: 22px !important;
             box-shadow: none !important;
@@ -3755,27 +3755,27 @@
             padding: 0 !important;
         }
         #printable-certificate.cert-container.cert-pdf-render .cert-institution-center { margin-bottom: 26px !important; }
-        #printable-certificate.cert-container.cert-pdf-render .cert-script-title { font-size: 50px !important; }
+        #printable-certificate.cert-container.cert-pdf-render .cert-script-title { font-size: 46px !important; }
         #printable-certificate.cert-container.cert-pdf-render .cert-header { font-size: 24px !important; }
         #printable-certificate.cert-container.cert-pdf-render .cert-subheader { font-size: 13px !important; }
-        #printable-certificate.cert-container.cert-pdf-render .cert-id-tag { font-size: 12px !important; margin-bottom: 44px !important; }
+        #printable-certificate.cert-container.cert-pdf-render .cert-id-tag { font-size: 12px !important; margin-bottom: 18px !important; }
         #printable-certificate.cert-container.cert-pdf-render .cert-recognition-copy { font-size: 14px !important; }
         #printable-certificate.cert-container.cert-pdf-render .cert-topic-title { font-size: 24px !important; }
         #printable-certificate.cert-container.cert-pdf-render .cert-course-name { font-size: 13px !important; }
         #printable-certificate.cert-container.cert-pdf-render .cert-chip { font-size: 12px !important; padding: 11px 16px !important; }
         #printable-certificate.cert-container.cert-pdf-render .cert-approval-name { font-size: 15px !important; }
         @media print {
-            @page { size: A4 portrait; margin: 0; }
-            html, body { width: 210mm !important; height: 297mm !important; margin: 0 !important; padding: 0 !important; overflow: hidden !important; }
-            body #certificate-screen { height: 297mm !important; padding: 0 !important; display: flex !important; align-items: center !important; justify-content: center !important; }
+            @page { size: A4 landscape; margin: 0; }
+            html, body { width: 297mm !important; height: 210mm !important; margin: 0 !important; padding: 0 !important; overflow: hidden !important; }
+            body #certificate-screen { height: 210mm !important; padding: 0 !important; display: flex !important; align-items: center !important; justify-content: center !important; }
             body #printable-certificate.cert-container {
                 display: flex !important;
-                width: 210mm !important;
+                width: 297mm !important;
                 max-width: none !important;
-                height: 297mm !important;
+                height: 210mm !important;
                 aspect-ratio: auto !important;
                 margin: 0 !important;
-                padding: 22mm 18mm !important;
+                padding: 12mm 18mm !important;
                 border: 4px solid #173f3a !important;
                 border-radius: 18px !important;
                 box-shadow: none !important;
@@ -3786,6 +3786,24 @@
                 break-inside: avoid !important;
             }
         }
+        /* INDEX17 landscape spacing, preserving decorative borders and certificate contents. */
+        #printable-certificate.cert-container { padding-top: 28px; padding-bottom: 28px; }
+        #printable-certificate .cert-institution-center { margin-bottom: 8px; }
+        #printable-certificate .cert-script-title { font-size: 38px; }
+        #printable-certificate .cert-divider { margin: 5px auto 10px; }
+        #printable-certificate .cert-subheader { margin-bottom: 8px; }
+        #printable-certificate .cert-id-tag { margin-bottom: 14px; }
+        #printable-certificate .cert-recognition-copy { margin-bottom: 7px; }
+        #printable-certificate .cert-course-name { margin-bottom: 12px; }
+        #printable-certificate .cert-badge-row { margin-bottom: 17px; }
+        #printable-certificate .cert-approval-footer { padding-top: 10px; }
+        #printable-certificate .cert-name { border: 0 !important; border-bottom: 0 !important; text-decoration: none !important; }
+        #printable-certificate.cert-container.cert-pdf-render .cert-institution-center { margin-bottom: 8px !important; }
+        #printable-certificate.cert-container.cert-pdf-render .cert-script-title { font-size: 42px !important; }
+        #printable-certificate.cert-container.cert-pdf-render .cert-id-tag { margin-bottom: 14px !important; }
+        #printable-certificate.cert-container.cert-pdf-render .cert-course-name { margin-bottom: 12px !important; }
+        #printable-certificate.cert-container.cert-pdf-render .cert-badge-row { margin-bottom: 15px !important; }
+        @media(max-width:620px) { #printable-certificate.cert-container { padding: 13px 19px; } }
         /* Explanations remain on the web results screen only, never in the PDF. */
         .answer-review-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px; }
         .answer-review-card { background: #fff; border: 1px solid #d9e4df; border-left: 4px solid #2b846c; border-radius: 12px; padding: 14px 16px; text-align: left; min-width: 0; }
@@ -5893,6 +5911,489 @@
             [...topic.questions.slice(5, 10), ...additionalModuleQuestions[index].slice(5, 10)]
         ]);
         // STA104 syllabus-aligned bank: three balanced assessment versions per module.
+                const previousModule3QuestionSets = [
+    [
+        {
+            "type": "matching",
+            "badge": "Match Concepts",
+            "prompt": "Match each time-series pattern to its component.",
+            "pairs": [
+                {
+                    "prompt": "Gradual multi-year growth",
+                    "options": [
+                        "Trend",
+                        "Seasonal",
+                        "Cyclical",
+                        "Irregular"
+                    ],
+                    "answer": "Trend"
+                },
+                {
+                    "prompt": "Sales peaks every December",
+                    "options": [
+                        "Trend",
+                        "Seasonal",
+                        "Cyclical",
+                        "Irregular"
+                    ],
+                    "answer": "Seasonal"
+                },
+                {
+                    "prompt": "Business-cycle contraction",
+                    "options": [
+                        "Trend",
+                        "Seasonal",
+                        "Cyclical",
+                        "Irregular"
+                    ],
+                    "answer": "Cyclical"
+                },
+                {
+                    "prompt": "Sudden flood disruption",
+                    "options": [
+                        "Trend",
+                        "Seasonal",
+                        "Cyclical",
+                        "Irregular"
+                    ],
+                    "answer": "Irregular"
+                }
+            ],
+            "explanation": "Trend is long-term, seasonal repeats within a year, cycles are multi-year, and irregular shocks are unexpected.",
+            "subtopic": "Component of time series"
+        },
+        {
+            "type": "mcq",
+            "badge": "Applied Multiple Choice",
+            "prompt": "Which expression is the multiplicative time-series model?",
+            "options": [
+                "Y = T + S + C + I",
+                "Y = T × S × C × I",
+                "Y = T − S",
+                "Y = T / S"
+            ],
+            "answer": 1,
+            "explanation": "A multiplicative decomposition represents components as factors.",
+            "subtopic": "Multiplicative time series model"
+        },
+        {
+            "type": "mcq",
+            "badge": "Applied Multiple Choice",
+            "prompt": "The 3-period moving average of 6, 9, 12 is:",
+            "options": [
+                "8",
+                "9",
+                "10",
+                "12"
+            ],
+            "answer": 1,
+            "explanation": "(6 + 9 + 12)/3 = 9.",
+            "subtopic": "Trend Analysis (Moving Average Method)"
+        },
+        {
+            "type": "truefalse",
+            "badge": "Evaluate a Claim",
+            "prompt": "A four-quarter moving average normally requires centering to align with a quarter.",
+            "answer": "true",
+            "explanation": "Even-length moving averages lie between periods, so adjacent averages are centered.",
+            "subtopic": "Trend Analysis (Moving Average Method)"
+        },
+        {
+            "type": "term",
+            "badge": "Dropdown Response",
+            "prompt": "Which example best illustrates seasonal variation in a time series?",
+            "options": [
+                "Umbrella sales increase during the rainy season",
+                "A permanent rise in monthly population",
+                "An unexpected factory fire",
+                "A steady rise in annual salaries"
+            ],
+            "answer": "Umbrella sales increase during the rainy season",
+            "explanation": "Seasonal variation is a pattern that repeats at similar times of the year, such as rainy-season purchases.",
+            "subtopic": "Seasonal Variations",
+            "description": "Select the best answer from the dropdown."
+        },
+        {
+            "type": "mcq",
+            "badge": "Applied Multiple Choice",
+            "prompt": "A trend forecast is 200 units and the seasonal index is 0.80. Multiplicative forecast is:",
+            "options": [
+                "160",
+                "200",
+                "240",
+                "250"
+            ],
+            "answer": 0,
+            "explanation": "Forecast = 200 × 0.80 = 160.",
+            "subtopic": "Forecasting (using multiplicative model)"
+        },
+        {
+            "type": "mcq",
+            "badge": "Applied Multiple Choice",
+            "prompt": "In a multiplicative time-series model, how is a simple seasonal forecast obtained?",
+            "options": [
+                "Trend multiplied by seasonal index",
+                "Trend plus seasonal index",
+                "Trend minus seasonal index",
+                "Trend divided by number of years"
+            ],
+            "answer": 0,
+            "explanation": "A simplified multiplicative forecast uses trend x seasonal index.",
+            "subtopic": "Forecasting (using multiplicative model)"
+        },
+        {
+            "type": "mcq",
+            "badge": "Applied Multiple Choice",
+            "prompt": "Which behaviour is cyclical rather than seasonal?",
+            "options": [
+                "Festive sales every December",
+                "Economic boom followed by multi-year downturn",
+                "Daily bus ridership peak",
+                "Monthly electricity bill date"
+            ],
+            "answer": 1,
+            "explanation": "Cyclical patterns extend over multi-year economic activity and are not tied to fixed calendar intervals.",
+            "subtopic": "Component of time series"
+        },
+        {
+            "type": "sequence",
+            "badge": "Order the Steps",
+            "prompt": "Arrange steps to compute a simple moving-average trend.",
+            "initial": [
+                "Add observations in each window",
+                "Move the window forward",
+                "Choose a window length",
+                "Divide by the number of observations"
+            ],
+            "answer": [
+                "Choose a window length",
+                "Add observations in each window",
+                "Divide by the number of observations",
+                "Move the window forward"
+            ],
+            "explanation": "A moving average takes a mean over consecutive windows.",
+            "subtopic": "Trend Analysis (Moving Average Method)"
+        },
+        {
+            "type": "term",
+            "badge": "Dropdown Response",
+            "prompt": "If actual sales are 144 and deseasonalized trend is 120, the seasonal ratio is:",
+            "options": [
+                "0.83",
+                "1.00",
+                "1.20",
+                "1.44"
+            ],
+            "answer": "1.20",
+            "explanation": "Ratio = actual/trend = 144/120 = 1.20 when other factors are ignored.",
+            "subtopic": "Seasonal Variations",
+            "description": "Select the best answer from the dropdown."
+        }
+    ],
+    [
+        {
+            "type": "mcq",
+            "badge": "Applied Multiple Choice",
+            "prompt": "A store experiences sharp unpredictable demand from an unexpected power outage. This is most closely:",
+            "options": [
+                "Trend",
+                "Seasonal",
+                "Irregular",
+                "Cyclical"
+            ],
+            "answer": 2,
+            "explanation": "Unexpected shocks are irregular movements.",
+            "subtopic": "Component of time series"
+        },
+        {
+            "type": "mcq",
+            "badge": "Applied Multiple Choice",
+            "prompt": "If trend = 100, seasonal = 1.2, cyclical = 0.9 and irregular = 1, multiplicative Y is:",
+            "options": [
+                "108",
+                "110",
+                "120",
+                "190"
+            ],
+            "answer": 0,
+            "explanation": "Y = 100 × 1.2 × 0.9 × 1 = 108.",
+            "subtopic": "Multiplicative time series model"
+        },
+        {
+            "type": "term",
+            "badge": "Dropdown Response",
+            "prompt": "Find the 3-period moving average for 12, 15, 18.",
+            "options": [
+                "14",
+                "15",
+                "16",
+                "18"
+            ],
+            "answer": "15",
+            "explanation": "(12 + 15 + 18)/3 = 15.",
+            "subtopic": "Trend Analysis (Moving Average Method)",
+            "description": "Select the best answer from the dropdown."
+        },
+        {
+            "type": "mcq",
+            "badge": "Applied Multiple Choice",
+            "prompt": "Which moving-average window is useful to smooth one annual cycle in monthly data?",
+            "options": [
+                "2-month",
+                "3-month",
+                "12-month",
+                "30-month"
+            ],
+            "answer": 2,
+            "explanation": "A 12-month window spans a complete annual seasonality cycle.",
+            "subtopic": "Trend Analysis (Moving Average Method)"
+        },
+        {
+            "type": "mcq",
+            "badge": "Applied Multiple Choice",
+            "prompt": "A quarter has seasonal index 0.75. Interpret it.",
+            "options": [
+                "25% below trend",
+                "75% above trend",
+                "75% below trend",
+                "No seasonality"
+            ],
+            "answer": 0,
+            "explanation": "0.75 represents activity at 75% of trend, 25% lower.",
+            "subtopic": "Seasonal Variations"
+        },
+        {
+            "type": "mcq",
+            "badge": "Applied Multiple Choice",
+            "prompt": "Trend forecast 80 with seasonal factor 1.5 gives:",
+            "options": [
+                "53.3",
+                "80",
+                "120",
+                "150"
+            ],
+            "answer": 2,
+            "explanation": "80 × 1.5 = 120.",
+            "subtopic": "Forecasting (using multiplicative model)"
+        },
+        {
+            "type": "term",
+            "badge": "Dropdown Response",
+            "prompt": "Which is a seasonal pattern?",
+            "options": [
+                "Demand rises every school reopening month",
+                "A one-off factory fire",
+                "A long-run steady increase",
+                "A five-year recession"
+            ],
+            "answer": "Demand rises every school reopening month",
+            "explanation": "Seasonality repeats at regular calendar-based intervals.",
+            "subtopic": "Component of time series",
+            "description": "Select the best answer from the dropdown."
+        },
+        {
+            "type": "truefalse",
+            "badge": "Evaluate a Claim",
+            "prompt": "Multiplicative seasonal indices across four quarters should average approximately 1 if properly normalized.",
+            "answer": "true",
+            "explanation": "Four quarterly factors commonly sum to about 4 or average to 1.",
+            "subtopic": "Seasonal Variations"
+        },
+        {
+            "type": "mcq",
+            "badge": "Applied Multiple Choice",
+            "prompt": "Observed value is 180 with seasonal factor 1.20. The deseasonalized value is:",
+            "options": [
+                "150",
+                "180",
+                "200",
+                "216"
+            ],
+            "answer": 0,
+            "explanation": "180 ÷ 1.20 = 150.",
+            "subtopic": "Seasonal Variations"
+        },
+        {
+            "type": "sequence",
+            "badge": "Order the Steps",
+            "prompt": "Order the steps for forecasting with a multiplicative seasonal model.",
+            "initial": [
+                "Estimate seasonal factor",
+                "Multiply forecast trend by seasonal factor",
+                "Estimate trend",
+                "Forecast trend at target period"
+            ],
+            "answer": [
+                "Estimate trend",
+                "Estimate seasonal factor",
+                "Forecast trend at target period",
+                "Multiply forecast trend by seasonal factor"
+            ],
+            "explanation": "The seasonal adjustment is applied to the projected trend level.",
+            "subtopic": "Forecasting (using multiplicative model)"
+        }
+    ],
+    [
+        {
+            "type": "mcq",
+            "badge": "Applied Multiple Choice",
+            "prompt": "A transport series rises steadily over ten years. This primarily indicates:",
+            "options": [
+                "Trend",
+                "Seasonal",
+                "Irregular",
+                "Measurement error"
+            ],
+            "answer": 0,
+            "explanation": "Long-run movement is the trend component.",
+            "subtopic": "Component of time series"
+        },
+        {
+            "type": "mcq",
+            "badge": "Applied Multiple Choice",
+            "prompt": "Which condition favours a multiplicative rather than additive model?",
+            "options": [
+                "Seasonal amplitude rises with series level",
+                "Seasonal amplitude remains constant",
+                "All seasonal factors are zero",
+                "No observations exist"
+            ],
+            "answer": 0,
+            "explanation": "Multiplicative seasonality scales with the trend level.",
+            "subtopic": "Multiplicative time series model"
+        },
+        {
+            "type": "term",
+            "badge": "Dropdown Response",
+            "prompt": "Find the 4-term moving average of 8, 12, 16, 20.",
+            "options": [
+                "12",
+                "14",
+                "16",
+                "18"
+            ],
+            "answer": "14",
+            "explanation": "(8 + 12 + 16 + 20)/4 = 14.",
+            "subtopic": "Trend Analysis (Moving Average Method)",
+            "description": "Select the best answer from the dropdown."
+        },
+        {
+            "type": "truefalse",
+            "badge": "Evaluate a Claim",
+            "prompt": "A moving average smooths short-term noise but can lag turning points.",
+            "answer": "true",
+            "explanation": "Averaging recent observations reduces variation but delays a response to changes.",
+            "subtopic": "Trend Analysis (Moving Average Method)"
+        },
+        {
+            "type": "mcq",
+            "badge": "Applied Multiple Choice",
+            "prompt": "Actual demand = 90, trend estimate = 100. Seasonal ratio is:",
+            "options": [
+                "0.90",
+                "1.10",
+                "9.00",
+                "10.0"
+            ],
+            "answer": 0,
+            "explanation": "Actual/trend = 90/100 = 0.90.",
+            "subtopic": "Seasonal Variations"
+        },
+        {
+            "type": "mcq",
+            "badge": "Applied Multiple Choice",
+            "prompt": "Trend = 240 and seasonal index = 1.15. The forecast is:",
+            "options": [
+                "209",
+                "240",
+                "276",
+                "288"
+            ],
+            "answer": 2,
+            "explanation": "240 × 1.15 = 276.",
+            "subtopic": "Forecasting (using multiplicative model)"
+        },
+        {
+            "type": "mcq",
+            "badge": "Applied Multiple Choice",
+            "prompt": "To remove seasonality from a multiplicative series, divide observed data by:",
+            "options": [
+                "Trend",
+                "Seasonal index",
+                "Time index",
+                "Variance"
+            ],
+            "answer": 1,
+            "explanation": "Deseasonalization divides the observed series by its seasonal factor.",
+            "subtopic": "Seasonal Variations"
+        },
+        {
+            "type": "matching",
+            "badge": "Match Concepts",
+            "prompt": "Match the term to the example.",
+            "pairs": [
+                {
+                    "prompt": "Regular weekend traffic peaks",
+                    "options": [
+                        "Seasonal",
+                        "Trend",
+                        "Irregular"
+                    ],
+                    "answer": "Seasonal"
+                },
+                {
+                    "prompt": "Long-term rise in online enrolment",
+                    "options": [
+                        "Seasonal",
+                        "Trend",
+                        "Irregular"
+                    ],
+                    "answer": "Trend"
+                },
+                {
+                    "prompt": "One-time transport strike",
+                    "options": [
+                        "Seasonal",
+                        "Trend",
+                        "Irregular"
+                    ],
+                    "answer": "Irregular"
+                }
+            ],
+            "explanation": "Calendar repetition is seasonal, sustained direction is trend, and unexpected disruption is irregular.",
+            "subtopic": "Component of time series"
+        },
+        {
+            "type": "term",
+            "badge": "Dropdown Response",
+            "prompt": "A monthly index of 1.00 implies demand is:",
+            "options": [
+                "At the trend level",
+                "20% above trend",
+                "10% below trend",
+                "Always zero"
+            ],
+            "answer": "At the trend level",
+            "explanation": "Multiplicative factor 1.00 leaves the trend unchanged.",
+            "subtopic": "Seasonal Variations",
+            "description": "Select the best answer from the dropdown."
+        },
+        {
+            "type": "mcq",
+            "badge": "Applied Multiple Choice",
+            "prompt": "A centered four-period moving average is made by:",
+            "options": [
+                "Averaging two successive four-period moving averages",
+                "Multiplying four values",
+                "Dropping two quarters",
+                "Squaring all observations"
+            ],
+            "answer": 0,
+            "explanation": "Centering assigns an even-order moving average to a specific period.",
+            "subtopic": "Trend Analysis (Moving Average Method)"
+        }
+    ]
+];
         const moduleQuestionSets = [
     [
         [
@@ -6530,15 +7031,15 @@
             {
                 "type": "mcq",
                 "badge": "Applied Multiple Choice",
-                "prompt": "The 90th percentile of a grouped distribution is generally found using:",
+                "prompt": "In a grouped frequency table, which value identifies the middle class of the data?",
                 "options": [
-                    "Interpolation within the relevant class",
-                    "Class midpoint of first interval",
-                    "Overall range alone",
-                    "Sample mode"
+                    "The cumulative frequency reaching half of the total",
+                    "The first class midpoint only",
+                    "The largest class width",
+                    "The total of all class boundaries"
                 ],
                 "answer": 0,
-                "explanation": "Locate the class containing 90% cumulative frequency, then interpolate using class boundaries.",
+                "explanation": "The median class is located where cumulative frequency first reaches or exceeds half of the total frequency.",
                 "subtopic": "Measures of Location (Grouped)"
             },
             {
@@ -6732,15 +7233,15 @@
             {
                 "type": "mcq",
                 "badge": "Applied Multiple Choice",
-                "prompt": "If grouped data have midpoints x and frequencies f, a sample variance approximation uses which quantity?",
+                "prompt": "A grouped table covers scores from 10 to 49. What is the approximate range?",
                 "options": [
-                    "sum(f(x−mean)²)/(n−1)",
-                    "sum(fx)/n",
-                    "maximum − minimum",
-                    "sum(f)/mean"
+                    "39",
+                    "10",
+                    "49",
+                    "59"
                 ],
                 "answer": 0,
-                "explanation": "Grouped sample variance weights squared midpoint deviations by class frequencies.",
+                "explanation": "Range is the highest value minus the lowest value: 49 - 10 = 39.",
                 "subtopic": "Measures of Dispersion (Grouped)"
             },
             {
@@ -6821,29 +7322,29 @@
             {
                 "type": "mcq",
                 "badge": "Applied Multiple Choice",
-                "prompt": "What does the 80th percentile indicate?",
+                "prompt": "Which quartile is the same as the median of an ordered dataset?",
                 "options": [
-                    "80% of observations are approximately at or below this value",
-                    "Exactly 80 observations",
-                    "Only 20% are below",
-                    "It is always equal to the mean"
+                    "First quartile (Q1)",
+                    "Second quartile (Q2)",
+                    "Third quartile (Q3)",
+                    "Fourth quartile (Q4)"
                 ],
-                "answer": 0,
-                "explanation": "Percentile p marks the value at or below which about p percent of observations fall.",
+                "answer": 1,
+                "explanation": "The median is Q2, which divides an ordered dataset into two equal halves.",
                 "subtopic": "Measures of Location (Ungrouped)"
             },
             {
                 "type": "mcq",
                 "badge": "Applied Multiple Choice",
-                "prompt": "The grouped 75th percentile belongs in the interval whose cumulative frequency first exceeds:",
+                "prompt": "A grouped frequency table has 40 observations. Which cumulative frequency position helps locate the median class?",
                 "options": [
-                    "0.25n",
-                    "0.50n",
-                    "0.75n",
-                    "1.25n"
+                    "10th observation",
+                    "20th observation",
+                    "30th observation",
+                    "40th observation only"
                 ],
-                "answer": 2,
-                "explanation": "The third quartile corresponds to 75% of the total frequency.",
+                "answer": 1,
+                "explanation": "For 40 observations, locate the class containing the 20th observation using cumulative frequency.",
                 "subtopic": "Measures of Location (Grouped)"
             },
             {
@@ -6910,10 +7411,10 @@
             {
                 "type": "matching",
                 "badge": "Match Concepts",
-                "prompt": "Match each time-series pattern to its component.",
+                "prompt": "Match each situation to its time-series component.",
                 "pairs": [
                     {
-                        "prompt": "Gradual multi-year growth",
+                        "prompt": "Student enrolment rises gradually over ten years",
                         "options": [
                             "Trend",
                             "Seasonal",
@@ -6923,7 +7424,7 @@
                         "answer": "Trend"
                     },
                     {
-                        "prompt": "Sales peaks every December",
+                        "prompt": "Ice-cream sales rise every school holiday",
                         "options": [
                             "Trend",
                             "Seasonal",
@@ -6933,7 +7434,7 @@
                         "answer": "Seasonal"
                     },
                     {
-                        "prompt": "Business-cycle contraction",
+                        "prompt": "Economic downturn that lasts several years",
                         "options": [
                             "Trend",
                             "Seasonal",
@@ -6943,7 +7444,7 @@
                         "answer": "Cyclical"
                     },
                     {
-                        "prompt": "Sudden flood disruption",
+                        "prompt": "An unexpected flood closes shops for a week",
                         "options": [
                             "Trend",
                             "Seasonal",
@@ -6953,277 +7454,127 @@
                         "answer": "Irregular"
                     }
                 ],
-                "explanation": "Trend is long-term, seasonal repeats within a year, cycles are multi-year, and irregular shocks are unexpected.",
+                "explanation": "Trend is the long-run direction, seasonal effects repeat in a calendar pattern, cycles vary over longer periods, and irregular effects are unexpected.",
                 "subtopic": "Component of time series"
             },
             {
                 "type": "mcq",
                 "badge": "Applied Multiple Choice",
-                "prompt": "Which expression is the multiplicative time-series model?",
+                "prompt": "A shop records higher umbrella sales every monsoon season. What pattern does this illustrate?",
                 "options": [
-                    "Y = T + S + C + I",
-                    "Y = T × S × C × I",
-                    "Y = T − S",
-                    "Y = T / S"
+                    "Trend",
+                    "Seasonal variation",
+                    "Cyclical variation",
+                    "Irregular variation"
                 ],
                 "answer": 1,
-                "explanation": "A multiplicative decomposition represents components as factors.",
-                "subtopic": "Multiplicative time series model"
+                "explanation": "The increase repeats at a similar time each year, which is a seasonal pattern.",
+                "subtopic": "Seasonal Variations"
             },
             {
                 "type": "mcq",
                 "badge": "Applied Multiple Choice",
-                "prompt": "The 3-period moving average of 6, 9, 12 is:",
+                "prompt": "What is the main purpose of a moving average in time-series analysis?",
                 "options": [
-                    "8",
-                    "9",
-                    "10",
-                    "12"
+                    "To smooth short-term variation",
+                    "To remove every observation",
+                    "To find the most common category",
+                    "To change values into percentages"
                 ],
-                "answer": 1,
-                "explanation": "(6 + 9 + 12)/3 = 9.",
+                "answer": 0,
+                "explanation": "Moving averages smooth temporary fluctuations to make the underlying movement easier to see.",
                 "subtopic": "Trend Analysis (Moving Average Method)"
             },
             {
                 "type": "truefalse",
                 "badge": "Evaluate a Claim",
-                "prompt": "A four-quarter moving average normally requires centering to align with a quarter.",
+                "prompt": "An unexpected one-day power outage affecting production is an irregular time-series event.",
                 "answer": "true",
-                "explanation": "Even-length moving averages lie between periods, so adjacent averages are centered.",
-                "subtopic": "Trend Analysis (Moving Average Method)"
-            },
-            {
-                "type": "term",
-                "badge": "Dropdown Response",
-                "prompt": "A seasonal index of 1.25 indicates typical seasonal activity is:",
-                "options": [
-                    "25% above trend",
-                    "25% below trend",
-                    "125% below trend",
-                    "Exactly zero"
-                ],
-                "answer": "25% above trend",
-                "explanation": "Multiplicative seasonal factor 1.25 means 125% of the trend level.",
-                "subtopic": "Seasonal Variations",
-                "description": "Select the best answer from the dropdown."
-            },
-            {
-                "type": "mcq",
-                "badge": "Applied Multiple Choice",
-                "prompt": "A trend forecast is 200 units and the seasonal index is 0.80. Multiplicative forecast is:",
-                "options": [
-                    "160",
-                    "200",
-                    "240",
-                    "250"
-                ],
-                "answer": 0,
-                "explanation": "Forecast = 200 × 0.80 = 160.",
-                "subtopic": "Forecasting (using multiplicative model)"
-            },
-            {
-                "type": "mcq",
-                "badge": "Applied Multiple Choice",
-                "prompt": "The trend is 50 and a seasonal factor is 1.10. Ignoring cyclical and irregular effects, expected value is:",
-                "options": [
-                    "45",
-                    "50",
-                    "55",
-                    "60"
-                ],
-                "answer": 2,
-                "explanation": "50 × 1.10 = 55.",
-                "subtopic": "Forecasting (using multiplicative model)"
-            },
-            {
-                "type": "mcq",
-                "badge": "Applied Multiple Choice",
-                "prompt": "Which behaviour is cyclical rather than seasonal?",
-                "options": [
-                    "Festive sales every December",
-                    "Economic boom followed by multi-year downturn",
-                    "Daily bus ridership peak",
-                    "Monthly electricity bill date"
-                ],
-                "answer": 1,
-                "explanation": "Cyclical patterns extend over multi-year economic activity and are not tied to fixed calendar intervals.",
+                "explanation": "An unexpected disruption does not follow a regular seasonal pattern.",
                 "subtopic": "Component of time series"
             },
             {
-                "type": "sequence",
-                "badge": "Order the Steps",
-                "prompt": "Arrange steps to compute a simple moving-average trend.",
-                "initial": [
-                    "Add observations in each window",
-                    "Move the window forward",
-                    "Choose a window length",
-                    "Divide by the number of observations"
-                ],
-                "answer": [
-                    "Choose a window length",
-                    "Add observations in each window",
-                    "Divide by the number of observations",
-                    "Move the window forward"
-                ],
-                "explanation": "A moving average takes a mean over consecutive windows.",
-                "subtopic": "Trend Analysis (Moving Average Method)"
-            },
-            {
-                "type": "term",
-                "badge": "Dropdown Response",
-                "prompt": "If actual sales are 144 and deseasonalized trend is 120, the seasonal ratio is:",
-                "options": [
-                    "0.83",
-                    "1.00",
-                    "1.20",
-                    "1.44"
-                ],
-                "answer": "1.20",
-                "explanation": "Ratio = actual/trend = 144/120 = 1.20 when other factors are ignored.",
-                "subtopic": "Seasonal Variations",
-                "description": "Select the best answer from the dropdown."
-            }
-        ],
-        [
-            {
                 "type": "mcq",
                 "badge": "Applied Multiple Choice",
-                "prompt": "A store experiences sharp unpredictable demand from an unexpected power outage. This is most closely:",
+                "prompt": "Monthly attendance rises steadily across five years. Which component best describes the overall direction?",
                 "options": [
-                    "Trend",
                     "Seasonal",
+                    "Trend",
                     "Irregular",
                     "Cyclical"
                 ],
-                "answer": 2,
-                "explanation": "Unexpected shocks are irregular movements.",
+                "answer": 1,
+                "explanation": "A sustained direction over several years is a trend.",
+                "subtopic": "Component of time series"
+            },
+            {
+                "type": "term",
+                "badge": "Dropdown Response",
+                "prompt": "Which chart is most suitable for displaying monthly sales from January to December?",
+                "description": "Choose the best answer.",
+                "options": [
+                    "Pie chart",
+                    "Time-series line chart",
+                    "Single bar for total sales",
+                    "Venn diagram"
+                ],
+                "answer": "Time-series line chart",
+                "explanation": "A line chart with time on the horizontal axis helps students see changes and repeating patterns.",
                 "subtopic": "Component of time series"
             },
             {
                 "type": "mcq",
                 "badge": "Applied Multiple Choice",
-                "prompt": "If trend = 100, seasonal = 1.2, cyclical = 0.9 and irregular = 1, multiplicative Y is:",
+                "prompt": "The sales figures for three consecutive weeks are 10, 20 and 30. What is their three-week moving average?",
                 "options": [
-                    "108",
-                    "110",
-                    "120",
-                    "190"
-                ],
-                "answer": 0,
-                "explanation": "Y = 100 × 1.2 × 0.9 × 1 = 108.",
-                "subtopic": "Multiplicative time series model"
-            },
-            {
-                "type": "term",
-                "badge": "Dropdown Response",
-                "prompt": "Find the 3-period moving average for 12, 15, 18.",
-                "options": [
-                    "14",
+                    "10",
                     "15",
-                    "16",
-                    "18"
-                ],
-                "answer": "15",
-                "explanation": "(12 + 15 + 18)/3 = 15.",
-                "subtopic": "Trend Analysis (Moving Average Method)",
-                "description": "Select the best answer from the dropdown."
-            },
-            {
-                "type": "mcq",
-                "badge": "Applied Multiple Choice",
-                "prompt": "Which moving-average window is useful to smooth one annual cycle in monthly data?",
-                "options": [
-                    "2-month",
-                    "3-month",
-                    "12-month",
-                    "30-month"
+                    "20",
+                    "30"
                 ],
                 "answer": 2,
-                "explanation": "A 12-month window spans a complete annual seasonality cycle.",
+                "explanation": "Add the three values and divide by three: (10 + 20 + 30)/3 = 20.",
                 "subtopic": "Trend Analysis (Moving Average Method)"
-            },
-            {
-                "type": "mcq",
-                "badge": "Applied Multiple Choice",
-                "prompt": "A quarter has seasonal index 0.75. Interpret it.",
-                "options": [
-                    "25% below trend",
-                    "75% above trend",
-                    "75% below trend",
-                    "No seasonality"
-                ],
-                "answer": 0,
-                "explanation": "0.75 represents activity at 75% of trend, 25% lower.",
-                "subtopic": "Seasonal Variations"
-            },
-            {
-                "type": "mcq",
-                "badge": "Applied Multiple Choice",
-                "prompt": "Trend forecast 80 with seasonal factor 1.5 gives:",
-                "options": [
-                    "53.3",
-                    "80",
-                    "120",
-                    "150"
-                ],
-                "answer": 2,
-                "explanation": "80 × 1.5 = 120.",
-                "subtopic": "Forecasting (using multiplicative model)"
-            },
-            {
-                "type": "term",
-                "badge": "Dropdown Response",
-                "prompt": "Which is a seasonal pattern?",
-                "options": [
-                    "Demand rises every school reopening month",
-                    "A one-off factory fire",
-                    "A long-run steady increase",
-                    "A five-year recession"
-                ],
-                "answer": "Demand rises every school reopening month",
-                "explanation": "Seasonality repeats at regular calendar-based intervals.",
-                "subtopic": "Component of time series",
-                "description": "Select the best answer from the dropdown."
             },
             {
                 "type": "truefalse",
                 "badge": "Evaluate a Claim",
-                "prompt": "Multiplicative seasonal indices across four quarters should average approximately 1 if properly normalized.",
-                "answer": "true",
-                "explanation": "Four quarterly factors commonly sum to about 4 or average to 1.",
+                "prompt": "A seasonal pattern must occur only once and never repeat.",
+                "answer": "false",
+                "explanation": "Seasonal variation is characterized by repetition at regular calendar intervals.",
                 "subtopic": "Seasonal Variations"
             },
             {
                 "type": "mcq",
                 "badge": "Applied Multiple Choice",
-                "prompt": "Observed value is 180 with seasonal factor 1.20. The deseasonalized value is:",
+                "prompt": "Which observation would best support predicting higher sales next December?",
                 "options": [
-                    "150",
-                    "180",
-                    "200",
-                    "216"
+                    "A one-time equipment failure",
+                    "Sales increase every December for several years",
+                    "Sales were zero in one random month",
+                    "The store changed its logo"
                 ],
-                "answer": 0,
-                "explanation": "180 ÷ 1.20 = 150.",
-                "subtopic": "Seasonal Variations"
+                "answer": 1,
+                "explanation": "Repeated increases during the same month provide evidence of a predictable seasonal pattern.",
+                "subtopic": "Forecasting (using multiplicative model)"
             },
             {
                 "type": "sequence",
                 "badge": "Order the Steps",
-                "prompt": "Order the steps for forecasting with a multiplicative seasonal model.",
+                "prompt": "Put these simple forecasting steps in a sensible order.",
                 "initial": [
-                    "Estimate seasonal factor",
-                    "Multiply forecast trend by seasonal factor",
-                    "Estimate trend",
-                    "Forecast trend at target period"
+                    "Estimate sales for the next month",
+                    "Collect past monthly sales",
+                    "Compare the estimate with actual sales",
+                    "Look for trend and repeating patterns"
                 ],
                 "answer": [
-                    "Estimate trend",
-                    "Estimate seasonal factor",
-                    "Forecast trend at target period",
-                    "Multiply forecast trend by seasonal factor"
+                    "Collect past monthly sales",
+                    "Look for trend and repeating patterns",
+                    "Estimate sales for the next month",
+                    "Compare the estimate with actual sales"
                 ],
-                "explanation": "The seasonal adjustment is applied to the projected trend level.",
+                "explanation": "Use historical data first, recognize patterns, make a forecast, then evaluate it.",
                 "subtopic": "Forecasting (using multiplicative model)"
             }
         ],
@@ -7231,159 +7582,316 @@
             {
                 "type": "mcq",
                 "badge": "Applied Multiple Choice",
-                "prompt": "A transport series rises steadily over ten years. This primarily indicates:",
+                "prompt": "Visitor numbers rise every school holiday. Which component explains this recurring increase?",
                 "options": [
-                    "Trend",
-                    "Seasonal",
                     "Irregular",
-                    "Measurement error"
-                ],
-                "answer": 0,
-                "explanation": "Long-run movement is the trend component.",
-                "subtopic": "Component of time series"
-            },
-            {
-                "type": "mcq",
-                "badge": "Applied Multiple Choice",
-                "prompt": "Which condition favours a multiplicative rather than additive model?",
-                "options": [
-                    "Seasonal amplitude rises with series level",
-                    "Seasonal amplitude remains constant",
-                    "All seasonal factors are zero",
-                    "No observations exist"
-                ],
-                "answer": 0,
-                "explanation": "Multiplicative seasonality scales with the trend level.",
-                "subtopic": "Multiplicative time series model"
-            },
-            {
-                "type": "term",
-                "badge": "Dropdown Response",
-                "prompt": "Find the 4-term moving average of 8, 12, 16, 20.",
-                "options": [
-                    "12",
-                    "14",
-                    "16",
-                    "18"
-                ],
-                "answer": "14",
-                "explanation": "(8 + 12 + 16 + 20)/4 = 14.",
-                "subtopic": "Trend Analysis (Moving Average Method)",
-                "description": "Select the best answer from the dropdown."
-            },
-            {
-                "type": "truefalse",
-                "badge": "Evaluate a Claim",
-                "prompt": "A moving average smooths short-term noise but can lag turning points.",
-                "answer": "true",
-                "explanation": "Averaging recent observations reduces variation but delays a response to changes.",
-                "subtopic": "Trend Analysis (Moving Average Method)"
-            },
-            {
-                "type": "mcq",
-                "badge": "Applied Multiple Choice",
-                "prompt": "Actual demand = 90, trend estimate = 100. Seasonal ratio is:",
-                "options": [
-                    "0.90",
-                    "1.10",
-                    "9.00",
-                    "10.0"
-                ],
-                "answer": 0,
-                "explanation": "Actual/trend = 90/100 = 0.90.",
-                "subtopic": "Seasonal Variations"
-            },
-            {
-                "type": "mcq",
-                "badge": "Applied Multiple Choice",
-                "prompt": "Trend = 240 and seasonal index = 1.15. The forecast is:",
-                "options": [
-                    "209",
-                    "240",
-                    "276",
-                    "288"
-                ],
-                "answer": 2,
-                "explanation": "240 × 1.15 = 276.",
-                "subtopic": "Forecasting (using multiplicative model)"
-            },
-            {
-                "type": "mcq",
-                "badge": "Applied Multiple Choice",
-                "prompt": "To remove seasonality from a multiplicative series, divide observed data by:",
-                "options": [
-                    "Trend",
-                    "Seasonal index",
-                    "Time index",
-                    "Variance"
+                    "Seasonal",
+                    "Long-term trend",
+                    "Cyclical"
                 ],
                 "answer": 1,
-                "explanation": "Deseasonalization divides the observed series by its seasonal factor.",
+                "explanation": "School holidays happen repeatedly at expected times, producing seasonal variation.",
                 "subtopic": "Seasonal Variations"
             },
             {
                 "type": "matching",
                 "badge": "Match Concepts",
-                "prompt": "Match the term to the example.",
+                "prompt": "Match each change to a time-series description.",
                 "pairs": [
                     {
-                        "prompt": "Regular weekend traffic peaks",
+                        "prompt": "A slow increase in university applications over many years",
                         "options": [
-                            "Seasonal",
                             "Trend",
-                            "Irregular"
-                        ],
-                        "answer": "Seasonal"
-                    },
-                    {
-                        "prompt": "Long-term rise in online enrolment",
-                        "options": [
-                            "Seasonal",
-                            "Trend",
-                            "Irregular"
+                            "Irregular",
+                            "Seasonal"
                         ],
                         "answer": "Trend"
                     },
                     {
-                        "prompt": "One-time transport strike",
+                        "prompt": "A sudden one-off transport strike",
                         "options": [
-                            "Seasonal",
                             "Trend",
-                            "Irregular"
+                            "Irregular",
+                            "Seasonal"
                         ],
                         "answer": "Irregular"
+                    },
+                    {
+                        "prompt": "Recurring festive-season shopping peaks",
+                        "options": [
+                            "Trend",
+                            "Irregular",
+                            "Seasonal"
+                        ],
+                        "answer": "Seasonal"
                     }
                 ],
-                "explanation": "Calendar repetition is seasonal, sustained direction is trend, and unexpected disruption is irregular.",
+                "explanation": "Long-run movement, unpredictable shocks and calendar-based repetition are distinct time-series patterns.",
+                "subtopic": "Component of time series"
+            },
+            {
+                "type": "mcq",
+                "badge": "Applied Multiple Choice",
+                "prompt": "Which result is most likely when a three-month moving average is used instead of raw monthly values?",
+                "options": [
+                    "The graph becomes smoother",
+                    "All values become zero",
+                    "The trend always reverses",
+                    "There are more original observations"
+                ],
+                "answer": 0,
+                "explanation": "Averaging consecutive months reduces some short-term variation.",
+                "subtopic": "Trend Analysis (Moving Average Method)"
+            },
+            {
+                "type": "truefalse",
+                "badge": "Evaluate a Claim",
+                "prompt": "A time-series graph should place observations in the order in which they occur.",
+                "answer": "true",
+                "explanation": "Time order is essential for examining trends and seasonal patterns.",
                 "subtopic": "Component of time series"
             },
             {
                 "type": "term",
                 "badge": "Dropdown Response",
-                "prompt": "A monthly index of 1.00 implies demand is:",
+                "prompt": "Which example is an irregular variation?",
+                "description": "Choose the best answer.",
                 "options": [
-                    "At the trend level",
-                    "20% above trend",
-                    "10% below trend",
-                    "Always zero"
+                    "Every Friday sales peak",
+                    "An unexpected flash flood",
+                    "Annual festive-season demand",
+                    "A steady five-year sales increase"
                 ],
-                "answer": "At the trend level",
-                "explanation": "Multiplicative factor 1.00 leaves the trend unchanged.",
-                "subtopic": "Seasonal Variations",
-                "description": "Select the best answer from the dropdown."
+                "answer": "An unexpected flash flood",
+                "explanation": "A flash flood is unexpected and does not follow a regular time pattern.",
+                "subtopic": "Component of time series"
             },
             {
                 "type": "mcq",
                 "badge": "Applied Multiple Choice",
-                "prompt": "A centered four-period moving average is made by:",
+                "prompt": "The three-month sales values are 12, 15 and 18. Their simple moving average is:",
                 "options": [
-                    "Averaging two successive four-period moving averages",
-                    "Multiplying four values",
-                    "Dropping two quarters",
-                    "Squaring all observations"
+                    "12",
+                    "15",
+                    "18",
+                    "45"
+                ],
+                "answer": 1,
+                "explanation": "(12 + 15 + 18)/3 = 15.",
+                "subtopic": "Trend Analysis (Moving Average Method)"
+            },
+            {
+                "type": "mcq",
+                "badge": "Applied Multiple Choice",
+                "prompt": "A restaurant plans extra staff every Ramadan after observing similar demand patterns in prior years. This is an example of:",
+                "options": [
+                    "Using seasonal patterns for planning",
+                    "Ignoring historical data",
+                    "A random one-time forecast",
+                    "Removing the time variable"
                 ],
                 "answer": 0,
-                "explanation": "Centering assigns an even-order moving average to a specific period.",
+                "explanation": "Repeated calendar-based demand patterns can guide staffing and inventory decisions.",
+                "subtopic": "Forecasting (using multiplicative model)"
+            },
+            {
+                "type": "truefalse",
+                "badge": "Evaluate a Claim",
+                "prompt": "A moving average can help identify the direction of a trend even when monthly observations fluctuate.",
+                "answer": "true",
+                "explanation": "Averaging smooths short-term fluctuations and makes longer-run movement more visible.",
+                "subtopic": "Trend Analysis (Moving Average Method)"
+            },
+            {
+                "type": "mcq",
+                "badge": "Applied Multiple Choice",
+                "prompt": "What would make a seasonal forecast less reliable?",
+                "options": [
+                    "Several years of consistent monthly patterns",
+                    "A sudden permanent change in customer behaviour",
+                    "Repeated yearly holiday peaks",
+                    "A stable operating schedule"
+                ],
+                "answer": 1,
+                "explanation": "A structural change can make past seasonal patterns less useful for predicting future demand.",
+                "subtopic": "Forecasting (using multiplicative model)"
+            },
+            {
+                "type": "sequence",
+                "badge": "Order the Steps",
+                "prompt": "Arrange the steps to interpret a time-series chart.",
+                "initial": [
+                    "Check for repeating peaks and troughs",
+                    "State the main pattern",
+                    "Read the time axis",
+                    "Identify the general direction"
+                ],
+                "answer": [
+                    "Read the time axis",
+                    "Identify the general direction",
+                    "Check for repeating peaks and troughs",
+                    "State the main pattern"
+                ],
+                "explanation": "Read the timeline first, then look for the trend, seasonal repetition and a concise interpretation.",
+                "subtopic": "Component of time series"
+            }
+        ],
+        [
+            {
+                "type": "mcq",
+                "badge": "Applied Multiple Choice",
+                "prompt": "A college cafeteria is busiest every weekday lunchtime. Which description fits this pattern?",
+                "options": [
+                    "Seasonal repetition",
+                    "One-off irregular event",
+                    "Long-term trend only",
+                    "A census"
+                ],
+                "answer": 0,
+                "explanation": "Repeated activity at a predictable time is a calendar-linked seasonal pattern.",
+                "subtopic": "Seasonal Variations"
+            },
+            {
+                "type": "term",
+                "badge": "Dropdown Response",
+                "prompt": "Which component describes an overall long-run increase or decrease?",
+                "description": "Choose the best answer.",
+                "options": [
+                    "Trend",
+                    "Seasonal",
+                    "Irregular",
+                    "Sampling error"
+                ],
+                "answer": "Trend",
+                "explanation": "Trend captures a general long-term movement in the series.",
+                "subtopic": "Component of time series"
+            },
+            {
+                "type": "mcq",
+                "badge": "Applied Multiple Choice",
+                "prompt": "Why might a lecturer plot student attendance month by month?",
+                "options": [
+                    "To see change over time",
+                    "To calculate student height",
+                    "To replace all observations with one category",
+                    "To ensure every month is identical"
+                ],
+                "answer": 0,
+                "explanation": "A time-series chart shows how observations evolve over time.",
+                "subtopic": "Component of time series"
+            },
+            {
+                "type": "truefalse",
+                "badge": "Evaluate a Claim",
+                "prompt": "A single unexpected factory breakdown is sufficient evidence of seasonal variation.",
+                "answer": "false",
+                "explanation": "Seasonality requires a repeating pattern, not one unexpected incident.",
+                "subtopic": "Component of time series"
+            },
+            {
+                "type": "matching",
+                "badge": "Match Concepts",
+                "prompt": "Choose the most suitable meaning for each term.",
+                "pairs": [
+                    {
+                        "prompt": "Trend",
+                        "options": [
+                            "Long-run direction",
+                            "Calendar repetition",
+                            "Unexpected shock"
+                        ],
+                        "answer": "Long-run direction"
+                    },
+                    {
+                        "prompt": "Seasonal variation",
+                        "options": [
+                            "Long-run direction",
+                            "Calendar repetition",
+                            "Unexpected shock"
+                        ],
+                        "answer": "Calendar repetition"
+                    },
+                    {
+                        "prompt": "Irregular variation",
+                        "options": [
+                            "Long-run direction",
+                            "Calendar repetition",
+                            "Unexpected shock"
+                        ],
+                        "answer": "Unexpected shock"
+                    }
+                ],
+                "explanation": "The components distinguish persistent direction, repeating timing and unpredictable events.",
+                "subtopic": "Component of time series"
+            },
+            {
+                "type": "mcq",
+                "badge": "Applied Multiple Choice",
+                "prompt": "Sales in three consecutive months are 6, 9 and 12. The three-month moving average equals:",
+                "options": [
+                    "6",
+                    "9",
+                    "12",
+                    "27"
+                ],
+                "answer": 1,
+                "explanation": "Add 6, 9 and 12, then divide by three to get 9.",
+                "subtopic": "Trend Analysis (Moving Average Method)"
+            },
+            {
+                "type": "mcq",
+                "badge": "Applied Multiple Choice",
+                "prompt": "What is the key limitation of a moving average at a sudden turning point?",
+                "options": [
+                    "It may respond with a delay",
+                    "It always predicts the exact peak",
+                    "It eliminates all errors",
+                    "It changes monthly data to nominal data"
+                ],
+                "answer": 0,
+                "explanation": "A moving average is based on earlier periods and may lag a sudden change.",
+                "subtopic": "Trend Analysis (Moving Average Method)"
+            },
+            {
+                "type": "term",
+                "badge": "Dropdown Response",
+                "prompt": "A retailer expects a busy festive season because the same peak occurred in the last three years. The main forecasting evidence is:",
+                "description": "Choose the best answer.",
+                "options": [
+                    "A repeated seasonal pattern",
+                    "An isolated shock",
+                    "An unrelated survey",
+                    "An arbitrary guess"
+                ],
+                "answer": "A repeated seasonal pattern",
+                "explanation": "Repeated increases around the same holiday support a seasonal expectation.",
+                "subtopic": "Forecasting (using multiplicative model)"
+            },
+            {
+                "type": "truefalse",
+                "badge": "Evaluate a Claim",
+                "prompt": "Historical patterns are useful for forecasting, but future events can still make actual sales different.",
+                "answer": "true",
+                "explanation": "Forecasts are estimates and can be affected by unexpected changes.",
+                "subtopic": "Forecasting (using multiplicative model)"
+            },
+            {
+                "type": "sequence",
+                "badge": "Order the Steps",
+                "prompt": "Order the basic steps in using moving averages to study a trend.",
+                "initial": [
+                    "Calculate the consecutive averages",
+                    "Inspect the smoothed direction",
+                    "Arrange data chronologically",
+                    "Choose how many periods to average"
+                ],
+                "answer": [
+                    "Arrange data chronologically",
+                    "Choose how many periods to average",
+                    "Calculate the consecutive averages",
+                    "Inspect the smoothed direction"
+                ],
+                "explanation": "Moving averages require ordered data, a chosen window, the averages and interpretation.",
                 "subtopic": "Trend Analysis (Moving Average Method)"
             }
         ]
@@ -8956,7 +9464,7 @@
                 if (!this.allProgress[this.student.id]) {
                     this.allProgress[this.student.id] = {};
                 }
-                this.allProgress[this.student.id][topicId] = { completed: true, score: score, answers: answers, lecturer: this.student.lecturer || '', setIndex: setIndex, questionBankVersion: 2, attempts: ((this.allProgress[this.student.id][topicId] || {}).attempts || 0) + 1 };
+                this.allProgress[this.student.id][topicId] = { completed: true, score: score, answers: answers, lecturer: this.student.lecturer || '', setIndex: setIndex, questionBankVersion: 3, attempts: ((this.allProgress[this.student.id][topicId] || {}).attempts || 0) + 1 };
                 localStorage.setItem('sta104_all_progress', JSON.stringify(this.allProgress));
             }
 
@@ -9018,14 +9526,14 @@
                     app.showResultPopup('PDF library unavailable', 'The PDF library did not load. Check your internet connection and try again.', false, 'Return to Certificate');
                     return;
                 }
-                if (btn) { btn.disabled = true; btn.textContent = 'Preparing A4 portrait PDF...'; }
+                if (btn) { btn.disabled = true; btn.textContent = 'Preparing A4 landscape PDF...'; }
                 let holder = null;
                 try {
                     if (document.fonts && document.fonts.ready) await document.fonts.ready;
                     // Capture an exact A4-proportioned certificate independent of its scaled on-screen preview.
                     // PDF drawing uses fixed millimetre dimensions, preventing automatic cropping or reflow.
-                    const pageWidthPx = 794;
-                    const pageHeightPx = 1123;
+                    const pageWidthPx = 1122;
+                    const pageHeightPx = 794;
                     holder = document.createElement('div');
                     holder.style.cssText = `position:fixed;left:0;top:0;width:${pageWidthPx}px;height:${pageHeightPx}px;z-index:100000;overflow:visible;pointer-events:none;background:#ffffff;`;
                     const copy = cert.cloneNode(true);
@@ -9055,8 +9563,8 @@
                         logging: false
                     });
                     if (!canvas.width || !canvas.height) throw new Error('Empty certificate canvas');
-                    const pdf = new window.jspdf.jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4', compress: true });
-                    pdf.addImage(canvas.toDataURL('image/jpeg', 0.97), 'JPEG', 0, 0, 210, 297);
+                    const pdf = new window.jspdf.jsPDF({ orientation: 'landscape', unit: 'mm', format: 'a4', compress: true });
+                    pdf.addImage(canvas.toDataURL('image/jpeg', 0.97), 'JPEG', 0, 0, 297, 210);
                     pdf.save(filename);
                 } catch (err) {
                     console.error('Certificate PDF export error:', err);
@@ -9524,8 +10032,12 @@
                 const reviewGrid = document.createElement('div');
                 reviewGrid.className = 'answer-review-grid';
                 const setNumber = Number.isInteger(Number(res.setIndex)) && Number(res.setIndex) >= 0 && Number(res.setIndex) < 3 ? Number(res.setIndex) : 0;
-                const isNewBank = Number(res.questionBankVersion) === 2;
-                const reviewedQuestions = isNewBank ? moduleQuestionSets[topicId][setNumber] : legacyModuleQuestionSets[topicId][setNumber];
+                const bankVersion = Number(res.questionBankVersion);
+                const reviewedQuestions = bankVersion === 3
+                    ? moduleQuestionSets[topicId][setNumber]
+                    : bankVersion === 2
+                        ? (topicId === 2 ? previousModule3QuestionSets[setNumber] : moduleQuestionSets[topicId][setNumber])
+                        : legacyModuleQuestionSets[topicId][setNumber];
                 const explanations = questionExplanations[topicId];
                 (res.answers || []).forEach((a, i) => {
                     const q = reviewedQuestions[i];
@@ -10171,7 +10683,7 @@
 <html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>${app.escapeHtml(reportTitle)}</title>
 <style>
-@page { size: A4 portrait; margin: 12mm; }
+@page { size: A4 landscape; margin: 12mm; }
 * { box-sizing: border-box; }
 body { font-family: Arial, Helvetica, sans-serif; margin: 0; color: #15221D; font-size: 10px; }
 .report-head { border-bottom: 3px solid #0B5A45; padding-bottom: 10px; margin-bottom: 14px; }
