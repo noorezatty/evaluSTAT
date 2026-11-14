@@ -4174,8 +4174,9 @@
     <!-- SUPABASE DATABASE SDK (FREE CLOUD DATABASE) -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-    <!-- Client-side PDF download for released certificates -->
-    <script src="https://cdn.jsdelivr.net/npm/html2pdf.js@0.10.1/dist/html2pdf.bundle.min.js"></script>
+    <!-- Client-side PDF download for released certificates. Direct canvas-to-PDF avoids html2pdf layout reflow. -->
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.2/dist/jspdf.umd.min.js"></script>
 
     <!-- JAVASCRIPT DATA & APPLICATION LOGIC -->
     <script>
@@ -9013,7 +9014,7 @@
                 const cert = document.getElementById('printable-certificate');
                 const filename = `STA104_Certificate_Module${String(topicId + 1).padStart(2, '0')}_${String(state.student.id).replace(/[^a-z0-9_-]/gi, '')}.pdf`;
                 const btn = document.getElementById('btn-print-certificate');
-                if (!window.html2pdf) {
+                if (typeof window.html2canvas !== 'function' || !window.jspdf || !window.jspdf.jsPDF) {
                     app.showResultPopup('PDF library unavailable', 'The PDF library did not load. Check your internet connection and try again.', false, 'Return to Certificate');
                     return;
                 }
@@ -9021,24 +9022,42 @@
                 let holder = null;
                 try {
                     if (document.fonts && document.fonts.ready) await document.fonts.ready;
-                    // html2canvas requires a visible, laid-out capture target.
-                    // Keep the temporary clone within the viewport during capture.
+                    // Capture an exact A4-proportioned certificate independent of its scaled on-screen preview.
+                    // PDF drawing uses fixed millimetre dimensions, preventing automatic cropping or reflow.
+                    const pageWidthPx = 794;
+                    const pageHeightPx = 1123;
                     holder = document.createElement('div');
-                    holder.style.cssText = 'position:fixed;left:0;top:0;width:793px;height:1121px;z-index:100000;pointer-events:none;overflow:hidden;background:#ffffff;';
+                    holder.style.cssText = `position:fixed;left:0;top:0;width:${pageWidthPx}px;height:${pageHeightPx}px;z-index:100000;overflow:visible;pointer-events:none;background:#ffffff;`;
                     const copy = cert.cloneNode(true);
+                    copy.removeAttribute('id');
+                    copy.id = 'printable-certificate';
                     copy.classList.add('cert-pdf-render');
                     copy.style.display = 'flex';
+                    copy.style.width = pageWidthPx + 'px';
+                    copy.style.maxWidth = pageWidthPx + 'px';
+                    copy.style.height = pageHeightPx + 'px';
+                    copy.style.minHeight = pageHeightPx + 'px';
+                    copy.style.margin = '0';
+                    copy.style.aspectRatio = 'auto';
                     holder.appendChild(copy);
                     document.body.appendChild(holder);
-                    // Captures only the certificate. Explanations and controls are outside this node.
-                    await window.html2pdf().set({
-                        margin: 0,
-                        filename,
-                        image: { type: 'jpeg', quality: 0.98 },
-                        html2canvas: { scale: 2, useCORS: true, backgroundColor: '#ffffff', scrollX: 0, scrollY: 0, windowWidth: 793, windowHeight: 1121 },
-                        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
-                        pagebreak: { mode: [] }
-                    }).from(copy).save();
+                    await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+                    const canvas = await window.html2canvas(copy, {
+                        scale: 2,
+                        useCORS: true,
+                        backgroundColor: '#ffffff',
+                        scrollX: 0,
+                        scrollY: 0,
+                        width: pageWidthPx,
+                        height: pageHeightPx,
+                        windowWidth: Math.max(window.innerWidth, pageWidthPx),
+                        windowHeight: Math.max(window.innerHeight, pageHeightPx),
+                        logging: false
+                    });
+                    if (!canvas.width || !canvas.height) throw new Error('Empty certificate canvas');
+                    const pdf = new window.jspdf.jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4', compress: true });
+                    pdf.addImage(canvas.toDataURL('image/jpeg', 0.97), 'JPEG', 0, 0, 210, 297);
+                    pdf.save(filename);
                 } catch (err) {
                     console.error('Certificate PDF export error:', err);
                     app.showResultPopup('PDF download failed', 'Please try again. The certificate could not be exported.', false, 'Return to Certificate');
